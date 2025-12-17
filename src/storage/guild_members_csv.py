@@ -53,12 +53,12 @@ def merge_members(new_members):
                 "PlayerID": pid,
                 "PlayerName": "",
                 "PreviousNames": "",
-                "Role": m["Role"],
-                "Joined": m["Joined"],
+                "Role": m["role"],
+                "Joined": m["joined"],
                 "Left": "",
             }
         else:
-            existing[pid]["Role"] = m["Role"]
+            existing[pid]["Role"] = m["role"]
             if existing[pid]["Left"]:
                 existing[pid]["Left"] = ""
 
