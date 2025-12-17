@@ -24,8 +24,8 @@ def save_csv(data):
         writer = csv.DictWriter(f, fieldnames=[
             "player_id",
             "role",
-            "joined_at",
-            "left_at",
+            "joined",
+            "left",
         ])
         writer.writeheader()
         for row in data.values():
@@ -35,6 +35,11 @@ def save_csv(data):
 def merge_members(new_members):
     """
     new_members : liste de dicts venant du scraping
+    {
+        "player_id": int,
+        "role": str,
+        "joined_at": str
+    }
     """
 
     existing = load_existing()
@@ -42,7 +47,7 @@ def merge_members(new_members):
 
     new_ids = {m["player_id"] for m in new_members}
 
-    # 1. Mettre à jour ou ajouter les membres actuels
+    # 1. Ajouter ou mettre à jour les membres présents
     for m in new_members:
         pid = m["player_id"]
 
@@ -51,20 +56,21 @@ def merge_members(new_members):
             existing[pid] = {
                 "player_id": pid,
                 "role": m["role"],
-                "joined_at": m["joined_at"],
-                "left_at": "",
+                "joined": m["joined_at"],
+                "left": "",
             }
         else:
             # Membre existant → mise à jour du rôle
             existing[pid]["role"] = m["role"]
 
             # Si le membre était parti → il revient
-            if existing[pid]["left_at"]:
-                existing[pid]["left_at"] = ""
+            if existing[pid]["left"]:
+                existing[pid]["left"] = ""  # effacer la date de départ
 
     # 2. Détecter les départs
     for pid, row in existing.items():
-        if pid not in new_ids and not row["left_at"]:
-            row["left_at"] = now
+        if pid not in new_ids and not row["left"]:
+            row["left"] = now
+            row["role"] = ""  # effacer le rôle
 
     save_csv(existing)
