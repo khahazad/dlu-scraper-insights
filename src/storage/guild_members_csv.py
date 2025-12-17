@@ -17,6 +17,8 @@ def load_existing():
     return data
 
 def save_csv(data):
+    os.makedirs(os.path.dirname(CSV_PATH), exist_ok=True)
+    
     fixed_columns = [
         "PlayerID",
         "PlayerName",
