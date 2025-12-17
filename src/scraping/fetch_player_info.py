@@ -4,11 +4,11 @@ import re
 def extract_player_info(html):
     soup = BeautifulSoup(html, "html.parser")
 
-    # --- Nom du joueur depuis le H1 ---
+    # Nom du joueur dans le <h1>
     h1 = soup.find("h1")
     name = h1.get_text(strip=True) if h1 else None
 
-    # --- Niveau du joueur ---
+    # Niveau du joueur : "Level 1,234"
     match = re.search(r"Level\s+([\d,]+)", html)
     level = int(match.group(1).replace(",", "")) if match else None
 
