@@ -1,1 +1,1 @@
-# DLU_scraper
+# dlu-scraper-insights
