@@ -1,5 +1,6 @@
 import csv
 import os
+import re
 from datetime import datetime
 
 CSV_PATH = "data/processed/guild_members.csv"
@@ -12,39 +13,51 @@ def load_csv():
     with open(CSV_PATH, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            data[int(row["player_id"])] = row
+            data[int(row["PlayerID"])] = row
     return data
 
 
 def save_csv(data):
-    all_columns = set(["player_id", "PlayerName", "PreviousNames", "joined", "left"])
-    for row in data.values():
-        all_columns.update(row.keys())
+    fixed_columns = [
+        "PlayerID",
+        "PlayerName",
+        "PreviousNames",
+        "Role",
+        "Joined",
+        "Left",
+    ]
+
+    dynamic_columns = sorted(
+        col for row in data.values() for col in row.keys()
+        if re.match(r"\d{4}-\d{2}-\d{2}", col)
+    )
+
+    all_columns = fixed_columns + dynamic_columns
 
     with open(CSV_PATH, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=list(all_columns))
+        writer = csv.DictWriter(f, fieldnames=all_columns)
         writer.writeheader()
         for row in data.values():
             writer.writerow(row)
 
 
-def update_player_info(player_id, name, level):
+def update_player_info(pid, name, level):
     data = load_csv()
     today = datetime.utcnow().strftime("%Y-%m-%d")
 
-    if player_id not in data:
+    if pid not in data:
         return
 
-    row = data[player_id]
+    row = data[pid]
 
     old_name = row.get("PlayerName", "")
     if old_name and old_name != name:
         prev = row.get("PreviousNames", "")
-        if name not in prev:
+        if old_name not in prev:
             row["PreviousNames"] = (prev + "," + old_name).strip(",")
 
     row["PlayerName"] = name
     row[today] = level
 
-    data[player_id] = row
+    data[pid] = row
     save_csv(data)
