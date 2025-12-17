@@ -7,6 +7,14 @@ def login(playwright: Playwright):
 
     browser = playwright.chromium.launch(headless=True)
     context = browser.new_context()
+    
+    # 🚀 Bloquer images, CSS, fonts, scripts
+    context.route("**/*", lambda route, request: (
+        route.abort()
+        if request.resource_type in ["image", "stylesheet", "font", "script"]
+        else route.continue_()
+    ))
+    
     page = context.new_page()
 
     page.goto("https://demonicscans.org/signin.php")
