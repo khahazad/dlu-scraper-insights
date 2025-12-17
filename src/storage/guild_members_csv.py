@@ -1,5 +1,6 @@
 import csv
 import os
+import re
 from datetime import datetime
 
 CSV_PATH = "data/processed/guild_members.csv"
@@ -12,17 +13,29 @@ def load_existing():
     with open(CSV_PATH, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            data[int(row["player_id"])] = row
+            data[int(row["PlayerID"])] = row
     return data
 
 
 def save_csv(data):
-    all_columns = set(["player_id", "role", "joined", "left"])
-    for row in data.values():
-        all_columns.update(row.keys())
+    fixed_columns = [
+        "PlayerID",
+        "PlayerName",
+        "PreviousNames",
+        "role",
+        "joined",
+        "left",
+    ]
+
+    dynamic_columns = sorted(
+        col for row in data.values() for col in row.keys()
+        if re.match(r"\d{4}-\d{2}-\d{2}", col)
+    )
+
+    all_columns = fixed_columns + dynamic_columns
 
     with open(CSV_PATH, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=list(all_columns))
+        writer = csv.DictWriter(f, fieldnames=all_columns)
         writer.writeheader()
         for row in data.values():
             writer.writerow(row)
@@ -32,14 +45,16 @@ def merge_members(new_members):
     existing = load_existing()
     now = datetime.utcnow().isoformat()
 
-    new_ids = {m["player_id"] for m in new_members}
+    new_ids = {m["PlayerID"] for m in new_members}
 
     for m in new_members:
-        pid = m["player_id"]
+        pid = m["PlayerID"]
 
         if pid not in existing:
             existing[pid] = {
-                "player_id": pid,
+                "PlayerID": pid,
+                "PlayerName": "",
+                "PreviousNames": "",
                 "role": m["role"],
                 "joined": m["joined"],
                 "left": "",
