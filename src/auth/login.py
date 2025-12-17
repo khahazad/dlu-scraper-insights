@@ -15,25 +15,23 @@ def login():
         page = context.new_page()
         page.goto("https://demonicscans.org/signin.php")
 
-        # Champs identifiés depuis la page ouverte dans Edge :
-        # - Email address
-        # - Password
+        # Si le formulaire n'est pas visible → déjà connecté
+        if not page.locator("input[type='email']").is_visible():
+            print("Déjà connecté.")
+            return browser, context, page
+
+        # Sinon → login normal
         page.fill("input[type='email']", email)
         page.fill("input[type='password']", password)
 
-        # Bouton "Sign in"
-        page.click("button[type='submit']")
-
-        # Attendre la fin des requêtes réseau
+        page.get_by_role("button", name="Sign in").click()
         page.wait_for_load_state("networkidle")
 
-        # Vérification : si on est encore sur signin.php, la connexion a échoué
         if "signin" in page.url.lower():
-            raise RuntimeError("Échec de la connexion : identifiants incorrects ou changement de page.")
+            raise RuntimeError("Échec de la connexion.")
 
         print("Connexion réussie :", page.url)
 
-        # On retourne le contexte pour permettre le scraping ensuite
         return browser, context, page
 
 
