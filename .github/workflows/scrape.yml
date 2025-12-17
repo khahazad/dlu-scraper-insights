@@ -3,6 +3,9 @@ name: Scraper
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+  
 jobs:
   run:
     runs-on: ubuntu-latest
