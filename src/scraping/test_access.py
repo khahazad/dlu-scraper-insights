@@ -25,7 +25,14 @@ def main():
         try:
             page.goto(url)
             page.wait_for_load_state("networkidle")
-            print(f"[OK] {url}")
+
+            html = page.content().lower()
+
+            if "access denied" in html:
+                print(f"[DENIED] {url}")
+            else:
+                print(f"[OK] {url}")
+
         except Exception as e:
             print(f"[FAIL] {url} → {e}")
 
