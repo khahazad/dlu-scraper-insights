@@ -22,9 +22,9 @@ def save_csv(data):
         "PlayerID",
         "PlayerName",
         "PreviousNames",
-        "role",
-        "joined",
-        "left",
+        "Role",
+        "Joined",
+        "Left",
     ]
 
     dynamic_columns = sorted(
@@ -55,18 +55,18 @@ def merge_members(new_members):
                 "PlayerID": pid,
                 "PlayerName": "",
                 "PreviousNames": "",
-                "role": m["role"],
-                "joined": m["joined"],
-                "left": "",
+                "Role": m["role"],
+                "Joined": m["joined"],
+                "Left": "",
             }
         else:
-            existing[pid]["role"] = m["role"]
-            if existing[pid]["left"]:
-                existing[pid]["left"] = ""
+            existing[pid]["Role"] = m["role"]
+            if existing[pid]["Left"]:
+                existing[pid]["Left"] = ""
 
     for pid, row in existing.items():
-        if pid not in new_ids and not row["left"]:
-            row["left"] = now
-            row["role"] = ""
+        if pid not in new_ids and not row["Left"]:
+            row["Left"] = now
+            row["Role"] = ""
 
     save_csv(existing)
