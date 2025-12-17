@@ -25,5 +25,6 @@ jobs:
         env:
           APP_EMAIL: ${{ secrets.APP_EMAIL }}
           APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
+          PYTHONPATH: src
         run: |
           python src/scraping/test_access.py
