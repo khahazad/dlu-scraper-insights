@@ -1,3 +1,4 @@
+from playwright.sync_api import sync_playwright
 from auth.login import login
 
 URLS = [
@@ -19,24 +20,25 @@ URLS = [
 ]
 
 def main():
-    browser, context, page = login()
+    with sync_playwright() as p:
+        browser, context, page = login(p)
 
-    for url in URLS:
-        try:
-            page.goto(url)
-            page.wait_for_load_state("networkidle")
+        for url in URLS:
+            try:
+                page.goto(url)
+                page.wait_for_load_state("networkidle")
 
-            html = page.content().lower()
+                html = page.content().lower()
 
-            if "access denied" in html:
-                print(f"[DENIED] {url}")
-            else:
-                print(f"[OK] {url}")
+                if "access denied" in html:
+                    print(f"[DENIED] {url}")
+                else:
+                    print(f"[OK] {url}")
 
-        except Exception as e:
-            print(f"[FAIL] {url} → {e}")
+            except Exception as e:
+                print(f"[FAIL] {url} → {e}")
 
-    browser.close()
+        browser.close()
 
 if __name__ == "__main__":
     main()
