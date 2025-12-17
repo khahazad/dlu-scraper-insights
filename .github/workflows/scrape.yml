@@ -1,17 +1,17 @@
-name: Scraper
+name: Extract Guild Members
 
 on:
   workflow_dispatch:
 
 permissions:
   contents: write
-  
+
 jobs:
-  run:
+  scrape:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -22,9 +22,12 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+
+      - name: Install Playwright browser
+        run: |
           python -m playwright install chromium
 
-      - name: Extract guild members
+      - name: Run guild members extraction
         env:
           APP_EMAIL: ${{ secrets.APP_EMAIL }}
           APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
@@ -39,4 +42,3 @@ jobs:
           git add data/processed/guild_members.csv
           git commit -m "Update guild members CSV" || echo "No changes to commit"
           git push
-
