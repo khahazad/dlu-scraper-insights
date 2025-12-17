@@ -21,11 +21,11 @@ jobs:
           pip install -r requirements.txt
           python -m playwright install chromium
 
-      - name: Test guild members table
+      - name: Extract guild members
         env:
           APP_EMAIL: ${{ secrets.APP_EMAIL }}
           APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
           PYTHONPATH: src
         run: |
-          python src/scraping/test_guild_members.py
+          python src/scraping/run_guild_members_extract.py
 
