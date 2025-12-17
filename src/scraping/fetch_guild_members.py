@@ -23,7 +23,7 @@ def extract_guild_members(page):
         joined = cols[2].get_text(strip=True)
 
         members.append({
-            "player_id": pid,
+            "PlayerID": pid,
             "role": role,
             "joined": joined,
         })
