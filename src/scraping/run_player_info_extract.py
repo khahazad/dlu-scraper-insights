@@ -10,7 +10,7 @@ def main():
 
         with open("data/processed/guild_members.csv", newline="", encoding="utf-8") as f:
             reader = csv.DictReader(f)
-            player_ids = [int(row["player_id"]) for row in reader]
+            player_ids = [int(row["PlayerID"]) for row in reader]
 
         for pid in player_ids:
             url = f"https://demonicscans.org/player.php?pid={pid}"
