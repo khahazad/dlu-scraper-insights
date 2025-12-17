@@ -31,7 +31,7 @@ def save_csv(data):
 
     dynamic_columns = sorted(
         col for row in data.values() for col in row.keys()
-        if re.match(r"\d{4}-\d{2}-\d{2}", col)
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", col)
     )
 
     all_columns = fixed_columns + dynamic_columns
@@ -51,6 +51,7 @@ def update_player_info(pid, name, level):
 
     row = data[pid]
 
+    # Mise à jour du nom
     old_name = row.get("PlayerName", "")
     if old_name and old_name != name:
         prev = row.get("PreviousNames", "")
@@ -58,7 +59,10 @@ def update_player_info(pid, name, level):
             row["PreviousNames"] = (prev + "," + old_name).strip(",")
 
     row["PlayerName"] = name
+
+    # Mise à jour du level du jour (pas de nouvelle colonne)
     row[today] = level
 
     data[pid] = row
     save_csv(data)
+
