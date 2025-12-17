@@ -21,9 +21,9 @@ jobs:
           pip install -r requirements.txt
           python -m playwright install chromium
 
-      - name: Run login
+      - name: Test access to pages
         env:
           APP_EMAIL: ${{ secrets.APP_EMAIL }}
           APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
         run: |
-          python src/auth/login.py
+          python src/scraping/test_access.py
