@@ -1,4 +1,4 @@
-name: Extract Guild Members
+name: Extract Guild Data
 
 on:
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
         run: |
           python -m playwright install chromium
 
-      - name: Run guild members extraction
+      - name: Extract guild members
         env:
           APP_EMAIL: ${{ secrets.APP_EMAIL }}
           APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
@@ -35,10 +35,18 @@ jobs:
         run: |
           python src/scraping/run_guild_members_extract.py
 
+      - name: Extract player info
+        env:
+          APP_EMAIL: ${{ secrets.APP_EMAIL }}
+          APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
+          PYTHONPATH: src
+        run: |
+          python src/scraping/run_player_info_extract.py
+
       - name: Commit CSV
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add data/processed/guild_members.csv
-          git commit -m "Update guild members CSV" || echo "No changes to commit"
+          git commit -m "Update guild data" || echo "No changes to commit"
           git push
