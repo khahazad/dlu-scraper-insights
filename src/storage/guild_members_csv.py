@@ -16,7 +16,6 @@ def load_existing():
             data[int(row["PlayerID"])] = row
     return data
 
-
 def save_csv(data):
     fixed_columns = [
         "PlayerID",
@@ -39,7 +38,6 @@ def save_csv(data):
         writer.writeheader()
         for row in data.values():
             writer.writerow(row)
-
 
 def merge_members(new_members):
     existing = load_existing()
