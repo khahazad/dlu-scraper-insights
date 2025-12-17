@@ -40,7 +40,6 @@ def save_csv(data):
         for row in data.values():
             writer.writerow(row)
 
-
 def update_player_info(pid, name, level):
     data = load_csv()
     today = datetime.utcnow().strftime("%Y-%m-%d")
