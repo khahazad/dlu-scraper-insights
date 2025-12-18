@@ -6,7 +6,7 @@ def extract_guild_members(context):
     page = context.new_page()
     page.goto("https://demonicscans.org/guild_members.php", wait_until="domcontentloaded")
 
-    members = fetch_members(page)   # ← plus de conflit de nom
+    members = fetch_members(page)
     merge_members(members)
 
     page.close()
