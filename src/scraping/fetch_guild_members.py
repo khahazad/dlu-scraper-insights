@@ -24,8 +24,8 @@ def extract_guild_members(page):
 
         members.append({
             "PlayerID": pid,
-            "role": role,
-            "joined": joined,
+            "Role": role,
+            "Joined": joined,
         })
 
     return members
