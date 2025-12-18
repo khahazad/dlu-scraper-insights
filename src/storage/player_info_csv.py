@@ -5,6 +5,7 @@ CSV_PATH = "data/processed/guild_members.csv"
 
 
 def load_csv():
+    os.makedirs(os.path.dirname(CSV_PATH), exist_ok=True)
     if not os.path.exists(CSV_PATH):
         return {}
 
