@@ -5,6 +5,12 @@ from datetime import datetime
 
 CSV_PATH = "data/processed/guild_members.csv"
 
+def count_date_columns(data):
+    return sum(
+        1
+        for col in next(iter(data.values())).keys()
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", col.strip().replace("\ufeff", ""))
+    )
 
 def load_csv():
     if not os.path.exists(CSV_PATH):
