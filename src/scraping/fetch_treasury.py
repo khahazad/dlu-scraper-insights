@@ -3,6 +3,10 @@ from bs4 import BeautifulSoup
 
 def extract_page_rows(html):
     soup = BeautifulSoup(html, "html.parser")
+    
+    print("HTML de ma page guild_treasury : ")
+    print(html[:500])
+    
     table = soup.find("table")
     if not table:
         return []
