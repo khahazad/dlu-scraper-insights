@@ -1,18 +1,20 @@
 from playwright.sync_api import sync_playwright
 from auth.login import login
 from scraping.fetch_player_info import extract_player_info
-from storage.player_info_csv import update_player_info
+from storage.player_info_csv import load_csv, save_csv, update_player_info_in_memory
 import csv
+
 
 def main():
     with sync_playwright() as p:
         # Connexion (JS activé)
         browser, context, page = login(p)
 
-        # Charger la liste des PlayerID depuis le CSV
-        with open("data/processed/guild_members.csv", newline="", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            player_ids = [int(row["PlayerID"]) for row in reader]
+        # Charger le CSV une seule fois
+        data = load_csv()
+
+        # Charger la liste des PlayerID
+        player_ids = list(data.keys())
 
         # Contexte optimisé pour les pages joueur (JS désactivé)
         player_context = browser.new_context(java_script_enabled=False)
@@ -30,16 +32,20 @@ def main():
         for pid in player_ids:
             url = f"https://demonicscans.org/player.php?pid={pid}"
 
-            # Chargement ultra rapide (document-only)
+            # Chargement rapide (document-only)
             player_page.goto(url, wait_until="domcontentloaded")
 
-            # Extraction nom + niveau
+            # Extraction nom + level
             info = extract_player_info(player_page.content())
 
-            # Mise à jour du CSV
-            update_player_info(pid, info["name"], info["level"])
+            # Mise à jour en mémoire
+            update_player_info_in_memory(data, pid, info["name"], info["level"])
+
+        # Sauvegarde finale du CSV
+        save_csv(data)
 
         browser.close()
+
 
 if __name__ == "__main__":
     main()
