@@ -3,7 +3,14 @@ from auth.login import login
 from scraping.fetch_player_info import extract_player_info
 from storage.player_info_csv import load_csv, save_csv, update_player_info_in_memory
 import csv
+import re
 
+def count_date_columns(data):
+    return sum(
+        1
+        for col in next(iter(data.values())).keys()
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", col.strip().replace("\ufeff", ""))
+    )
 
 def main():
     with sync_playwright() as p:
