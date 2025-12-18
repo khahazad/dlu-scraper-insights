@@ -5,6 +5,7 @@ from datetime import datetime
 
 CSV_PATH = "data/processed/guild_members.csv"
 
+
 def load_csv():
     if not os.path.exists(CSV_PATH):
         return {}
@@ -18,8 +19,9 @@ def load_csv():
 
 
 def save_csv(data):
+    # S'assurer que le dossier existe
     os.makedirs(os.path.dirname(CSV_PATH), exist_ok=True)
-    
+
     fixed_columns = [
         "PlayerID",
         "PlayerName",
@@ -29,9 +31,12 @@ def save_csv(data):
         "Left",
     ]
 
+    # Colonnes dynamiques strictement au format YYYY-MM-DD
     dynamic_columns = sorted(
-        col for row in data.values() for col in row.keys()
-        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", col)
+        col.strip().replace("\ufeff", "")
+        for row in data.values()
+        for col in row.keys()
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", col.strip().replace("\ufeff", ""))
     )
 
     all_columns = fixed_columns + dynamic_columns
@@ -42,8 +47,8 @@ def save_csv(data):
         for row in data.values():
             writer.writerow(row)
 
-def update_player_info(pid, name, level):
-    data = load_csv()
+
+def update_player_info_in_memory(data, pid, name, level):
     today = datetime.utcnow().strftime("%Y-%m-%d")
 
     if pid not in data:
@@ -60,9 +65,7 @@ def update_player_info(pid, name, level):
 
     row["PlayerName"] = name
 
-    # Mise à jour du level du jour (pas de nouvelle colonne)
+    # Mise à jour du level du jour
     row[today] = level
 
     data[pid] = row
-    save_csv(data)
-
