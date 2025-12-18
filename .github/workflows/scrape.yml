@@ -32,7 +32,7 @@ jobs:
           APP_EMAIL: ${{ secrets.APP_EMAIL }}
           APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
         run: |
-          python main.py
+          python src/main.py
 
       - name: Commit and push changes
         run: |
