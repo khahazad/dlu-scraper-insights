@@ -12,7 +12,11 @@ def main():
 
         # Charger le CSV une seule fois
         data = load_csv()
-
+        
+        # LOG : colonnes date AVANT mise à jour
+        before = count_date_columns(data)
+        print(f"[INFO] Colonnes date AVANT mise à jour : {before}")
+        
         # Charger la liste des PlayerID
         player_ids = list(data.keys())
 
@@ -40,6 +44,10 @@ def main():
 
             # Mise à jour en mémoire
             update_player_info_in_memory(data, pid, info["name"], info["level"])
+
+        # LOG : colonnes date APRÈS mise à jour
+        after = count_date_columns(data)
+        print(f"[INFO] Colonnes date APRÈS mise à jour : {after}")
 
         # Sauvegarde finale du CSV
         save_csv(data)
