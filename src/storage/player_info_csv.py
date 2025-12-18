@@ -28,40 +28,26 @@ def load_csv():
 
     return data
 
-
 def save_csv(data):
-    # S'assurer que le dossier existe
     os.makedirs(os.path.dirname(CSV_PATH), exist_ok=True)
 
-    fixed_columns = [
+    columns = [
         "PlayerID",
         "PlayerName",
         "PreviousNames",
         "Role",
         "Joined",
         "Left",
+        "PlayerLevel",
     ]
 
-    # Colonnes dynamiques strictement au format YYYY-MM-DD
-    dynamic_columns = sorted(
-        col.strip().replace("\ufeff", "")
-        for row in data.values()
-        for col in row.keys()
-        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", col.strip().replace("\ufeff", ""))
-    )
-
-    all_columns = fixed_columns + dynamic_columns
-
     with open(CSV_PATH, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=all_columns)
+        writer = csv.DictWriter(f, fieldnames=columns)
         writer.writeheader()
         for row in data.values():
             writer.writerow(row)
 
-
 def update_player_info_in_memory(data, pid, name, level):
-    today = datetime.utcnow().strftime("%Y-%m-%d").strip()
-
     if pid not in data:
         return
 
@@ -76,7 +62,7 @@ def update_player_info_in_memory(data, pid, name, level):
 
     row["PlayerName"] = name
 
-    # Mise à jour du level du jour
-    row[today] = level
+    # Mise à jour du level (colonne fixe)
+    row["PlayerLevel"] = level
 
     data[pid] = row
