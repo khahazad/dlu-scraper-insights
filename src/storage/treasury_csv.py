@@ -5,6 +5,7 @@ CSV_PATH = "data/processed/guild_treasury_log.csv"
 
 
 def load_existing_rows():
+    os.makedirs(os.path.dirname(CSV_PATH), exist_ok=True)
     if not os.path.exists(CSV_PATH):
         return set(), []
 
