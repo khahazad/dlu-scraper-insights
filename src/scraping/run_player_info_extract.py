@@ -5,12 +5,6 @@ from storage.player_info_csv import load_csv, save_csv, update_player_info_in_me
 import csv
 import re
 
-def count_date_columns(data):
-    return sum(
-        1
-        for col in next(iter(data.values())).keys()
-        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", col.strip().replace("\ufeff", ""))
-    )
 
 def main():
     with sync_playwright() as p:
@@ -19,11 +13,7 @@ def main():
 
         # Charger le CSV une seule fois
         data = load_csv()
-        
-        # LOG : colonnes date AVANT mise à jour
-        before = count_date_columns(data)
-        print(f"[INFO] Colonnes date AVANT mise à jour : {before}")
-        
+
         # Charger la liste des PlayerID
         player_ids = list(data.keys())
 
@@ -51,10 +41,6 @@ def main():
 
             # Mise à jour en mémoire
             update_player_info_in_memory(data, pid, info["name"], info["level"])
-
-        # LOG : colonnes date APRÈS mise à jour
-        after = count_date_columns(data)
-        print(f"[INFO] Colonnes date APRÈS mise à jour : {after}")
 
         # Sauvegarde finale du CSV
         save_csv(data)
