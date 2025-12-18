@@ -30,7 +30,7 @@ def save_csv(data):
 
     dynamic_columns = sorted(
         col for row in data.values() for col in row.keys()
-        if re.match(r"\d{4}-\d{2}-\d{2}", col)
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", col)
     )
 
     all_columns = fixed_columns + dynamic_columns
