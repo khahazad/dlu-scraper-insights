@@ -4,8 +4,8 @@ import os
 CSV_PATH = "data/processed/guild_members.csv"
 
 def merge_members(members):
+    os.makedirs(os.path.dirname(CSV_PATH), exist_ok=True)
     if not os.path.exists(CSV_PATH):
-        os.makedirs(os.path.dirname(CSV_PATH), exist_ok=True)
         with open(CSV_PATH, "w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=members[0].keys())
             writer.writeheader()
