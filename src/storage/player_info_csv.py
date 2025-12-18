@@ -13,8 +13,20 @@ def load_csv():
     data = {}
     with open(CSV_PATH, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
+
         for row in reader:
-            data[int(row["PlayerID"])] = row
+            cleaned = {}
+
+            # Nettoyage des clés (colonnes)
+            for k, v in row.items():
+                if k:
+                    key = k.strip().replace("\ufeff", "")
+                    cleaned[key] = v
+
+            # Important : PlayerID doit être propre aussi
+            pid = int(cleaned["PlayerID"])
+            data[pid] = cleaned
+
     return data
 
 
@@ -49,7 +61,7 @@ def save_csv(data):
 
 
 def update_player_info_in_memory(data, pid, name, level):
-    today = datetime.utcnow().strftime("%Y-%m-%d")
+    today = datetime.utcnow().strftime("%Y-%m-%d").strip()
 
     if pid not in data:
         return
