@@ -6,6 +6,9 @@ def extract_guild_members(page):
     soup = BeautifulSoup(html, "html.parser")
 
     table = soup.find("table")
+    if table is None:
+        raise RuntimeError("Tableau des membres introuvable (page protégée ou modifiée).")
+
     rows = table.find_all("tr")[1:]
 
     members = []
@@ -16,9 +19,15 @@ def extract_guild_members(page):
             continue
 
         link = cols[0].find("a")
-        href = link["href"]
-        pid = int(re.search(r"id=(\d+)", href).group(1))
+        if not link or "href" not in link.attrs:
+            continue
 
+        href = link["href"]
+        match = re.search(r"id=(\d+)", href)
+        if not match:
+            continue
+
+        pid = int(match.group(1))
         role = cols[1].get_text(strip=True)
         joined = cols[2].get_text(strip=True)
 
