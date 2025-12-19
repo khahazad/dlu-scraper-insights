@@ -1,22 +1,33 @@
 from playwright.sync_api import Page
 
-def assert_page_is_valid(page: Page, expected_selector: str):
-    # Vérifier la réponse HTTP
-    response = page.wait_for_load_state("domcontentloaded")
+# Signatures HTML typiques des protections anti-bot
+PROTECTION_SIGNATURES = [
+    "cf-challenge",
+    "cloudflare",
+    "attention required",
+    "verify you are human",
+    "captcha",
+    "robot",
+    "blocked",
+    "challenge-running"
+]
+
+def assert_page_is_valid(page: Page, expected_selector: str | None = None):
+    """
+    Vérifie que la page n'est pas protégée (Cloudflare, captcha, challenge JS)
+    et que la structure HTML attendue est présente.
+    """
+
     html = page.content().lower()
 
-    # Signatures Cloudflare / anti-bot
-    signatures = [
-        "cf-challenge", "cloudflare", "attention required",
-        "verify you are human", "captcha", "robot", "blocked"
-    ]
-    if any(sig in html for sig in signatures):
-        raise RuntimeError("Protection anti-bot détectée (Cloudflare ou captcha).")
+    # 1. Détection Cloudflare / captcha / anti-bot
+    if any(sig in html for sig in PROTECTION_SIGNATURES):
+        raise RuntimeError("Protection anti-bot détectée (Cloudflare / captcha / challenge JS).")
 
-    # Challenge JS
+    # 2. Détection challenge JS Cloudflare
     if page.locator("div#cf-spinner, #challenge-running").count() > 0:
-        raise RuntimeError("Challenge JavaScript détecté (Cloudflare).")
+        raise RuntimeError("Challenge JavaScript Cloudflare détecté.")
 
-    # Vérifier que l’élément attendu existe
-    if page.locator(expected_selector).count() == 0:
+    # 3. Vérification structure HTML attendue
+    if expected_selector and page.locator(expected_selector).count() == 0:
         raise RuntimeError(f"Structure HTML inattendue : {expected_selector} introuvable.")
