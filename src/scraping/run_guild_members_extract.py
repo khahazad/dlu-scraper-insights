@@ -5,7 +5,10 @@ from storage.guild_members_csv import merge_members
 def extract_guild_members(context):
     page = context.new_page()
     page.goto("https://demonicscans.org/guild_members.php", wait_until="domcontentloaded")
-
+    
+    # Détection anti-bot
+    assert_page_is_valid(page, "table#guild-members")
+    
     members = fetch_members(page)
     merge_members(members)
 
