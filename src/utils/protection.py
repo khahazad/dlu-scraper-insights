@@ -11,21 +11,16 @@ PROTECTION_SIGNATURES = [
     "challenge-running"
 ]
 
-def assert_page_is_valid(page: Page, expected_selector: str | None = None):
+def assert_page_is_valid(page: Page):
     """
-    Vérifie que la page n'est pas protégée (Cloudflare / captcha / JS challenge)
-    et que la structure HTML attendue est présente.
+    Vérifie que la page n'est pas protégée (Cloudflare / captcha / JS challenge).
     """
     html = page.content().lower()
 
-    # 1. Détection Cloudflare / captcha
+    # Signatures Cloudflare / captcha
     if any(sig in html for sig in PROTECTION_SIGNATURES):
         raise RuntimeError("Protection anti-bot détectée (Cloudflare / captcha).")
 
-    # 2. Détection challenge JS Cloudflare
+    # Challenge JS Cloudflare
     if page.locator("div#cf-spinner, #challenge-running").count() > 0:
         raise RuntimeError("Challenge JavaScript Cloudflare détecté.")
-
-    # 3. Vérification structure HTML attendue
-    if expected_selector and page.locator(expected_selector).count() == 0:
-        raise RuntimeError(f"Structure HTML inattendue : {expected_selector} introuvable.")
