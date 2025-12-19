@@ -1,6 +1,5 @@
 from playwright.sync_api import Page
 
-# Signatures HTML typiques des protections anti-bot
 PROTECTION_SIGNATURES = [
     "cf-challenge",
     "cloudflare",
@@ -14,15 +13,14 @@ PROTECTION_SIGNATURES = [
 
 def assert_page_is_valid(page: Page, expected_selector: str | None = None):
     """
-    Vérifie que la page n'est pas protégée (Cloudflare, captcha, challenge JS)
+    Vérifie que la page n'est pas protégée (Cloudflare / captcha / JS challenge)
     et que la structure HTML attendue est présente.
     """
-
     html = page.content().lower()
 
-    # 1. Détection Cloudflare / captcha / anti-bot
+    # 1. Détection Cloudflare / captcha
     if any(sig in html for sig in PROTECTION_SIGNATURES):
-        raise RuntimeError("Protection anti-bot détectée (Cloudflare / captcha / challenge JS).")
+        raise RuntimeError("Protection anti-bot détectée (Cloudflare / captcha).")
 
     # 2. Détection challenge JS Cloudflare
     if page.locator("div#cf-spinner, #challenge-running").count() > 0:
