@@ -1,6 +1,6 @@
 from scraping.fetch_player_info import extract_player_info
 from storage.player_info_csv import load_csv, save_csv, update_player_info_in_memory
-
+from utils.protection import assert_page_is_valid
 
 def extract_player_info_all(browser):
     data = load_csv()
@@ -19,6 +19,9 @@ def extract_player_info_all(browser):
     for pid in player_ids:
         url = f"https://demonicscans.org/player.php?pid={pid}"
         page.goto(url, wait_until="domcontentloaded")
+
+        # Détection anti-bot
+        assert_page_is_valid(page)
 
         info = extract_player_info(page.content())
         update_player_info_in_memory(data, pid, info["name"], info["level"])
