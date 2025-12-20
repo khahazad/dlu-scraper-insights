@@ -6,7 +6,7 @@ def extract_guild_members(context):
     url = "https://demonicscans.org/guild_members.php"
     page.goto(url, wait_until="domcontentloaded")
 
-    members = fetch_guild_members(page)
-    merge_members(members)
+    guild_members = fetch_guild_members(page)
+    merge_members(guild_members)
 
     page.close()
