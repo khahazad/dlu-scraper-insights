@@ -46,4 +46,5 @@ def login(playwright: Playwright):
         print("Connected to :", page.url)
         return browser, context, page
         
-    else raise RuntimeError("Unable to sign in")
+    else:
+        raise RuntimeError("Unable to sign in")
