@@ -10,7 +10,7 @@ def fetch_guild_members(page):
         raise RuntimeError("Members table nor found")
 
     rows = table.find_all("tr")[1:]
-    members = []
+    guild_members = []
 
     for row in rows:
         cols = row.find_all("td")
@@ -34,11 +34,11 @@ def fetch_guild_members(page):
         # Contribution
         contribution = cols[3].get_text(strip=True)
         
-        members.append({
+        guild_members.append({
             "PlayerID": pid,
             "Role": role,
             "Joined": joined,
             "Contribution": contribution
         })
 
-    return members
+    return guild_members
