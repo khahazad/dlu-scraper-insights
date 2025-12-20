@@ -1,4 +1,4 @@
-from scraping.fetch_guild_members import extract_guild_members as fetch_members
+from scraping.fetch_guild_members import extract_guild_members
 from storage.guild_members_csv import merge_members
 
 def extract_guild_members(context):
@@ -6,7 +6,7 @@ def extract_guild_members(context):
     url = "https://demonicscans.org/guild_members.php"
     page.goto(url, wait_until="domcontentloaded")
 
-    members = fetch_members(page)
+    members = fetch_guild_members(page)
     merge_members(members)
 
     page.close()
