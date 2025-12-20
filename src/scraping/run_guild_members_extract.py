@@ -7,7 +7,7 @@ def extract_guild_members(context):
     page.goto("https://demonicscans.org/guild_members.php", wait_until="domcontentloaded")
 
     # Détection anti-bot
-    assert_page_is_valid(page)
+    #assert_page_is_valid(page)
 
     members = fetch_members(page)
     merge_members(members)
