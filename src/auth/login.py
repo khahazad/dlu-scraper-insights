@@ -28,10 +28,10 @@ def login(playwright: Playwright):
     print(text)
     print("----------------------------------")
 
-    if text.contains("You are already signed in"):
+    if "You are already signed in" in text:
         print("Already signed in")
         return browser, context, page
-    elif text.contains("Sign in to your account"):
+    elif "Sign in to your account" in text:
         print("Signing in to your account")
         # Formulaire
         page.fill("input[type='email']", email)
