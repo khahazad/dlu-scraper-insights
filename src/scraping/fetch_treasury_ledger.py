@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import re
 
-def extract_treasury_ledger(page):
+def fetch_treasury_ledger(page):
     html = page.content()
     soup = BeautifulSoup(html, "html.parser")
     
