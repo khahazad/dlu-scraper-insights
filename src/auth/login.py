@@ -1,6 +1,5 @@
 import os
 from playwright.sync_api import Playwright
-from utils.protection import assert_page_is_valid
 
 def login(playwright: Playwright):
     email = os.getenv("APP_EMAIL")
@@ -21,9 +20,6 @@ def login(playwright: Playwright):
     # Aller à la page de login
     page.goto("https://demonicscans.org/signin.php", wait_until="domcontentloaded")
 
-    # Détection anti-bot sur la page de login
-    # assert_page_is_valid(page)
-
     # Déjà connecté ?
     if not page.locator("input[type='email']").is_visible():
         print("Déjà connecté.")
@@ -34,9 +30,6 @@ def login(playwright: Playwright):
     page.fill("input[type='password']", password)
     page.get_by_role("button", name="Sign in").click()
     page.wait_for_load_state("networkidle")
-
-    # Détection anti-bot après login
-    #assert_page_is_valid(page)
 
     # Vérification login OK
     if "signin" in page.url.lower():
