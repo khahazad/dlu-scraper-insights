@@ -19,12 +19,17 @@ def login(playwright: Playwright):
 
     # Aller à la page de login
     page.goto("https://demonicscans.org/signin.php", wait_until="domcontentloaded")
+    html = page.content()
+    text = BeautifulSoup(html, "html.parser").get_text()
+    print("-----------page preview-----------")
+    print(text)
+    print("----------------------------------")
 
     # Déjà connecté ?
-    if not page.locator("input[type='email']").is_visible():
+    if not page.locator("input[type='email']").is_visible():        
         print("Déjà connecté.")
         return browser, context, page
-
+    
     # Formulaire
     page.fill("input[type='email']", email)
     page.fill("input[type='password']", password)
