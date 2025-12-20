@@ -38,7 +38,7 @@ def extract_treasury_ledger(page):
         # Note
         note = tds[5].text.strip()
 
-        treasury_ledger .append({
+        treasury_ledger.append({
             "Time": time,
             "PlayerID": pid,
             "Kind": kind,
