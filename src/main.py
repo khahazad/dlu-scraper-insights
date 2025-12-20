@@ -14,13 +14,13 @@ def main():
             extract_guild_members(context)
 
             print("=== Step 2 : Weekly leaderboard extraction ===")
-            extract_weekly_leaderboard(browser)
+            extract_weekly_leaderboard(context)
             
             print("=== Step 3 : Treasury ledger extraction ===")
-            extract_treasury_ledger(browser)
+            extract_treasury_ledger(context)
             
             print("=== Étape 2 : Players info extraction (name + levels) ===")
-            extract_players_info(browser)
+            extract_players_info(context)
 
         except RuntimeError as e:
             print(f"ERREUR SCRAPER : {e}")
