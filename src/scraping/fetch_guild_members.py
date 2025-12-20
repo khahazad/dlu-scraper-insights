@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import re
 
-def extract_guild_members(page):
+def fetch_guild_members(page):
     html = page.content()
     soup = BeautifulSoup(html, "html.parser")
 
