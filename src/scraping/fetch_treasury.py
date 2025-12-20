@@ -1,42 +1,50 @@
 from bs4 import BeautifulSoup
+import re
 
-
-def extract_page_rows(html):
+def extract_page_rows(page):
+    html = page.content()
     soup = BeautifulSoup(html, "html.parser")
     
-    print("HTML de ma page guild_treasury : ")
-    print(html[:500])
-    
     table = soup.find("table")
-    if not table:
-        return []
+    if table is None:
+        raise RuntimeError("Treasury table nor found")
 
-    rows = []
+    rows = table.find_all("tr")[1:]    
+    ledgers = []
 
-    for tr in table.find_all("tr")[1:]:  # skip header
-        tds = tr.find_all("td")
-        if len(tds) < 5:
-            continue
-
+    for row in rows:
+        cols = row.find_all("td")
+        # 6 raws available raws
+        if len(cols) != 6:
+            raise RuntimeError("Unexpected table format")
+            
+        # PlayerID
+        link = cols[1].find("a")
+        if not link or "href" not in link.attrs:
+            raise RuntimeError("No link found")
+        href = link["href"]
+        match = re.search(r"id=(\d+)", href)
+        if not match:
+            raise RuntimeError("No match for PID")      
+        pid = int(match.group(1))
+        # Time
         time = tds[0].text.strip()
-
-        # PlayerID depuis le lien
-        link = tds[1].find("a")
-        if link and "pid=" in link.get("href", ""):
-            pid = link["href"].split("pid=")[1]
-        else:
-            pid = "0"
-
+        # Kind
         kind = tds[2].text.strip()
+        # Resource
         resource = tds[3].text.strip()
+        # Amount
         amount = tds[4].text.strip().replace(",", "")
+        # Note
+        note = tds[5].text.strip()
 
         rows.append({
             "Time": time,
             "PlayerID": pid,
             "Kind": kind,
             "Resource": resource,
-            "Amount": amount
+            "Amount": amount,
+            "Note": note
         })
 
     return rows
