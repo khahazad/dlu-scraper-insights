@@ -15,7 +15,10 @@ def assert_page_is_valid(page: Page):
     """
     Vérifie que la page n'est pas protégée (Cloudflare / captcha / JS challenge).
     """
+    page.wait_for_timeout(1000)  # 1 seconde
     html = page.content().lower()
+    
+    print(html[:300])
 
     # Signatures Cloudflare / captcha
     if any(sig in html for sig in PROTECTION_SIGNATURES):
