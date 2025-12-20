@@ -8,12 +8,19 @@ def login(playwright: Playwright):
     password = os.getenv("APP_PASSWORD")
 
     browser = playwright.chromium.launch(headless=True)
-    context = browser.new_context()
     
-    # Bloquer images, CSS, fonts, scripts
+    # Optional storage file to persist cookies / localStorage between runs
+    storage_file = "storage_state.json"
+    if os.path.exists(storage_file):
+        context = browser.new_context(java_script_enabled=True, storage_state=storage_file)
+        print(f"Loaded storage state from {storage_file}")
+    else:
+        context = browser.new_context(java_script_enabled=True)
+
+    # Block images, CSS and fonts to save bandwidth, but DO NOT block scripts
     context.route("**/*", lambda route, request: (
         route.abort()
-        if request.resource_type in ["image", "stylesheet", "font", "script"]
+        if request.resource_type in ["image", "stylesheet", "font"]
         else route.continue_()
     ))
     
