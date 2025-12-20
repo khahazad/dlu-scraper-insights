@@ -1,7 +1,7 @@
 from scraping.fetch_player_info import extract_player_info
 from storage.player_info_csv import load_csv, save_csv, update_player_info_in_memory
 
-def extract_player_info_all(browser):
+def extract_all_players_info(browser):
     data = load_csv()
     player_ids = list(data.keys())
 
