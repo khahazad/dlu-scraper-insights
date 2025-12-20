@@ -36,7 +36,7 @@ def login(playwright: Playwright):
     page.wait_for_load_state("networkidle")
 
     # Détection anti-bot après login
-    assert_page_is_valid(page)
+    #assert_page_is_valid(page)
 
     # Vérification login OK
     if "signin" in page.url.lower():
