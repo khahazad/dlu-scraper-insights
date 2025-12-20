@@ -10,7 +10,7 @@ def extract_treasury_ledgers(page):
         raise RuntimeError("Treasury ledger table nor found")
 
     rows = table.find_all("tr")[1:]    
-    ledgers = []
+    treasury_ledger = []
 
     for row in rows:
         cols = row.find_all("td")
@@ -38,7 +38,7 @@ def extract_treasury_ledgers(page):
         # Note
         note = tds[5].text.strip()
 
-        rows.append({
+        treasury_ledger .append({
             "Time": time,
             "PlayerID": pid,
             "Kind": kind,
@@ -47,4 +47,4 @@ def extract_treasury_ledgers(page):
             "Note": note
         })
 
-    return rows
+    return treasury_ledger
