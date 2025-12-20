@@ -2,7 +2,7 @@ name: DLU Scraper
 
 on:
   schedule:
-    - cron: "0 */3 * * *"   # toutes les 3 heures
+    - cron: "5 0/8 * * *"   # toutes les 3 heures
   workflow_dispatch:        # lancement manuel
 
 jobs:
