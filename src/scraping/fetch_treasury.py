@@ -1,13 +1,13 @@
 from bs4 import BeautifulSoup
 import re
 
-def extract_page_rows(page):
+def extract_treasury_ledgers(page):
     html = page.content()
     soup = BeautifulSoup(html, "html.parser")
     
     table = soup.find("table")
     if table is None:
-        raise RuntimeError("Treasury table nor found")
+        raise RuntimeError("Treasury ledger table nor found")
 
     rows = table.find_all("tr")[1:]    
     ledgers = []
