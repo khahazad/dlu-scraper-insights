@@ -29,23 +29,21 @@ def login(playwright: Playwright):
     print("----------------------------------")
 
     if text.contains("You are already signed in"):
-        print("You are already signed in")
+        print("Already signed in")
         return browser, context, page
-    else 
-        if text.contains("Sign in to your account"):
-            print("Sign in to your account")
-            # Formulaire
-            page.fill("input[type='email']", email)
-            page.fill("input[type='password']", password)
-            page.get_by_role("button", name="Sign in").click()
-            page.wait_for_load_state("networkidle")
-            
-            # Vérification login OK
-            if "signin" in page.url.lower():
-                raise RuntimeError("Échec de la connexion (mauvais identifiants ou protection).")
+    elif text.contains("Sign in to your account"):
+        print("Signing in to your account")
+        # Formulaire
+        page.fill("input[type='email']", email)
+        page.fill("input[type='password']", password)
+        page.get_by_role("button", name="Sign in").click()
+        page.wait_for_load_state("networkidle")        
         
-            print("Connexion réussie :", page.url)
-            return browser, context, page
+        # Vérification login OK
+        if "signin" in page.url.lower():
+            raise RuntimeError("Login failed")
             
-        else
-            raise RuntimeError("Échec de la connexion")
+        print("Connected to :", page.url)
+        return browser, context, page
+        
+    else raise RuntimeError("Unable to sign in")
