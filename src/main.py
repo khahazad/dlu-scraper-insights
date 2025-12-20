@@ -1,22 +1,26 @@
 from playwright.sync_api import sync_playwright
 from auth.login import login
 from scraping.run_guild_members_extract import extract_guild_members
-from scraping.run_player_info_extract import extract_player_info_all
-from scraping.run_treasury_extract import extract_treasury_log
+from scraping.run_weekly_leaderboard_extract import extract_weekly_leaderboard
+from scraping.run_treasury_extract import extract_treasury_ledger
+from scraping.run_players_info_extract import extract_players_info
 
 def main():
     with sync_playwright() as p:
         try:
             browser, context, page = login(p)
 
-            print("=== Étape 1 : Extraction des membres de la guilde ===")
+            print("=== Step 1 : Guild members extraction ===")
             extract_guild_members(context)
 
-            print("=== Étape 2 : Extraction des noms + levels ===")
-            extract_player_info_all(browser)
-
-            print("=== Étape 3 : Extraction des dons ===")
-            extract_treasury_log(browser)
+            print("=== Step 2 : Weekly leaderboard extraction ===")
+            extract_weekly_leaderboard(browser)
+            
+            print("=== Step 3 : Treasury ledger extraction ===")
+            extract_treasury_ledger(browser)
+            
+            print("=== Étape 2 : Players info extraction (name + levels) ===")
+            extract_players_info(browser)
 
         except RuntimeError as e:
             print(f"ERREUR SCRAPER : {e}")
