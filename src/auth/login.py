@@ -1,7 +1,9 @@
 import os
 from playwright.sync_api import Playwright
+from bs4 import BeautifulSoup
 
-def login(playwright: Playwright):
+def login(playwright: Playwright):      
+    print("login")
     email = os.getenv("APP_EMAIL")
     password = os.getenv("APP_PASSWORD")
 
