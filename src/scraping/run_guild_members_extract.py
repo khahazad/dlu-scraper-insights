@@ -1,4 +1,4 @@
-from scraping.fetch_guild_members import extract_guild_members
+from scraping.fetch_guild_members import fetch_guild_members
 from storage.guild_members_csv import merge_members
 
 def extract_guild_members(context):
