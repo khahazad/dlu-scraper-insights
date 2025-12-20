@@ -8,14 +8,7 @@ def login(playwright: Playwright):
     password = os.getenv("APP_PASSWORD")
 
     browser = playwright.chromium.launch(headless=True)
-    
-    # Optional storage file to persist cookies / localStorage between runs
-    storage_file = "storage_state.json"
-    if os.path.exists(storage_file):
-        context = browser.new_context(java_script_enabled=True, storage_state=storage_file)
-        print(f"Loaded storage state from {storage_file}")
-    else:
-        context = browser.new_context(java_script_enabled=True)
+    context = browser.new_context(java_script_enabled=True)
 
     # Block images, CSS and fonts to save bandwidth, but DO NOT block scripts
     context.route("**/*", lambda route, request: (
@@ -34,20 +27,23 @@ def login(playwright: Playwright):
     print(text)
     print("----------------------------------")
 
-    # Déjà connecté ?
-    if not page.locator("input[type='email']").is_visible():        
-        print("Déjà connecté.")
+    if text.contains("You are already signed in"):
+        print("You are already signed in")
         return browser, context, page
+    else if text.contains("Sign in to your account"):
+        print("Sign in to your account")
+        # Formulaire
+        page.fill("input[type='email']", email)
+        page.fill("input[type='password']", password)
+        page.get_by_role("button", name="Sign in").click()
+        page.wait_for_load_state("networkidle")
+        
+        # Vérification login OK
+        if "signin" in page.url.lower():
+            raise RuntimeError("Échec de la connexion (mauvais identifiants ou protection).")
     
-    # Formulaire
-    page.fill("input[type='email']", email)
-    page.fill("input[type='password']", password)
-    page.get_by_role("button", name="Sign in").click()
-    page.wait_for_load_state("networkidle")
-
-    # Vérification login OK
-    if "signin" in page.url.lower():
-        raise RuntimeError("Échec de la connexion (mauvais identifiants ou protection).")
-
-    print("Connexion réussie :", page.url)
-    return browser, context, page
+        print("Connexion réussie :", page.url)
+        return browser, context, page
+        
+    else
+        raise RuntimeError("Échec de la connexion")
