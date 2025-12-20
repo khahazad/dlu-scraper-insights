@@ -7,26 +7,25 @@ def extract_guild_members(page):
 
     table = soup.find("table")
     if table is None:
-        raise RuntimeError("Tableau des membres introuvable (page protégée ou modifiée).")
+        raise RuntimeError("Members table nor found")
 
     rows = table.find_all("tr")[1:]
-
     members = []
 
     for row in rows:
         cols = row.find_all("td")
         # 4 raws vailable
         if len(cols) != 4:
-            continue
+            raise RuntimeError("Unexpected table format")
 
         # PlayerID
         link = cols[0].find("a")
         if not link or "href" not in link.attrs:
-            continue
+            raise RuntimeError("No link found")
         href = link["href"]
         match = re.search(r"id=(\d+)", href)
         if not match:
-            continue
+            raise RuntimeError("No match for PID") 
         pid = int(match.group(1))       
         # Role
         role = cols[1].get_text(strip=True)        
