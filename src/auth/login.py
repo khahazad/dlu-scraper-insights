@@ -22,7 +22,7 @@ def login(playwright: Playwright):
     page.goto("https://demonicscans.org/signin.php", wait_until="domcontentloaded")
 
     # Détection anti-bot sur la page de login
-    assert_page_is_valid(page)
+    # assert_page_is_valid(page)
 
     # Déjà connecté ?
     if not page.locator("input[type='email']").is_visible():
