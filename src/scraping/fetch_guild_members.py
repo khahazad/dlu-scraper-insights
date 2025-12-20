@@ -7,8 +7,9 @@ def fetch_guild_members(page):
 
     table = soup.find("table")
     if table is None:
-        print("-----------html preview-----------")
-        print(html[:500])
+        text = soup.get_text()
+        print("-----------page preview-----------")
+        print(text)
         print("----------------------------------")
         raise RuntimeError("Members table nor found")
 
