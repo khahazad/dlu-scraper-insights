@@ -1,13 +1,13 @@
 from bs4 import BeautifulSoup
 import re
 
-def extract_weekly_leaderboard(page):
+def fetch_weekly_leaderboard(page):
     html = page.content()
     soup = BeautifulSoup(html, "html.parser")
 
     table = soup.find("table")
     if table is None:
-        raise RuntimeError("Weekly Leaderboard table nor found")
+        raise RuntimeError("Weekly Leaderboard table not found")
 
     rows = table.find_all("tr")[1:]
     weekly_leaderboard = []
