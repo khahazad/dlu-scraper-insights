@@ -21,6 +21,7 @@ def login(playwright: Playwright):
 
     # Aller à la page de login
     page.goto("https://demonicscans.org/signin.php", wait_until="domcontentloaded")
+    
     html = page.content()
     text = BeautifulSoup(html, "html.parser").get_text()
     print("-----------page preview-----------")
@@ -30,20 +31,21 @@ def login(playwright: Playwright):
     if text.contains("You are already signed in"):
         print("You are already signed in")
         return browser, context, page
-    else if text.contains("Sign in to your account"):
-        print("Sign in to your account")
-        # Formulaire
-        page.fill("input[type='email']", email)
-        page.fill("input[type='password']", password)
-        page.get_by_role("button", name="Sign in").click()
-        page.wait_for_load_state("networkidle")
+    else 
+        if text.contains("Sign in to your account"):
+            print("Sign in to your account")
+            # Formulaire
+            page.fill("input[type='email']", email)
+            page.fill("input[type='password']", password)
+            page.get_by_role("button", name="Sign in").click()
+            page.wait_for_load_state("networkidle")
+            
+            # Vérification login OK
+            if "signin" in page.url.lower():
+                raise RuntimeError("Échec de la connexion (mauvais identifiants ou protection).")
         
-        # Vérification login OK
-        if "signin" in page.url.lower():
-            raise RuntimeError("Échec de la connexion (mauvais identifiants ou protection).")
-    
-        print("Connexion réussie :", page.url)
-        return browser, context, page
-        
-    else
-        raise RuntimeError("Échec de la connexion")
+            print("Connexion réussie :", page.url)
+            return browser, context, page
+            
+        else
+            raise RuntimeError("Échec de la connexion")
