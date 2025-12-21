@@ -4,8 +4,9 @@ from scraping.fetch_weekly_leaderboard import fetch_weekly_leaderboard
 def extract_weekly_leaderboard(context):
     page = context.new_page()
     url = "https://demonicscans.org/weekly.php"
+    print(url)
     page.goto(url, wait_until="domcontentloaded")
 
-    guild_members = fetch_weekly_leaderboard(page)
+    weekly_leaderboard = fetch_weekly_leaderboard(page)
 
     page.close()
