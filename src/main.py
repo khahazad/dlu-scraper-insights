@@ -2,7 +2,7 @@ from playwright.sync_api import sync_playwright
 from auth.login import login
 from scraping.run_guild_members_extract import extract_guild_members
 from scraping.run_weekly_leaderboard_extract import extract_weekly_leaderboard
-from scraping.run_treasury_extract import extract_treasury_ledger
+from scraping.run_treasury_ledger_extract import extract_treasury_ledger
 from scraping.all_run_players_info_extract import extract_players_info
 
 def main():
