@@ -13,12 +13,10 @@ def extract_treasury_log(context):
 
         rows = fetch_treasury_ledger(page)
         if not rows:
+            print(f"No entries for page {page_number}")
             break
 
-        for r in rows:
-            key = (r["Time"], r["PlayerID"], r["Kind"], r["Resource"], r["Amount"])
-            all_rows.append(r)
-            existing_keys.add(key)
+        all_rows.extend(rows)
         page_number += 1
 
     context.close()
