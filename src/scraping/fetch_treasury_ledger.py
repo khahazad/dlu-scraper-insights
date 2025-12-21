@@ -3,14 +3,18 @@ import re
 
 def fetch_treasury_ledger(page):
     html = page.content()
+    
+    if "No entries." in html:
+        return []
+        
     soup = BeautifulSoup(html, "html.parser")
+
     
     table = soup.find("table")
     if table is None:
         raise RuntimeError("Treasury ledger table nor found")
 
     rows = table.find_all("tr")[1:]    
-    treasury_ledger = []
 
     for row in rows:
         cols = row.find_all("td")
