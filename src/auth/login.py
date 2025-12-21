@@ -30,16 +30,17 @@ def login(playwright: Playwright):
     page.goto("https://demonicscans.org/signin.php", wait_until="domcontentloaded")
     
     html = page.content()
+    text = BeautifulSoup(html, "html.parser").get_text()
     print("-----------page preview-----------")
-    print(html)
+    print(text)
     print("----------------------------------")
 
-    if "cf-browser-verification" in page.content().lower():
-        print("Cloudflare challenge detected, waiting…")
-        page.wait_for_timeout(8000)
+    #if "cf-browser-verification" in page.content().lower():
+    #    print("Cloudflare challenge detected, waiting…")
+    #    page.wait_for_timeout(8000)
 
-    html = page.content()
-    text = BeautifulSoup(html, "html.parser").get_text()
+    #html = page.content()
+    #text = BeautifulSoup(html, "html.parser").get_text()
     
     if "You are already signed in" in text:
         print("Already signed in")
