@@ -1,7 +1,7 @@
 from storage.treasury_csv import load_treasury_rows, save_csv
 from scraping.fetch_treasury_ledger import fetch_treasury_ledger
 
-def extract_treasury_log(context):
+def extract_treasury_ledger(context):
     page = context.new_page()
 
     page_number = 1
