@@ -19,6 +19,6 @@ def extract_treasury_ledger(context):
         all_rows.extend(rows)
         page_number += 1
 
-    context.close()
+    page.close()
 
     save_csv(all_rows)
