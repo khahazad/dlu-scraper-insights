@@ -15,7 +15,7 @@ def extract_all_players_info(browser):
 
     page = ctx.new_page()
     
-    print(f"Connecting to {player_ids.count} player pages")
+    print(f"Connecting to {player_ids.len()} player pages")
     
     for pid in player_ids:
         url = f"https://demonicscans.org/player.php?pid={pid}"
