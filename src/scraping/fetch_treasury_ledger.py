@@ -14,7 +14,8 @@ def fetch_treasury_ledger(page):
     if table is None:
         raise RuntimeError("Treasury ledger table nor found")
 
-    rows = table.find_all("tr")[1:]    
+    rows = table.find_all("tr")[1:]  
+    treasury_ledger = []
 
     for row in rows:
         cols = row.find_all("td")
