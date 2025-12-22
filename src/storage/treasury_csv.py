@@ -15,7 +15,7 @@ def load_treasury_rows():
     with open(CSV_PATH, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for r in reader:
-            key = (r["Time"], r["PlayerID"], r["Kind"], r["Resource"], r["Amount"])
+            key = (r["Time"], r["PlayerID"], r["Kind"], r["Resource"], r["Amount"], r["Note"])
             keys.add(key)
             rows.append(r)
 
@@ -23,7 +23,7 @@ def load_treasury_rows():
 
 
 def save_csv(rows):
-    fieldnames = ["Time", "PlayerID", "Kind", "Resource", "Amount"]
+    fieldnames = ["Time", "PlayerID", "Kind", "Resource", "Amount", "Note"]
 
     with open(CSV_PATH, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
