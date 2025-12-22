@@ -21,7 +21,9 @@ def fetch_treasury_ledger(page):
         # 6 raws available raws
         if len(cols) != 6:
             raise RuntimeError("Unexpected table format")
-            
+        
+        # Time
+        time = cols[0].text.strip()
         # PlayerID
         link = cols[1].find("a")
         if not link or "href" not in link.attrs:
@@ -31,16 +33,14 @@ def fetch_treasury_ledger(page):
         if not match:
             raise RuntimeError("No match for PID")      
         pid = int(match.group(1))
-        # Time
-        time = tds[0].text.strip()
         # Kind
-        kind = tds[2].text.strip()
+        kind = cols[2].text.strip()
         # Resource
-        resource = tds[3].text.strip()
+        resource = cols[3].text.strip()
         # Amount
-        amount = tds[4].text.strip().replace(",", "")
+        amount = cols[4].text.strip().replace(",", "")
         # Note
-        note = tds[5].text.strip()
+        note = cols[5].text.strip()
 
         treasury_ledger.append({
             "Time": time,
