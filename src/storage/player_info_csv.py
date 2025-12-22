@@ -23,11 +23,10 @@ def save_csv(data):
     columns = [
         "PlayerID",
         "PlayerName",
-        "PreviousNames",
         "Role",
         "Joined",
         "Left",
-        "PlayerLevel",
+        "PlayerLevel"
     ]
 
     with open(CSV_PATH, "w", newline="", encoding="utf-8") as f:
@@ -42,12 +41,6 @@ def update_player_info_in_memory(data, pid, name, level):
         return
 
     row = data[pid]
-
-    old_name = row.get("PlayerName", "")
-    if old_name and old_name != name:
-        prev = row.get("PreviousNames", "")
-        if old_name not in prev:
-            row["PreviousNames"] = (prev + "," + old_name).strip(",")
 
     row["PlayerName"] = name
     row["PlayerLevel"] = level
