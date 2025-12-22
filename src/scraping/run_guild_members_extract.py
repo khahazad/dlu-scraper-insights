@@ -7,6 +7,8 @@ def extract_guild_members(context):
     page.goto(url, wait_until="domcontentloaded")
     #page.wait_for_selector("table", timeout=30000)
 
+    print("Connected to :", page.url)
+    
     guild_members = fetch_guild_members(page)
     merge_members(guild_members)
 
