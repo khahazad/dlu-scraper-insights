@@ -36,13 +36,13 @@ def fetch_guild_members(page):
         # Joined
         joined = cols[2].get_text(strip=True)
         # Contribution
-        contribution = cols[3].get_text(strip=True)
+        #contribution = cols[3].get_text(strip=True)
         
         guild_members.append({
             "PlayerID": pid,
             "Role": role,
             "Joined": joined,
-            "Contribution": contribution
+            #"Contribution": contribution
         })
 
     return guild_members
