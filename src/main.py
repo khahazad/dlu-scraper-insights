@@ -20,7 +20,7 @@ def main():
             extract_treasury_ledger(context)
             
             print("=== Étape 2 : Players info extraction (name + levels) ===")
-            extract_all_players_info(context)
+            extract_all_players_info(browser)
 
         except RuntimeError as e:
             print(f"ERREUR SCRAPER : {e}")
