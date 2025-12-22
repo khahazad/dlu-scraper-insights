@@ -19,7 +19,7 @@ def fetch_weekly_leaderboard(page):
             raise RuntimeError("Unexpected table format")
 
         # PlayerID
-        link = cols[0].find("a")
+        link = cols[1].find("a")
         if not link or "href" not in link.attrs:
             raise RuntimeError("No link found")
         href = link["href"]
@@ -28,7 +28,7 @@ def fetch_weekly_leaderboard(page):
             raise RuntimeError("No match for PID") 
         pid = int(match.group(1))       
         # Rank
-        rank = cols[1].get_text(strip=True)        
+        rank = cols[0].get_text(strip=True)        
         # Damage
         damage = cols[2].get_text(strip=True)
         
