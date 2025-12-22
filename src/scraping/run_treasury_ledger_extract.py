@@ -11,7 +11,7 @@ def extract_treasury_ledger(context):
         url = f"https://demonicscans.org/guild_treasury_log.php?p={page_number}&res=&kind=donation"
         page.goto(url, wait_until="domcontentloaded")
 
-        print("Connected to :", page.url)
+        #print("Connected to :", page.url)
     
         rows = fetch_treasury_ledger(page)
         if not rows:
