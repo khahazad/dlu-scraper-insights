@@ -10,6 +10,7 @@ def extract_guild_members(context):
     print("Connected to :", page.url)
     
     guild_members = fetch_guild_members(page)
-    merge_members(guild_members)
+    #merge_members(guild_members)
 
     page.close()
+    return guild_members
