@@ -4,7 +4,7 @@ from scraping.run_guild_members_extract import extract_guild_members
 from scraping.run_weekly_leaderboard_extract import extract_weekly_leaderboard
 from scraping.run_treasury_ledger_extract import extract_treasury_ledger
 from scraping.run_all_players_info_extract import extract_all_players_info
-from scraping.run_all_time_member_list_build import build_all_time_member_list
+from scraping.run_all_time_members_list_build import build_all_time_members_list
 
 def main():
     with sync_playwright() as p:
@@ -20,7 +20,7 @@ def main():
             treasury_ledger = extract_treasury_ledger(context)
 
             print("=== Step 3 : Build all time member list")
-            build_all_time_member_list(guild_members, treasury_ledger)
+            build_all_time_members_list(guild_members, treasury_ledger)
             
             print("=== Step 4 : Players info extraction (name + levels) ===")
             extract_all_players_info(browser)
