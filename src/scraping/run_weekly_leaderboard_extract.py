@@ -14,3 +14,5 @@ def extract_weekly_leaderboard(context):
     page.close()
     
     save_csv(weekly_leaderboard)
+    
+    return weekly_leaderboard
