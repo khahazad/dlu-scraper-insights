@@ -11,15 +11,21 @@ def main():
             browser, context, page = login(p)
 
             print("=== Step 1 : Guild members extraction ===")
-            extract_guild_members(context)
+            guild_members = []
+            guild_members = extract_guild_members(context)
 
             print("=== Step 2 : Weekly leaderboard extraction ===")
-            extract_weekly_leaderboard(context)
+            weekly_leaderboard = []
+            weekly_leaderboard = extract_weekly_leaderboard(context)
             
             print("=== Step 3 : Treasury ledger extraction ===")
-            extract_treasury_ledger(context)
+            treasury_ledger = []
+            treasury_ledger = extract_treasury_ledger(context)
+
+            print("=== Step 4 : Build member list")
+            #build_members_list()
             
-            print("=== Étape 2 : Players info extraction (name + levels) ===")
+            print("=== Step 5 : Players info extraction (name + levels) ===")
             extract_all_players_info(browser)
 
         except RuntimeError as e:
