@@ -24,3 +24,5 @@ def extract_treasury_ledger(context):
     page.close()
 
     save_csv(all_rows)
+    
+    return all_rows
