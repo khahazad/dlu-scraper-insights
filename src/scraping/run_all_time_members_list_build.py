@@ -51,5 +51,6 @@ def build_all_time_members_list(guild_members, treasury_ledger):
             "TotalGold": donations.get(pid, {}).get("TotalGold", 0),
             "TotalGems": donations.get(pid, {}).get("TotalGems", 0)
         })
-
+    
+    save_or_update_csv(final_table, "storage/all_time_members.csv", key="PlayerID")
     return all_time_members_table
