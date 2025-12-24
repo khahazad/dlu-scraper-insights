@@ -20,7 +20,7 @@ def main():
             treasury_ledger = extract_treasury_ledger(context)
 
             print("=== Step 3 : Build all time member list")
-            build_all_time_members_list(guild_members, treasury_ledger)
+            all_time_members_table = build_all_time_members_list(guild_members, treasury_ledger)
             
             print("=== Step 4 : Players info extraction (name + levels) ===")
             extract_all_players_info(browser)
