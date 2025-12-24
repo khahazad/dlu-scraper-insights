@@ -39,11 +39,11 @@ def build_all_time_members_list(guild_members, treasury_ledger):
     all_player_ids = set(guild_index.keys()) | set(donations.keys())
 
     # 4. Construction du tableau final
-    final_table = []
+    all_time_members_table = []
     for pid in sorted(all_player_ids):
         member_info = guild_index.get(pid, {})
 
-        final_table.append({
+        all_time_members_table.append({
             "PlayerID": pid,
             "Role": member_info.get("Role"),
             "Joined": member_info.get("Joined"),
@@ -52,4 +52,4 @@ def build_all_time_members_list(guild_members, treasury_ledger):
             "TotalGems": donations.get(pid, {}).get("TotalGems", 0)
         })
 
-    return final_table
+    return all_time_members_table
