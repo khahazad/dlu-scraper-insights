@@ -7,7 +7,7 @@ def build_all_time_members_list(guild_members, treasury_ledger):
 
     # 2. Calcul des dons cumulés + dernière date vue
     donations = {}
-    last_seen = {}
+    last_donation = {}
 
     for row in treasury_ledger:
         pid = row["PlayerID"]
@@ -32,9 +32,9 @@ def build_all_time_members_list(guild_members, treasury_ledger):
         elif resource.lower() == "gems":
             donations[pid]["TotalGems"] += amount
 
-        # LastSeen
-        if pid not in last_seen or time > last_seen[pid]:
-            last_seen[pid] = time
+        # LastDonation
+        if pid not in last_donation or time > last_donation[pid]:
+            last_donation[pid] = time
 
     # 3. Liste complète des PlayerID sans doublons
     all_player_ids = set(guild_index.keys()) | set(donations.keys())
@@ -48,7 +48,7 @@ def build_all_time_members_list(guild_members, treasury_ledger):
             "PlayerID": pid,
             "Role": member_info.get("Role"),
             "Joined": member_info.get("Joined"),
-            "LastSeen": last_seen.get(pid),  # None si jamais vu
+            "LastDonation": last_donation.get(pid),  # None si jamais vu
             "TotalGold": donations.get(pid, {}).get("TotalGold", 0),
             "TotalGems": donations.get(pid, {}).get("TotalGems", 0)
         })
