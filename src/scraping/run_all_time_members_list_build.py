@@ -1,3 +1,4 @@
+from storage.save_or_update_csv import save_or_update_csv
 from datetime import datetime
 
 def build_all_time_members_list(guild_members, treasury_ledger):
@@ -52,5 +53,5 @@ def build_all_time_members_list(guild_members, treasury_ledger):
             "TotalGems": donations.get(pid, {}).get("TotalGems", 0)
         })
     
-    save_or_update_csv(final_table, "storage/all_time_members.csv", key="PlayerID")
+    save_or_update_csv(final_table, "data/processed/all_time_members.csv", key="PlayerID")
     return all_time_members_table
