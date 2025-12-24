@@ -14,6 +14,7 @@ def main():
             print("=== Step 1 : Guild members extraction ===")
             guild_members = []
             guild_members = extract_guild_members(context)
+            save_or_update_csv(final_table, "storage/all_time_members.csv", key="PlayerID")
 
             print("=== Step 2 : Treasury ledger extraction ===")
             treasury_ledger = []
@@ -21,6 +22,7 @@ def main():
 
             print("=== Step 3 : Build all time member list")
             all_time_members_table = build_all_time_members_list(guild_members, treasury_ledger)
+            save_or_update_csv(final_table, "storage/all_time_members.csv", key="PlayerID")
             
             print("=== Step 4 : Players info extraction (name + levels) ===")
             extract_all_players_info(browser)
