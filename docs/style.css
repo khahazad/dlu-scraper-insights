@@ -42,3 +42,9 @@ th {
 .dropdown.show .dropdown-content {
   display: block;
 }
+
+.sort-icon {
+  margin-left: 6px;
+  font-size: 0.8em;
+  opacity: 0.7;
+}
