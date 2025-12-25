@@ -26,7 +26,7 @@ def main():
             print("Scraping guild members info.")
             url = "https://demonicscans.org/guild_members.php"
             guild_members = scrape_first_table(context, url, 0, "pid")
-            print(f"dico size {len(guild_members)}")
+            print(f"### dico size {len(guild_members)}")
             for pid, data in list(guild_members.items())[:5]:
                 print(pid, data)
 
@@ -34,27 +34,32 @@ def main():
             print("Scraping treasury ledger info.")
             url_template = "https://demonicscans.org/guild_treasury_log.php?p={page}&res=&kind=donation"
             treasury_ledger = scrape_paginated_tables(context, url_template, 1, "auto")
-            print(f"dico size {len(treasury_ledger)}")
+            print(f"### dico size {len(treasury_ledger)}")
             for key, data in list(treasury_ledger.items())[:5]:
                 print(key, data)
-
 
             # Scraping weekly leaderboard
             print("Scraping weekly_leaderboard info.")
             url = "https://demonicscans.org/weekly.php"
             weekly_leaderboard = scrape_first_table(context, url, 1, "pid")
-            print(f"dico size {len(weekly_leaderboard)}")
+            print(f"### dico size {len(weekly_leaderboard)}")
             for pid, data in list(weekly_leaderboard.items())[:5]:
                 print(pid, data)
                 
             # Collect all PIDs in the main dictionary
             print("Collect all PIDs.")
             delulu_dictionary = collect_all_pids(guild_members,treasury_ledger)
+            print(f"### dico size {len(delulu_dictionary)}")
+            for pid, data in list(delulu_dictionary.items())[:5]:
+                print(pid, data)
             
             # Scrape players names and levels
             print("Scraping players info.")
             pids = list(delulu_dictionary.keys())
             players_info = scrape_players_info(browser, pids)
+            print(f"### dico size {len(players_info)}")
+            for pid, data in list(players_info.items())[:5]:
+                print(pid, data)
             
             # Merging players info with pids_dictionary
             delulu_dictionary = update_pid_dict(delulu_dictionary, players_info)
@@ -77,8 +82,8 @@ def main():
             
             # Display result
             print("=== Display result ===")
-            print(f"dico size {len(delulu_dictionary)}")
-            for pid, data in list(delulu_dictionary.items()):
+            print(f"### dico size {len(delulu_dictionary)}")
+            for pid, data in list(delulu_dictionary.items())[:5]:
                 print(pid, data)
 
         
