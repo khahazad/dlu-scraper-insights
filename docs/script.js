@@ -16,6 +16,7 @@ async function loadData() {
 
   rows = Object.entries(data).map(([pid, fields]) => ({
     pid,
+    Role: fields.Role ?? "Former",
     ...fields
   }));
 
