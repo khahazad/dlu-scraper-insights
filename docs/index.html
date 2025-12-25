@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Delulu Guild Dashboard</title>
+  <style>
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 6px; }
+    th { cursor: pointer; background: #eee; }
+  </style>
+</head>
+<body>
+
+<h1>Delulu Guild Members</h1>
+<table id="guildTable"></table>
+
+<script>
+async function loadData() {
+  const url = "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/delulu_data.json";
+  const response = await fetch(url);
+  const data = await response.json();
+
+  // Convert dictionary to array
+  const rows = Object.entries(data).map(([pid, fields]) => ({
+    pid,
+    ...fields
+  }));
+
+  // Define column order
+  const columns = [
+    "pid", "name", "level", "Role", "Joined",
+    "gold", "gems", "last_donation", "Rank"
+  ];
+
+  const table = document.getElementById("guildTable");
+
+  // Build header
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+  columns.forEach(col => {
+    const th = document.createElement("th");
+    th.textContent = col;
+    th.onclick = () => sortTable(col);
+    headerRow.appendChild(th);
+  });
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  // Build body
+  const tbody = document.createElement("tbody");
+  rows.forEach(row => {
+    const tr = document.createElement("tr");
+    columns.forEach(col => {
+      const td = document.createElement("td");
+      td.textContent = row[col] ?? "";
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+
+  // Sorting function
+  function sortTable(col) {
+    rows.sort((a, b) => {
+      const x = a[col] ?? "";
+      const y = b[col] ?? "";
+      return x > y ? 1 : x < y ? -1 : 0;
+    });
+    tbody.innerHTML = "";
+    rows.forEach(row => {
+      const tr = document.createElement("tr");
+      columns.forEach(col => {
+        const td = document.createElement("td");
+        td.textContent = row[col] ?? "";
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  }
+}
+
+loadData();
+</script>
+
+</body>
+</html>
