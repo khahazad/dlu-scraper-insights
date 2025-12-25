@@ -75,7 +75,7 @@ def update_pid_dict(pids, new_data):
     """
     for pid, fields in new_data.items():
         if pid not in pids:
-            pids[pid] = {}
+            continue
 
         # Add or overwrite fields
         for key, value in fields.items():
