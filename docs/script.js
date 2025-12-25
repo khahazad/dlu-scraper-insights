@@ -96,6 +96,19 @@ function renderRows(data) {
   });
 }
 
+function parseDate(dateStr) {
+  // Expected format: "YYYY-MM-DD HH:MM:SS"
+  if (!dateStr) return 0;
+
+  const [datePart, timePart] = dateStr.split(" ");
+  if (!datePart || !timePart) return 0;
+
+  const [year, month, day] = datePart.split("-").map(Number);
+  const [hour, minute, second] = timePart.split(":").map(Number);
+
+  return new Date(year, month - 1, day, hour, minute, second).getTime();
+}
+
 function sortTable(col) {
   // Toggle direction
   if (sortState.column === col) {
