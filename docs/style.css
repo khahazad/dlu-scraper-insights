@@ -8,6 +8,7 @@
   --border: #ccc;
   --dropdown-bg: #ffffff;
   --dropdown-btn-bg: #eee;
+  --link: #0066cc; /* readable blue */
 }
 
 /* ---------------------------------------
@@ -21,6 +22,7 @@
     --border: #555;
     --dropdown-bg: #2a2a2a;
     --dropdown-btn-bg: #333;
+    --link: #4da3ff; /* brighter blue for dark mode */
   }
 }
 
@@ -84,4 +86,14 @@ th {
   margin-left: 6px;
   font-size: 0.8em;
   opacity: 0.7;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
 }
