@@ -51,6 +51,15 @@ document.addEventListener("click", function (e) {
 });
 
 // -----------------------------
+// Format table headers
+// -----------------------------
+function formatHeader(col) {
+  return col
+    .replace(/_/g, " ")        // replace underscores with spaces
+    .replace(/\b\w/g, c => c.toUpperCase()); // capitalize first letter of each word
+}
+
+// -----------------------------
 // Build table structure
 // -----------------------------
 function buildTable() {
@@ -64,7 +73,7 @@ function buildTable() {
     th.style.cursor = "pointer";
 
     const label = document.createElement("span");
-    label.textContent = col;
+    label.textContent = formatHeader(col);
 
     const icon = document.createElement("span");
     icon.className = "sort-icon";
