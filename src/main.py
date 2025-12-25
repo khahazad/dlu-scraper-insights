@@ -38,6 +38,13 @@ def main():
             donations_summary = aggregate_donations(treasury_ledger)
             for ds in donations_summary[:10]: 
                 print(ds)
+            for ds in donations_summary[:10]:
+                print({
+                    "pid": ds["pid"],
+                    "gold": ds["gold"],
+                    "gems": ds["gems"],
+                    "last_donation": ds["last_donation"].strftime("%Y-%m-%d %H:%M:%S")
+                })
 
             # Scrape player info (lightweight context)
             print("Scraping player info.")
