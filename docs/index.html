@@ -15,18 +15,18 @@
     <div class="controls">
       <input id="searchInput" type="text" placeholder="Search..." />
 
-      <div class="dropdown">
+      <div class="dropdown role-dropdown">
         <button class="dropdown-btn">Filter Roles ▾</button>
-        <div class="dropdown-content">
+        <div class="dropdown-content role-content">
           <label><input type="checkbox" value="Member" checked> Member</label>
           <label><input type="checkbox" value="Vice" checked> Vice</label>
           <label><input type="checkbox" value="Leader" checked> Leader</label>
           <label><input type="checkbox" value="Former"> Former</label>
         </div>
       </div>
-      <div class="dropdown">
+      <div class="dropdown column-dropdown">
         <button class="dropdown-btn">Columns ▾</button>
-        <div class="dropdown-content" id="columnSelector">
+        <div class="dropdown-content column-content" id="columnSelector">
           <label><input type="checkbox" value="pid" checked> PID</label>
           <label><input type="checkbox" value="name" checked> Name</label>
           <label><input type="checkbox" value="level" checked> Level</label>
@@ -38,6 +38,7 @@
           <label><input type="checkbox" value="Rank" checked> Rank</label>
         </div>
       </div>
+      <button id="exportBtn" class="export-btn">Export CSV</button>
     </div>
   </div>
   
