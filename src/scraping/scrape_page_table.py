@@ -15,7 +15,6 @@ def scrape_first_table(context, url, pid_column=None, key="auto"):
     page.goto(url, wait_until="domcontentloaded")
 
     soup = BeautifulSoup(page.content(), "html.parser")
-
     table = soup.find("table")
     if table is None:
         raise RuntimeError(f"No table found on page: {url}")
@@ -82,6 +81,8 @@ def scrape_first_table(context, url, pid_column=None, key="auto"):
         # Build row dictionary
         entry = {}
         for col_index, value in enumerate(row):
+            if key == "pid" and col_index == pid_column: 
+                continue # skip PID column entirely 
             entry[header[col_index]] = value
 
         result[dict_key] = entry
