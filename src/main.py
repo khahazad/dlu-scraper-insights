@@ -2,6 +2,7 @@ import sys
 from playwright.sync_api import sync_playwright
 from auth.login import login
 from scraping.scrape_page_table import scrape_first_table
+from scraping.scrape_page_table import scrape_paginated_tables
 from scraping.scrape_players_info import scrape_players_info
 from aggregate_data import collect_all_pids
 from aggregate_data import aggregate_donations
@@ -25,21 +26,24 @@ def main():
             print("Scraping guild members info.")
             url = "https://demonicscans.org/guild_members.php"
             guild_members = scrape_first_table(context, url, 0, "pid")
+            print(f"dico size {len(guild_members)}")
             for pid, data in list(guild_members.items())[:5]:
                 print(pid, data)
 
             # Scraping treasury ledger
             print("Scraping treasury ledger info.")
-            page_number = 1
-            url = f"https://demonicscans.org/guild_treasury_log.php?p={page_number}&res=&kind=donation"       
-            treasury_ledger = scrape_first_table(context, url, 1, "auto")
-            for pid, data in list(treasury_ledger.items())[:5]:
-                print(pid, data)
+            url_template = "https://demonicscans.org/guild_treasury_log.php?p={page}&res=&kind=donation"
+            treasury_ledger = scrape_paginated_tables(context, url_template, 1, "auto")
+            print(f"dico size {len(treasury_ledger)}")
+            for key, data in list(treasury_ledger.items())[:5]:
+                print(key, data)
+
 
             # Scraping weekly leaderboard
             print("Scraping weekly_leaderboard info.")
             url = "https://demonicscans.org/weekly.php"
             weekly_leaderboard = scrape_first_table(context, url, 1, "pid")
+            print(f"dico size {len(weekly_leaderboard)}")
             for pid, data in list(weekly_leaderboard.items())[:5]:
                 print(pid, data)
                 
@@ -73,6 +77,7 @@ def main():
             
             # Display result
             print("=== Display result ===")
+            print(f"dico size {len(delulu_dictionary)}")
             for pid, data in list(delulu_dictionary.items()):
                 print(pid, data)
 
