@@ -14,7 +14,6 @@ async function loadData() {
   const response = await fetch(url);
   const data = await response.json();
 
-  // Convert dictionary → array
   rows = Object.entries(data).map(([pid, fields]) => ({
     pid,
     ...fields
@@ -23,13 +22,14 @@ async function loadData() {
   buildTable();
   renderRows(rows);
 
-// Attach filter events
-document.getElementById("searchInput").oninput = applyFilters;
-// Attach checkbox events for multi-select dropdown
-document.querySelectorAll(".dropdown-content input")
-  .forEach(cb => cb.onchange = applyFilters);
+  // Attach filter events
+  document.getElementById("searchInput").oninput = applyFilters;
 
+  // Attach checkbox events for multi-select dropdown
+  document.querySelectorAll(".dropdown-content input")
+    .forEach(cb => cb.onchange = applyFilters);
 }
+
 
 // Toggle dropdown
 document.addEventListener("click", function (e) {
