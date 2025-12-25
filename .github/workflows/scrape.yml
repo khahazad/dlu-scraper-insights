@@ -34,7 +34,7 @@ jobs:
           APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
           PYTHONPATH: src
         run: |
-          python src/main.py
+          python src/main.py || exit 1
 
       - name: Commit and push changes
         run: |
