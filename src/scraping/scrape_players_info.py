@@ -39,7 +39,7 @@ def scrape_player_info(ctx, pid):
 # ---------------------------------------------------------
 # Scrape many players info using their IDs
 # ---------------------------------------------------------
-def scrape_many_players_info(browser, player_ids):
+def scrape_players_info(browser, player_ids):
     results = []
     
     ctx = browser.new_context(
