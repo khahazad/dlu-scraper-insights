@@ -69,9 +69,10 @@ def main():
             print("Merging weekly leaderboard with pids_dictionary.")
             delulu_dictionary = update_pid_dict(delulu_dictionary, weekly_leaderboard)
             
-            # Display 10 first rows in log with dates formated
-            for pd in delulu_dictionary[:10]:
-                #  print({ ??? })
+            # Display result
+            print("=== Display result ===")
+            for pid, data in list(delulu_dictionary.items()):
+                print(pid, data)
 
         
         except RuntimeError as e:
