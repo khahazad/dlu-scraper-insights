@@ -2,7 +2,7 @@ import sys
 from playwright.sync_api import sync_playwright
 from auth.login import login
 from scraping.scrape_page_table import scrape_first_table
-from scraping.scrape_players_info import scrape_many_players_info
+from scraping.scrape_players_info import scrape_players_info
 from aggregate_data import aggregate_donations
 from aggregate_data import merge_members_and_donations
 from aggregate_data import merge_with_player_info
@@ -20,76 +20,59 @@ def main():
                 print("Login failed. Aborting run.")
                 return
                 
-            # Scraping guild members info
+            # Scraping guild members
             print("Scraping guild members info.")
             url = "https://demonicscans.org/guild_members.php"
-            guild_members = scrape_first_table(context, url, 0)
-            for gm in guild_members[:10]:
+            guild_members = scrape_first_table(context, url, 0, "pid")
+            for gm in guild_members[:5]:
                 print(gm)
 
-            # Scraping treasury ledger info
+            # Scraping treasury ledger
             print("Scraping treasury ledger info.")
             page_number = 1
             url = f"https://demonicscans.org/guild_treasury_log.php?p={page_number}&res=&kind=donation"       
-            treasury_ledger = scrape_first_table(context, url, 1)
+            treasury_ledger = scrape_first_table(context, url, 1, "auto")
             for tl in treasury_ledger[:10]: 
                 print(tl)
 
+            # Scraping weekly leaderboard
+            print("Scraping weekly_leaderboard info.")
+            url = "https://demonicscans.org/weekly.php"
+            weekly_leaderboard = scrape_first_table(context, url, 0, "pid")
+            for wlb in weekly_leaderboard[:5]:
+                print(wlb)
+                
+            # Collect all PIDs
+            print("Collect all PIDs.")
+            pids_dictionary = {}
+            pids_dictionary = collect_all_pids(guild_members,treasury_ledger)
+            
+            # Scrape players names and levels
+            print("Scraping players info.")
+            pids = [d["pid"] for d in merged]
+            players_info = scrape_players_info(browser, pids)
+            
             # Aggregating donations
             print("Aggregating donations.")
             donations_summary = aggregate_donations(treasury_ledger)
-            for ds in donations_summary[:10]:
-                print({
-                    "pid": ds["pid"],
-                    "gold": ds["gold"],
-                    "gems": ds["gems"],
-                    "last_donation": ds["last_donation"].strftime("%Y-%m-%d %H:%M:%S")
-                })
 
-            # Merging guild members with donations
-            print("Merging guild members with donations.")
-            merged = merge_members_and_donations(guild_members, donations_summary)
+            # Merging guild members with pids_dictionary
+            print("Merging guild members with pids_dictionary.")
+            pids_dictionary = update_pids_dictionary(pids_dictionary, guild_members)
             
-            for m in merged[:10]:
-                print({
-                    "pid": m["pid"],
-                    "role": m["role"],
-                    "joined": m["joined"],
-                    "gold": m["gold"],
-                    "gems": m["gems"],
-                    "last_donation": (
-                        m["last_donation"].strftime("%Y-%m-%d %H:%M:%S")
-                        if m["last_donation"] else None
-                    )
-                })
+            # Merging donations with pids
+            print("Merging donations with pids_dictionary.")
+            pids_dictionary = update_pids_dictionary(pids_dictionary, donations_summary)
 
+            # Merging weekly leaderboard with pids
+            print("Merging weekly leaderboard with pids_dictionary.")
+            pids_dictionary = update_pids_dictionary(pids_dictionary, weekly_leaderboard)
             
-            # Scrape player info (lightweight context)
-            print("Scraping player info.")
-            pids = [d["pid"] for d in merged]
-            players_info = scrape_many_players_info(browser, pids)
-            for pi in players_info[:10]: 
-                print(pi)
+            # Display 10 first rows in log with dates formated
+            for pd in pids_dictionary[:10]:
+                #  print({ ??? })
 
-
-            print("Merging player info.")
-            merged = merge_with_player_info(merged, players_info)
-            
-            for m in merged[:10]:
-                print({
-                    "pid": m["pid"],
-                    "name": m["name"],
-                    "level": m["level"],
-                    "role": m["role"],
-                    "joined": m["joined"],
-                    "gold": m["gold"],
-                    "gems": m["gems"],
-                    "last_donation": (
-                        m["last_donation"].strftime("%Y-%m-%d %H:%M:%S")
-                        if m["last_donation"] else None
-                    )
-                })
-
+        
         except RuntimeError as e:
             print(f"ERREUR SCRAPER : {e}")
             sys.exit(1)
