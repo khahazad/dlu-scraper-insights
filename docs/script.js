@@ -54,11 +54,23 @@ function buildTable() {
 
   columns.forEach(col => {
     const th = document.createElement("th");
-    th.textContent = col;
     th.style.cursor = "pointer";
+  
+    const label = document.createElement("span");
+    label.textContent = col;
+  
+    const icon = document.createElement("span");
+    icon.className = "sort-icon";
+    icon.textContent = ""; // empty by default
+  
+    th.appendChild(label);
+    th.appendChild(icon);
+  
     th.onclick = () => sortTable(col);
+  
     headerRow.appendChild(th);
   });
+
 
   thead.appendChild(headerRow);
   table.appendChild(thead);
@@ -110,6 +122,44 @@ function sortTable(col) {
     // String sort
     return x.toString().localeCompare(y.toString()) * sortState.direction;
   });
+function sortTable(col) {
+  // Toggle direction
+  if (sortState.column === col) {
+    sortState.direction *= -1;
+  } else {
+    sortState.column = col;
+    sortState.direction = 1;
+  }
+
+  rows.sort((a, b) => {
+    const x = a[col] ?? "";
+    const y = b[col] ?? "";
+
+    // Numeric sort
+    if (!isNaN(x) && !isNaN(y)) {
+      return (Number(x) - Number(y)) * sortState.direction;
+    }
+
+    // Date sort (ISO)
+    if (col === "last_donation" || col === "Joined") {
+      return (new Date(x) - new Date(y)) * sortState.direction;
+    }
+
+    // String sort
+    return x.toString().localeCompare(y.toString()) * sortState.direction;
+  });
+
+  // Reset all icons
+  document.querySelectorAll("th .sort-icon").forEach(icon => {
+    icon.textContent = "";
+  });
+
+  // Set icon for the sorted column
+  const index = columns.indexOf(col);
+  const th = document.querySelectorAll("th")[index];
+  const icon = th.querySelector(".sort-icon");
+
+  icon.textContent = sortState.direction === 1 ? " ▲" : " ▼";
 
   applyFilters(); // reapply filters after sorting
 }
