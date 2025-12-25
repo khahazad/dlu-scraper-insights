@@ -57,6 +57,16 @@ document.addEventListener("click", function (e) {
   }
 });
 
+document.addEventListener("click", function (e) {
+  document.querySelectorAll(".dropdown").forEach(drop => {
+    if (drop.contains(e.target)) {
+      drop.classList.toggle("show");
+    } else {
+      drop.classList.remove("show");
+    }
+  });
+});
+
 // -----------------------------
 // Update Visible Columns
 // -----------------------------
