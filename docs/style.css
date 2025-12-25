@@ -149,3 +149,31 @@ a:hover {
   height: 26px;
   fill: var(--discord-text);
 }
+
+/* Top bar layout */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Left side: title + search + filter */
+.left-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Right side: emblem + Discord button */
+.right-side {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
