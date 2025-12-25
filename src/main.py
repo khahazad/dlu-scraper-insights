@@ -26,7 +26,6 @@ def main():
             for pid, data in list(guild_members.items())[:5]:
                 print(pid, data)
 
-
             # Scraping treasury ledger
             print("Scraping treasury ledger info.")
             page_number = 1
@@ -34,7 +33,6 @@ def main():
             treasury_ledger = scrape_first_table(context, url, 1, "auto")
             for pid, data in list(treasury_ledger.items())[:5]:
                 print(pid, data)
-
 
             # Scraping weekly leaderboard
             print("Scraping weekly_leaderboard info.")
