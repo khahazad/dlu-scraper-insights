@@ -49,7 +49,7 @@ def main():
             
             # Scrape players names and levels
             print("Scraping players info.")
-            pids = [d["pid"] for d in delulu_dictionary]
+            pids = list(delulu_dictionary.keys())
             players_info = scrape_players_info(browser, pids)
             
             # Merging players info with pids_dictionary
