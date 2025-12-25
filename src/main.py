@@ -98,12 +98,22 @@ def main():
             for pid, data in list(clean_data.items())[:10]:
                 print(pid, data)
 
+            #
             # Save to docs/delulu_data.json
-            import json
-            with open("docs/delulu_data.json", "w", encoding="utf-8") as f:
+            #
+            import json, os, shutil
+
+            tmp_path = "docs/delulu_data.json.tmp"
+            final_path = "docs/delulu_data.json"
+            
+            # Write to a temporary file
+            with open(tmp_path, "w", encoding="utf-8") as f:
                 json.dump(clean_data, f, indent=2, ensure_ascii=False)
             
-            print("Saved JSON to docs/delulu_data.json")
+            # Atomic replace (safe even if crash happens earlier)
+            shutil.move(tmp_path, final_path)
+            
+            print("Safely saved JSON to docs/delulu_data.json")
 
         except RuntimeError as e:
             print(f"ERREUR SCRAPER : {e}")
