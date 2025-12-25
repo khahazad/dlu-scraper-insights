@@ -37,7 +37,7 @@ def main():
             # Scraping weekly leaderboard
             print("Scraping weekly_leaderboard info.")
             url = "https://demonicscans.org/weekly.php"
-            weekly_leaderboard = scrape_first_table(context, url, 0, "pid")
+            weekly_leaderboard = scrape_first_table(context, url, 1, "pid")
             for pid, data in list(weekly_leaderboard.items())[:5]:
                 print(pid, data)
                 
