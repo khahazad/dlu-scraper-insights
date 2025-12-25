@@ -66,7 +66,7 @@ def main():
             
             # Merging guild members with pids_dictionary
             print("Merging guild members with pids_dictionary.")
-            delulu_dictionary = update_pid_dict(delulu_dictionary, guild_members)
+            delulu_dictionary = update_pid_dict(delulu_dictionary, guild_members, fields=["Role", "Joined"])
             
             # Aggregating donations
             print("Aggregating donations.")
@@ -81,7 +81,7 @@ def main():
 
             # Merging weekly leaderboard with pids
             print("Merging weekly leaderboard with pids_dictionary.")
-            delulu_dictionary = update_pid_dict(delulu_dictionary, weekly_leaderboard)
+            delulu_dictionary = update_pid_dict(delulu_dictionary, weekly_leaderboard, fields=["Rank"])
             
             # Display result
             print("=== Display result ===")
