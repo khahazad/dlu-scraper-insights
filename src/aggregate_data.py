@@ -14,7 +14,6 @@ def collect_all_pids(guild_members, treasury_ledger):
 
     return {pid: {} for pid in sorted(pids)}
 
-from datetime import datetime
 
 def aggregate_donations(treasury_ledger):
     """
@@ -29,7 +28,13 @@ def aggregate_donations(treasury_ledger):
     }
 
     Returns:
-        { pid: { "gold": ..., "gems": ..., "last_donation": datetime(...) } }
+        {
+            pid: {
+                "gold": int,
+                "gems": int,
+                "last_donation": "YYYY-MM-DDTHH:MM:SS"
+            }
+        }
     """
     donations = {}
 
@@ -42,7 +47,7 @@ def aggregate_donations(treasury_ledger):
         # Convert amount "500,000" → 500000
         amount = int(amount_str.replace(",", ""))
 
-        # Parse timestamp
+        # Parse timestamp from website format
         ts = datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")
 
         # Initialize PID entry
@@ -62,6 +67,10 @@ def aggregate_donations(treasury_ledger):
         # Update last donation timestamp
         if ts > donations[pid]["last_donation"]:
             donations[pid]["last_donation"] = ts
+
+    # Convert datetime → ISO string for JSON export
+    for pid in donations:
+        donations[pid]["last_donation"] = donations[pid]["last_donation"].isoformat()
 
     return donations
 
