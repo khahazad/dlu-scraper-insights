@@ -43,6 +43,7 @@ async function loadData() {
 
   // Apply filter immediately
   applyFilters();
+  updateVisibleColumns();
 }
 
 // -----------------------------
