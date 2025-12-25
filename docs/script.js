@@ -1,23 +1,37 @@
+let rows = [];
+let columns = [
+  "pid", "name", "level", "Role", "Joined",
+  "gold", "gems", "last_donation", "Rank"
+];
+
+let sortState = {
+  column: null,
+  direction: 1   // 1 = asc, -1 = desc
+};
+
 async function loadData() {
-  const url = "delulu_data.json";  // served from same folder
+  const url = "delulu_data.json";
   const response = await fetch(url);
   const data = await response.json();
 
   // Convert dictionary → array
-  const rows = Object.entries(data).map(([pid, fields]) => ({
+  rows = Object.entries(data).map(([pid, fields]) => ({
     pid,
     ...fields
   }));
 
-  // Define column order
-  const columns = [
-    "pid", "name", "level", "Role", "Joined",
-    "gold", "gems", "last_donation", "Rank"
-  ];
+  buildTable();
+  renderRows(rows);
 
+  // Attach filter events
+  document.getElementById("searchInput").oninput = applyFilters;
+  document.getElementById("roleFilter").onchange = applyFilters;
+}
+
+function buildTable() {
   const table = document.getElementById("guildTable");
 
-  // Build header
+  // Header
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
 
@@ -32,41 +46,73 @@ async function loadData() {
   thead.appendChild(headerRow);
   table.appendChild(thead);
 
-  // Build body
+  // Body
   const tbody = document.createElement("tbody");
+  tbody.id = "guildBody";
   table.appendChild(tbody);
+}
 
-  function renderRows() {
-    tbody.innerHTML = "";
-    rows.forEach(row => {
-      const tr = document.createElement("tr");
-      columns.forEach(col => {
-        const td = document.createElement("td");
-        td.textContent = row[col] ?? "";
-        tr.appendChild(td);
-      });
-      tbody.appendChild(tr);
+function renderRows(data) {
+  const tbody = document.getElementById("guildBody");
+  tbody.innerHTML = "";
+
+  data.forEach(row => {
+    const tr = document.createElement("tr");
+    columns.forEach(col => {
+      const td = document.createElement("td");
+      td.textContent = row[col] ?? "";
+      tr.appendChild(td);
     });
+    tbody.appendChild(tr);
+  });
+}
+
+function sortTable(col) {
+  // Toggle direction
+  if (sortState.column === col) {
+    sortState.direction *= -1;
+  } else {
+    sortState.column = col;
+    sortState.direction = 1;
   }
 
-  renderRows();
+  rows.sort((a, b) => {
+    const x = a[col] ?? "";
+    const y = b[col] ?? "";
 
-  // Sorting function
-  function sortTable(col) {
-    rows.sort((a, b) => {
-      const x = a[col] ?? "";
-      const y = b[col] ?? "";
+    // Numeric sort
+    if (!isNaN(x) && !isNaN(y)) {
+      return (Number(x) - Number(y)) * sortState.direction;
+    }
 
-      // Numeric sort if both values are numbers
-      if (!isNaN(x) && !isNaN(y)) {
-        return Number(x) - Number(y);
-      }
+    // Date sort (ISO)
+    if (col === "last_donation" || col === "Joined") {
+      return (new Date(x) - new Date(y)) * sortState.direction;
+    }
 
-      return x > y ? 1 : x < y ? -1 : 0;
-    });
+    // String sort
+    return x.toString().localeCompare(y.toString()) * sortState.direction;
+  });
 
-    renderRows();
-  }
+  applyFilters(); // reapply filters after sorting
+}
+
+function applyFilters() {
+  const search = document.getElementById("searchInput").value.toLowerCase();
+  const role = document.getElementById("roleFilter").value;
+
+  const filtered = rows.filter(row => {
+    // Role filter
+    if (role && row.Role !== role) return false;
+
+    // Search filter (checks all fields)
+    const text = Object.values(row).join(" ").toLowerCase();
+    if (search && !text.includes(search)) return false;
+
+    return true;
+  });
+
+  renderRows(filtered);
 }
 
 loadData();
