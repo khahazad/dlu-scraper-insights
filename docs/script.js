@@ -23,9 +23,12 @@ async function loadData() {
   buildTable();
   renderRows(rows);
 
-  // Attach filter events
-  document.getElementById("searchInput").oninput = applyFilters;
-  document.getElementById("roleFilter").onchange = applyFilters;
+// Attach filter events
+document.getElementById("searchInput").oninput = applyFilters;
+// Attach checkbox events for multi-select dropdown
+document.querySelectorAll(".dropdown-content input")
+  .forEach(cb => cb.onchange = applyFilters);
+
 }
 
 // Toggle dropdown
