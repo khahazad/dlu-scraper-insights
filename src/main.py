@@ -29,13 +29,13 @@ def main():
                 # ...
             ]
             url = "https://demonicscans.org/guild_members.php"
-            guild_members = scrape_first_table(context, url)
+            guild_members = scrape_first_table(context, url, 0)
             for gm in guild_members:
                 print(gm)
 
             page_number = 1
             url = f"https://demonicscans.org/guild_treasury_log.php?p={page_number}&res=&kind=donation"       
-            treasury_ledger = scrape_first_table(context, url)
+            treasury_ledger = scrape_first_table(context, url, 1)
             for tl in treasury_ledger:
                 print(tl)
                 
