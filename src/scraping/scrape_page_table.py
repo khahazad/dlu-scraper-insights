@@ -123,6 +123,11 @@ def scrape_paginated_tables(context, url_template, pid_column=1, key="auto", max
         # Merge dictionaries
         all_rows.update(page_data)
 
+        # Merge with unique keys 
+        for i, (k, v) in enumerate(page_data.items(), start=1): 
+            unique_key = f"p{page_number}_r{i}" 
+            all_rows[unique_key] = v
+
         page_number += 1
         if page_number > max_pages:
             print("  Safety stop: too many pages.")
