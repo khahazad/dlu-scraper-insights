@@ -108,7 +108,7 @@ def scrape_paginated_tables(context, url_template, pid_column=1, key="auto", max
 
     while True:
         url = url_template.format(page=page_number)
-        print(f"  → Scraping page {page_number}")
+        #print(f"  → Scraping page {page_number}")
 
         try:
             page_data = scrape_first_table(context, url, pid_column, key)
