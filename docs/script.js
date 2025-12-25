@@ -4,10 +4,12 @@ let columns = [
   "gold", "gems", "last_donation", "Rank"
 ];
 
+
 let sortState = {
   column: null,
   direction: 1   // 1 = asc, -1 = desc
 };
+
 
 async function loadData() {
   const url = "delulu_data.json";
@@ -45,6 +47,7 @@ document.addEventListener("click", function (e) {
   }
 });
 
+
 function buildTable() {
   const table = document.getElementById("guildTable");
 
@@ -81,6 +84,7 @@ function buildTable() {
   table.appendChild(tbody);
 }
 
+
 function renderRows(data) {
   const tbody = document.getElementById("guildBody");
   tbody.innerHTML = "";
@@ -96,6 +100,7 @@ function renderRows(data) {
   });
 }
 
+
 function parseDate(dateStr) {
   // Expected format: "YYYY-MM-DD HH:MM:SS"
   if (!dateStr) return 0;
@@ -108,6 +113,7 @@ function parseDate(dateStr) {
 
   return new Date(year, month - 1, day, hour, minute, second).getTime();
 }
+
 
 function sortTable(col) {
   // Toggle direction
@@ -152,21 +158,6 @@ function sortTable(col) {
 }
 
 
-  // Reset all icons
-  document.querySelectorAll("th .sort-icon").forEach(icon => {
-    icon.textContent = "";
-  });
-
-  // Set icon for the sorted column
-  const index = columns.indexOf(col);
-  const th = document.querySelectorAll("th")[index];
-  const icon = th.querySelector(".sort-icon");
-
-  icon.textContent = sortState.direction === 1 ? " ▲" : " ▼";
-
-  applyFilters(); // reapply filters after sorting
-}
-
 function applyFilters() {
   const search = document.getElementById("searchInput").value.toLowerCase();
 
@@ -188,7 +179,5 @@ function applyFilters() {
 
   renderRows(filtered);
 }
-
-
 
 loadData();
