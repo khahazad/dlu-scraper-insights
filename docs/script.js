@@ -28,6 +28,16 @@ async function loadData() {
   document.getElementById("roleFilter").onchange = applyFilters;
 }
 
+// Toggle dropdown
+document.addEventListener("click", function (e) {
+  const dropdown = document.querySelector(".dropdown");
+  if (dropdown.contains(e.target)) {
+    dropdown.classList.toggle("show");
+  } else {
+    dropdown.classList.remove("show");
+  }
+});
+
 function buildTable() {
   const table = document.getElementById("guildTable");
 
@@ -100,17 +110,16 @@ function sortTable(col) {
 function applyFilters() {
   const search = document.getElementById("searchInput").value.toLowerCase();
 
-  // MULTI-SELECTION ROLE FILTER
-  const roleSelect = document.getElementById("roleFilter");
-  const selectedRoles = Array.from(roleSelect.selectedOptions).map(opt => opt.value);
+  // Read selected roles from checkboxes
+  const selectedRoles = Array.from(
+    document.querySelectorAll(".dropdown-content input:checked")
+  ).map(cb => cb.value);
 
   const filtered = rows.filter(row => {
-    // Role filter: keep only selected roles
-    if (selectedRoles.length > 0 && !selectedRoles.includes(row.Role)) {
-      return false;
-    }
+    // Role filter
+    if (!selectedRoles.includes(row.Role)) return false;
 
-    // Search filter (checks all fields)
+    // Search filter
     const text = Object.values(row).join(" ").toLowerCase();
     if (search && !text.includes(search)) return false;
 
@@ -119,6 +128,7 @@ function applyFilters() {
 
   renderRows(filtered);
 }
+
 
 
 loadData();
