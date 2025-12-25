@@ -11,7 +11,7 @@
   --link: #0066cc; /* readable blue */
   --discord-bg: #5865F2;
   --discord-bg-hover: #4752C4;
-  --discord-text: white;
+  --discord-text: #ffffff;
   --discord-border: #3c45a5;
 }
 
@@ -126,30 +126,26 @@ a:hover {
   color: var(--link);
 }
 
-/* Bouton Discord stylé */
-.discord-button {
+/* Bouton Discord */
+.discord-icon-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: background 0.2s, transform 0.1s;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   background: var(--discord-bg);
-  color: var(--discord-text);
   border: 1px solid var(--discord-border);
+  transition: background 0.2s, transform 0.1s;
 }
 
-.discord-button:hover {
+.discord-icon-btn:hover {
   background: var(--discord-bg-hover);
   transform: translateY(-2px);
 }
 
-.discord-icon {
-  font-size: 1.2rem;
+.discord-svg {
+  width: 26px;
+  height: 26px;
+  fill: var(--discord-text);
 }
-
-
-
