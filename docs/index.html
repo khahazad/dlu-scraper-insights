@@ -11,12 +11,16 @@
 
 <input id="searchInput" type="text" placeholder="Search..." />
 
-<select id="roleFilter" multiple size="4">
-  <option value="Member" selected>Member</option>
-  <option value="Vice" selected>Vice</option>
-  <option value="Leader" selected>Leader</option>
-  <option value="Former">Former</option>
-</select>
+<div class="dropdown">
+  <button class="dropdown-btn">Filter Roles ▾</button>
+  <div class="dropdown-content">
+    <label><input type="checkbox" value="Member" checked> Member</label>
+    <label><input type="checkbox" value="Vice" checked> Vice</label>
+    <label><input type="checkbox" value="Leader" checked> Leader</label>
+    <label><input type="checkbox" value=""> Former</label>
+  </div>
+</div>
+
 
 <table id="guildTable"></table>
 
