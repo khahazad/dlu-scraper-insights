@@ -1,7 +1,7 @@
 import re
 from bs4 import BeautifulSoup
 
-def scrape_first_table(context, url, pid_column=None, key="pid"):
+def scrape_first_table(context, url, pid_column=None, key="auto"):
     """
     Scrape the first table on the page.
     
