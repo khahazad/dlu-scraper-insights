@@ -11,3 +11,34 @@ th, td {
 th {
   background: #eee;
 }
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.dropdown-btn {
+  padding: 6px 12px;
+  background: #eee;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 8px;
+  z-index: 10;
+  min-width: 150px;
+}
+
+.dropdown-content label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.dropdown.show .dropdown-content {
+  display: block;
+}
