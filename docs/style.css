@@ -1,16 +1,51 @@
+/* ---------------------------------------
+   Base theme variables (light mode)
+--------------------------------------- */
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --header-bg: #eee;
+  --border: #ccc;
+  --dropdown-bg: #ffffff;
+  --dropdown-btn-bg: #eee;
+}
+
+/* ---------------------------------------
+   Dark mode (auto-detected)
+--------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1e1e1e;
+    --text: #e0e0e0;
+    --header-bg: #333;
+    --border: #555;
+    --dropdown-bg: #2a2a2a;
+    --dropdown-btn-bg: #333;
+  }
+}
+
+/* ---------------------------------------
+   Apply theme variables
+--------------------------------------- */
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
 }
 
 th, td {
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   padding: 6px;
 }
 
 th {
-  background: #eee;
+  background: var(--header-bg);
 }
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -19,16 +54,17 @@ th {
 
 .dropdown-btn {
   padding: 6px 12px;
-  background: #eee;
-  border: 1px solid #ccc;
+  background: var(--dropdown-btn-bg);
+  border: 1px solid var(--border);
   cursor: pointer;
+  color: var(--text);
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  background: white;
-  border: 1px solid #ccc;
+  background: var(--dropdown-bg);
+  border: 1px solid var(--border);
   padding: 8px;
   z-index: 10;
   min-width: 150px;
@@ -37,6 +73,7 @@ th {
 .dropdown-content label {
   display: block;
   margin-bottom: 4px;
+  color: var(--text);
 }
 
 .dropdown.show .dropdown-content {
