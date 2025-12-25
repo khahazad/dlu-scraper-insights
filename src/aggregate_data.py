@@ -88,3 +88,20 @@ def merge_members_and_donations(guild_members, donations_summary):
     # Return as a list
     return list(members.values())
 
+
+def merge_with_player_info(merged, players_info):
+    players_by_pid = {p["pid"]: p for p in players_info}
+
+    for entry in merged:
+        pid = entry["pid"]
+
+        if pid in players_by_pid:
+            entry["name"] = players_by_pid[pid]["name"]
+            entry["level"] = players_by_pid[pid]["level"]
+        else:
+            # Player info not found (rare but possible)
+            entry["name"] = None
+            entry["level"] = None
+
+    return merged
+
