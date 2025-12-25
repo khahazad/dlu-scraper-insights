@@ -97,3 +97,22 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.guild-logo {
+  height: 80px;
+  border-radius: 8px;
+}
+
+.header-links a {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--link);
+}
+
