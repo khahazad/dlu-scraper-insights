@@ -3,7 +3,7 @@ let columns = [
   "pid", "name", "level", "Role", "Joined",
   "gold", "gems", "last_donation", "Rank"
 ];
-
+let visibleColumns = new Set(columns); // all visible by default
 let sortState = {
   column: null,
   direction: 1
@@ -33,6 +33,10 @@ async function loadData() {
   // Role filter
   document.querySelectorAll(".dropdown-content input")
     .forEach(cb => cb.onchange = applyFilters);
+  
+  // Column selector
+  document.querySelectorAll("#columnSelector input")
+    .forEach(cb => cb.onchange = updateVisibleColumns);
 
   // Apply filter immediately
   applyFilters();
@@ -49,6 +53,22 @@ document.addEventListener("click", function (e) {
     dropdown.classList.remove("show");
   }
 });
+
+// -----------------------------
+// Update Visible Columns
+// -----------------------------
+function updateVisibleColumns() {
+  visibleColumns = new Set(
+    Array.from(document.querySelectorAll("#columnSelector input:checked"))
+      .map(cb => cb.value)
+  );
+
+  // Rebuild table header + rerender rows
+  const table = document.getElementById("guildTable");
+  table.innerHTML = ""; // clear old table
+  buildTable();
+  applyFilters();
+}
 
 // -----------------------------
 // Format table headers
@@ -68,7 +88,7 @@ function buildTable() {
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
 
-  columns.forEach(col => {
+  Array.from(visibleColumns).forEach(col => {
     const th = document.createElement("th");
     th.style.cursor = "pointer";
 
@@ -105,7 +125,7 @@ function renderRows(data) {
   data.forEach(row => {
     const tr = document.createElement("tr");
 
-    columns.forEach(col => {
+    Array.from(visibleColumns).forEach(col => {
       const td = document.createElement("td");
 
       if (col === "pid") {
