@@ -36,8 +36,6 @@ def main():
             # Aggregating donations
             print("Aggregating donations.")
             donations_summary = aggregate_donations(treasury_ledger)
-            for ds in donations_summary[:10]: 
-                print(ds)
             for ds in donations_summary[:10]:
                 print({
                     "pid": ds["pid"],
