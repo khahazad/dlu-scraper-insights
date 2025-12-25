@@ -40,7 +40,7 @@ def scrape_player_info(ctx, pid):
 # Scrape many players info using their IDs
 # ---------------------------------------------------------
 def scrape_players_info(browser, player_ids):
-    results = []
+    results = {}
     
     ctx = browser.new_context(
       java_script_enabled=False,
@@ -52,7 +52,6 @@ def scrape_players_info(browser, player_ids):
           "Chrome/120.0.0.0 Safari/537.36"
       )
     )
-    ctx = browser.new_context(java_script_enabled=False, bypass_csp=True, ignore_https_errors=True)
 
     ctx.route("**/*", lambda route, request: (
         route.abort()
@@ -62,9 +61,8 @@ def scrape_players_info(browser, player_ids):
 
     try:
         for pid in player_ids:
-            # Scraping stops if a pid raises an exception
             info = scrape_player_info(ctx, pid)
-            results.append(info)
+            results[pid] = { "name": info["name"], "level": info["level"], }
 
         return results
 
