@@ -1,5 +1,22 @@
 from datetime import datetime
 
+def collect_all_pids(guild_members, treasury_ledger):
+    pids = set()
+
+    # guild_members: skip header
+    for row in guild_members[1:]:
+        pid = row[0]
+        pids.add(pid)
+
+    # treasury_ledger: skip header
+    for row in treasury_ledger[1:]:
+        pid = row[1]
+        pids.add(pid)
+
+    # return as dict with empty placeholders
+    return {pid: {} for pid in sorted(pids)}
+
+
 def aggregate_donations(rows):
     """
     rows = list of lists from scrape_first_table
