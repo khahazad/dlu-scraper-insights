@@ -99,11 +99,16 @@ function sortTable(col) {
 
 function applyFilters() {
   const search = document.getElementById("searchInput").value.toLowerCase();
-  const role = document.getElementById("roleFilter").value;
+
+  // MULTI-SELECTION ROLE FILTER
+  const roleSelect = document.getElementById("roleFilter");
+  const selectedRoles = Array.from(roleSelect.selectedOptions).map(opt => opt.value);
 
   const filtered = rows.filter(row => {
-    // Role filter
-    if (role && row.Role !== role) return false;
+    // Role filter: keep only selected roles
+    if (selectedRoles.length > 0 && !selectedRoles.includes(row.Role)) {
+      return false;
+    }
 
     // Search filter (checks all fields)
     const text = Object.values(row).join(" ").toLowerCase();
@@ -114,5 +119,6 @@ function applyFilters() {
 
   renderRows(filtered);
 }
+
 
 loadData();
