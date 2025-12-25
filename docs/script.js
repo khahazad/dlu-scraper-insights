@@ -16,9 +16,10 @@ async function loadData() {
 
   rows = Object.entries(data).map(([pid, fields]) => ({
     pid,
-    Role: fields.Role ?? "Former",
+    Role: fields.Role ?? "Former",   // normalize missing role
     ...fields
   }));
+
 
   buildTable();
   renderRows(rows);
