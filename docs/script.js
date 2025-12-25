@@ -31,7 +31,7 @@ async function loadData() {
   document.getElementById("searchInput").oninput = applyFilters;
 
   // Role filter
-  document.querySelectorAll(".dropdown-content input")
+  document.querySelectorAll(".role-content input")
     .forEach(cb => cb.onchange = applyFilters);
   
   // Column selector
