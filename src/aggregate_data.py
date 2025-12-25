@@ -57,68 +57,20 @@ def aggregate_donations(rows):
 
     return list(donations.values())
 
-
-def merge_members_and_donations(guild_members, donations_summary):
+def update_pid_dict(pids, new_data):
     """
-    guild_members: table from scrape_first_table, with header:
-        ['PID', 'Role', 'Joined', 'Contribution']
-    donations_summary: list of dicts from aggregate_donations()
+    pids: master dictionary { pid: {...fields...} }
+    new_data: dictionary { pid: {...new fields...} }
 
-    Returns a list of dicts with:
-        pid, role, joined, gold, gems, last_donation
+    Returns the updated pids dictionary.
     """
+    for pid, fields in new_data.items():
+        if pid not in pids:
+            pids[pid] = {}
 
-    # --- Convert guild members table into a dict by PID ---
-    # Skip header row
-    members = {}
-    for row in guild_members[1:]:
-        pid, role, joined, _ = row  # ignore Contribution
-        members[pid] = {
-            "pid": pid,
-            "role": role,
-            "joined": joined,
-            "gold": 0,
-            "gems": 0,
-            "last_donation": None,
-        }
+        # Add or overwrite fields
+        for key, value in fields.items():
+            pids[pid][key] = value
 
-    # --- Merge donations ---
-    for d in donations_summary:
-        pid = d["pid"]
-
-        if pid not in members:
-            # Donor is no longer a guild member
-            members[pid] = {
-                "pid": pid,
-                "role": "Former",
-                "joined": None,
-                "gold": d["gold"],
-                "gems": d["gems"],
-                "last_donation": d["last_donation"],
-            }
-        else:
-            # Update existing guild member
-            members[pid]["gold"] = d["gold"]
-            members[pid]["gems"] = d["gems"]
-            members[pid]["last_donation"] = d["last_donation"]
-
-    # Return as a list
-    return list(members.values())
-
-
-def merge_with_player_info(merged, players_info):
-    players_by_pid = {p["pid"]: p for p in players_info}
-
-    for entry in merged:
-        pid = entry["pid"]
-
-        if pid in players_by_pid:
-            entry["name"] = players_by_pid[pid]["name"]
-            entry["level"] = players_by_pid[pid]["level"]
-        else:
-            # Player info not found (rare but possible)
-            entry["name"] = None
-            entry["level"] = None
-
-    return merged
+    return pids
 
