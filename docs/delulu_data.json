@@ -35,23 +35,23 @@
   },
   "14115": {
     "name": "[DLU]Raqal",
-    "level": 1093,
+    "level": 1094,
     "Role": "Member",
     "Joined": "2025-12-14 01:26:52",
     "gold": 6010000,
     "gems": 0,
     "last_donation": "2025-11-15T23:50:15",
-    "Rank": "290"
+    "Rank": "272"
   },
   "16162": {
     "name": "[DLU]Keshi",
-    "level": 1671,
+    "level": 1676,
     "Role": "Member",
     "Joined": "2025-12-14 09:20:09",
     "gold": 3000000,
     "gems": 0,
     "last_donation": "2025-12-18T05:52:33",
-    "Rank": "27"
+    "Rank": "25"
   },
   "19197": {
     "name": "Rodcity",
@@ -70,7 +70,7 @@
     "gold": 6130000,
     "gems": 0,
     "last_donation": "2025-12-25T23:48:28",
-    "Rank": "295"
+    "Rank": "298"
   },
   "22126": {
     "name": "Elsandr",
@@ -85,7 +85,7 @@
     "gold": 30000,
     "gems": 0,
     "last_donation": "2025-10-10T16:15:54",
-    "Rank": "287"
+    "Rank": "288"
   },
   "28963": {
     "name": "stormyx",
@@ -95,7 +95,7 @@
   },
   "29125": {
     "name": "Farizz92",
-    "level": 422,
+    "level": 423,
     "gold": 70000,
     "gems": 10,
     "last_donation": "2025-10-11T07:30:25"
@@ -157,7 +157,7 @@
   },
   "41990": {
     "name": "Wet_Paper_Bag",
-    "level": 1305,
+    "level": 1306,
     "gold": 30000,
     "gems": 0,
     "last_donation": "2025-10-10T00:51:23",
@@ -176,7 +176,7 @@
     "gold": 64257,
     "gems": 48,
     "last_donation": "2025-10-09T21:25:00",
-    "Rank": "378"
+    "Rank": "379"
   },
   "43275": {
     "name": "[DLU] Bhan_bhai",
@@ -186,7 +186,7 @@
     "gold": 61224656,
     "gems": 1070,
     "last_donation": "2025-12-24T14:13:55",
-    "Rank": "212"
+    "Rank": "215"
   },
   "45557": {
     "name": "Barbatoss",
@@ -262,7 +262,7 @@
     "gold": 51000,
     "gems": 0,
     "last_donation": "2025-10-10T13:20:02",
-    "Rank": "323"
+    "Rank": "324"
   },
   "52293": {
     "name": "[DLU] Kaizen Gill",
@@ -325,7 +325,7 @@
     "gold": 130000,
     "gems": 0,
     "last_donation": "2025-10-09T13:35:28",
-    "Rank": "157"
+    "Rank": "159"
   },
   "56691": {
     "name": "",
@@ -365,7 +365,7 @@
     "gold": 16757038,
     "gems": 32,
     "last_donation": "2025-12-04T22:05:35",
-    "Rank": "289"
+    "Rank": "291"
   },
   "60188": {
     "name": "Heavenly daoist",
@@ -405,7 +405,7 @@
     "gold": 10000,
     "gems": 0,
     "last_donation": "2025-10-12T01:04:01",
-    "Rank": "431"
+    "Rank": "434"
   },
   "64487": {
     "name": "[DLU] zookeeper",
@@ -450,7 +450,7 @@
     "gold": 10000,
     "gems": 0,
     "last_donation": "2025-10-09T16:06:05",
-    "Rank": "311"
+    "Rank": "312"
   },
   "66253": {
     "name": "",
@@ -516,7 +516,7 @@
   },
   "71342": {
     "name": "[DLU] azaman",
-    "level": 678,
+    "level": 684,
     "Role": "Member",
     "Joined": "2025-10-16 17:01:41",
     "gold": 7213818,
@@ -563,7 +563,7 @@
     "gold": 50000,
     "gems": 0,
     "last_donation": "2025-10-11T00:06:51",
-    "Rank": "442"
+    "Rank": "437"
   },
   "74206": {
     "name": "[EMP]Kavkaa",
@@ -585,7 +585,7 @@
     "gold": 30000,
     "gems": 0,
     "last_donation": "2025-10-09T17:30:01",
-    "Rank": "222"
+    "Rank": "210"
   },
   "75683": {
     "name": "Lightyear13",
@@ -703,7 +703,7 @@
     "gold": 15130000,
     "gems": 10,
     "last_donation": "2025-12-25T13:19:38",
-    "Rank": "193"
+    "Rank": "194"
   },
   "77552": {
     "name": "tsujiku",
@@ -735,7 +735,7 @@
     "gold": 24400000,
     "gems": 0,
     "last_donation": "2025-12-24T23:24:37",
-    "Rank": "422"
+    "Rank": "423"
   },
   "77908": {
     "name": "Ronny the legend",
@@ -750,7 +750,7 @@
     "gold": 440011,
     "gems": 5,
     "last_donation": "2025-10-17T03:51:53",
-    "Rank": "26"
+    "Rank": "27"
   },
   "78120": {
     "name": "Puzzling0040",
@@ -823,7 +823,7 @@
     "gold": 200000,
     "gems": 0,
     "last_donation": "2025-10-09T12:31:06",
-    "Rank": "375"
+    "Rank": "376"
   },
   "79059": {
     "name": "[DLU] Ryustorm",
@@ -851,11 +851,11 @@
     "gold": 10080000,
     "gems": 0,
     "last_donation": "2025-12-06T11:45:41",
-    "Rank": "235"
+    "Rank": "232"
   },
   "79595": {
     "name": "[DLU] RayAiden",
-    "level": 1550,
+    "level": 1552,
     "Role": "Member",
     "Joined": "2025-12-13 23:46:11",
     "gold": 18121109,
@@ -930,7 +930,7 @@
     "gold": 5000,
     "gems": 0,
     "last_donation": "2025-10-10T00:22:08",
-    "Rank": "228"
+    "Rank": "230"
   },
   "81130": {
     "name": "[DLU] Icaka42",
@@ -940,7 +940,7 @@
     "gold": 25070000,
     "gems": 0,
     "last_donation": "2025-12-12T20:45:50",
-    "Rank": "113"
+    "Rank": "114"
   },
   "81277": {
     "name": "DUSK-TROD",
@@ -988,7 +988,7 @@
   },
   "81910": {
     "name": "[FATE] 4thos",
-    "level": 2594,
+    "level": 2596,
     "gold": 500000,
     "gems": 0,
     "last_donation": "2025-10-15T22:17:21",
@@ -1024,7 +1024,7 @@
     "gold": 6120000,
     "gems": 0,
     "last_donation": "2025-11-13T13:26:51",
-    "Rank": "276"
+    "Rank": "280"
   },
   "82590": {
     "name": "Haloster",
@@ -1072,7 +1072,7 @@
     "gold": 60660000,
     "gems": 0,
     "last_donation": "2025-12-23T05:35:50",
-    "Rank": "204"
+    "Rank": "206"
   },
   "88604": {
     "name": "BearD",
@@ -1107,7 +1107,7 @@
   },
   "89180": {
     "name": "Drtotomaya",
-    "level": 441,
+    "level": 444,
     "Role": "Member",
     "Joined": "2025-12-10 15:13:21",
     "gold": 130000,
@@ -1127,7 +1127,7 @@
     "gold": 6000,
     "gems": 0,
     "last_donation": "2025-10-09T13:50:23",
-    "Rank": "142"
+    "Rank": "143"
   },
   "90222": {
     "name": "[just] Asbestotheles",
@@ -1226,7 +1226,7 @@
     "gold": 383076,
     "gems": 175,
     "last_donation": "2025-10-13T15:30:44",
-    "Rank": "429"
+    "Rank": "433"
   },
   "93241": {
     "name": "[DLU] Egos",
@@ -1364,7 +1364,7 @@
     "gold": 33979000,
     "gems": 2,
     "last_donation": "2025-12-25T17:41:28",
-    "Rank": "183"
+    "Rank": "184"
   },
   "100048": {
     "name": "[DELULU]Weedons",
@@ -1413,7 +1413,7 @@
   },
   "100508": {
     "name": "darth.esa",
-    "level": 218,
+    "level": 219,
     "Role": "Member",
     "Joined": "2025-12-07 17:02:46",
     "gold": 0,
@@ -1512,7 +1512,7 @@
     "gold": 10000,
     "gems": 0,
     "last_donation": "2025-10-09T15:14:36",
-    "Rank": "13"
+    "Rank": "14"
   },
   "105073": {
     "name": "[DELULU]BATTLE ankle",
@@ -1565,7 +1565,7 @@
     "gold": 58111707,
     "gems": 0,
     "last_donation": "2025-12-24T22:47:54",
-    "Rank": "102"
+    "Rank": "103"
   },
   "113559": {
     "name": "[DLU] Tofu",
@@ -1581,7 +1581,7 @@
     "gold": 25000000,
     "gems": 0,
     "last_donation": "2025-12-24T14:07:24",
-    "Rank": "38"
+    "Rank": "39"
   },
   "114170": {
     "name": "[DLU] Newbie420",
@@ -1595,7 +1595,7 @@
   },
   "119628": {
     "name": "Aisuga",
-    "level": 407,
+    "level": 410,
     "Role": "Member",
     "Joined": "2025-12-19 19:27:56"
   },
