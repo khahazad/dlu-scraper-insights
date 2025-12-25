@@ -7,6 +7,7 @@ from scraping.scrape_players_info import scrape_players_info
 from aggregate_data import collect_all_pids
 from aggregate_data import aggregate_donations
 from aggregate_data import update_pid_dict
+from aggregate_data import serialize_for_json
 
 
 def main():
