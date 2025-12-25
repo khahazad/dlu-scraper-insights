@@ -4,6 +4,8 @@ from auth.login import login
 from scraping.scrape_page_table import scrape_first_table
 from scraping.scrape_players_info import scrape_many_players_info
 from aggregate_data import aggregate_donations
+from aggregate_data import merge_members_and_donations
+from aggregate_data import merge_with_player_info
 
 def main():
     with sync_playwright() as pw:
@@ -44,12 +46,49 @@ def main():
                     "last_donation": ds["last_donation"].strftime("%Y-%m-%d %H:%M:%S")
                 })
 
+            # Merging guild members with donations
+            print("Merging guild members with donations.")
+            merged = merge_members_and_donations(guild_members, donations_summary)
+            
+            for m in merged[:10]:
+                print({
+                    "pid": m["pid"],
+                    "role": m["role"],
+                    "joined": m["joined"],
+                    "gold": m["gold"],
+                    "gems": m["gems"],
+                    "last_donation": (
+                        m["last_donation"].strftime("%Y-%m-%d %H:%M:%S")
+                        if m["last_donation"] else None
+                    )
+                })
+
+            
             # Scrape player info (lightweight context)
             print("Scraping player info.")
-            pids = [d["pid"] for d in donations_summary]
+            pids = [d["pid"] for d in merged]
             players_info = scrape_many_players_info(browser, pids)
             for pi in players_info[:10]: 
                 print(pi)
+
+
+            print("Merging player info.")
+            merged = merge_with_player_info(merged, players_info)
+            
+            for m in merged[:10]:
+                print({
+                    "pid": m["pid"],
+                    "name": m["name"],
+                    "level": m["level"],
+                    "role": m["role"],
+                    "joined": m["joined"],
+                    "gold": m["gold"],
+                    "gems": m["gems"],
+                    "last_donation": (
+                        m["last_donation"].strftime("%Y-%m-%d %H:%M:%S")
+                        if m["last_donation"] else None
+                    )
+                })
 
         except RuntimeError as e:
             print(f"ERREUR SCRAPER : {e}")
