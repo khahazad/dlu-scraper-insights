@@ -82,17 +82,28 @@ def main():
             # Merging weekly leaderboard with pids
             print("Merging weekly leaderboard with pids_dictionary.")
             delulu_dictionary = update_pid_dict(delulu_dictionary, weekly_leaderboard, fields=["Rank"])
+
+            
+            # Convert datetimes → ISO strings
+            clean_data = serialize_for_json(delulu_dictionary)
             
             # Display result
-            print("=== Display result ===")
-            print(f"### dico size {len(delulu_dictionary)}")
-            for pid, data in list(delulu_dictionary.items()):
+            print("display final delulu_dictionary.")
+            print(f"### dico size {len(clean_data)}")
+            for pid, data in list(clean_data.items())[:10]:
                 print(pid, data)
 
-        
+            # Save to docs/delulu_data.json
+            import json
+            with open("docs/delulu_data.json", "w", encoding="utf-8") as f:
+                json.dump(clean_data, f, indent=2, ensure_ascii=False)
+            
+            print("Saved JSON to docs/delulu_data.json")
+
         except RuntimeError as e:
             print(f"ERREUR SCRAPER : {e}")
             sys.exit(1)
+
 
         finally:
             # -----------------------------------------
