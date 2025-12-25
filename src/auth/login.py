@@ -7,7 +7,6 @@ def login(playwright: Playwright):
     email = os.getenv("APP_EMAIL")
     password = os.getenv("APP_PASSWORD")
 
-    #browser = playwright.chromium.launch()
     browser = playwright.chromium.launch(headless=True)
 
     context = browser.new_context(
@@ -36,26 +35,31 @@ def login(playwright: Playwright):
         return browser, context
 
     # --- CASE 2: Login form available ---
-    if page.locator("text=Sign in to your account").is_visible():
-        print("Signing in to your account")        
+    login_form = page.locator("text=Sign in to your account")
+
+    if login_form.is_visible():
+        print("Signing in to your account")
+
         page.fill("input[type='email']", email)
         page.fill("input[type='password']", password)
         page.get_by_role("button", name="Sign in").click()
-        
-        page.wait_for_load_state("networkidle")
 
-        # If still on signin page → login failed 
-        if "signin" in page.url.lower(): 
-            print("Login failed") 
-            context.close() 
+        # Give the page a moment to update the DOM
+        page.wait_for_timeout(500)
+
+        # --- CRITICAL CHECK ---
+        # If the login form is still visible → login failed
+        if login_form.is_visible():
+            print("Login failed: login form still visible")
+            context.close()
             browser.close()
-            return None, None, None
-        else:
-            print("Connected to:", page.url)
-            return browser, context
-    else:
-        # --- ANY OTHER CASE: Cloudflare or unexpected page ---
-        print("Login page not available — skipping run.")
-        context.close()
-        browser.close()
-        return None, None
+            return None, None
+
+        print("Login successful")
+        return browser, context
+
+    # --- ANY OTHER CASE: Cloudflare or unexpected page ---
+    print("Login page not available — skipping run.")
+    context.close()
+    browser.close()
+    return None, None
