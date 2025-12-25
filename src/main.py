@@ -86,7 +86,7 @@ def main():
             # Display result
             print("=== Display result ===")
             print(f"### dico size {len(delulu_dictionary)}")
-            for pid, data in list(delulu_dictionary.items())[:5]:
+            for pid, data in list(delulu_dictionary.items()):
                 print(pid, data)
 
         
