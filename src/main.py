@@ -1,37 +1,58 @@
+import sys
 from playwright.sync_api import sync_playwright
 from auth.login import login
-from scraping.run_guild_members_extract import extract_guild_members
-from scraping.run_weekly_leaderboard_extract import extract_weekly_leaderboard
-from scraping.run_treasury_ledger_extract import extract_treasury_ledger
-from scraping.run_all_players_info_extract import extract_all_players_info
-from scraping.run_all_time_members_list_build import build_all_time_members_list
+from scrapers.scrape_players_info import scrape_many_players_info
 
 def main():
-    with sync_playwright() as p:
+    with sync_playwright() as pw:
+        browser = None
+        context = None
+
         try:
-            browser, context, page = login(p)
+            # -----------------------------------------
+            # 1. Login
+            # -----------------------------------------
+            browser, context = login(pw)
 
-            print("=== Step 1 : Guild members extraction ===")
-            guild_members = extract_guild_members(context)
+            if context is None or browser is None:
+                print("Login failed. Aborting run.")
+                return
 
-            print("=== Step 2 : Treasury ledger extraction ===")
-            treasury_ledger = extract_treasury_ledger(context)
+            # -----------------------------------------
+            # 2. Build your list of player IDs
+            # -----------------------------------------
+            player_ids = [
+                90594,
+                12345,
+                67890,
+                # ...
+            ]
 
-            print("=== Step 3 : Build all time member list")
-            all_time_members_table = build_all_time_members_list(guild_members, treasury_ledger)
-            
-            print("=== Step 4 : Players info extraction (name + levels) ===")
-            #extract_all_players_info(browser)
-            
-            print("=== Step 5 : Weekly leaderboard extraction ===")
-            weekly_leaderboard = extract_weekly_leaderboard(context)
-            
+            # -----------------------------------------
+            # 3. Scrape player info (lightweight context)
+            # -----------------------------------------
+            print("Scraping player info.")
+            players = scrape_many_players_info(browser, player_ids)
+
+            # -----------------------------------------
+            # 4. Use or store results
+            # -----------------------------------------
+            for p in players:
+                print(p)
+
         except RuntimeError as e:
             print(f"ERREUR SCRAPER : {e}")
-            exit(1)
+            sys.exit(1)
 
         finally:
-            browser.close()
+            # -----------------------------------------
+            # 5. Clean shutdown
+            # -----------------------------------------
+            if context:
+                context.close()
+            if browser:
+                browser.close()
+
 
 if __name__ == "__main__":
     main()
