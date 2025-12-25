@@ -162,6 +162,20 @@ a:hover {
 margin-bottom: 10px;
 }
 
+.export-btn {
+  padding: 6px 12px;
+  background: var(--dropdown-btn-bg);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  border-radius: var(--radius);
+  color: var(--text);
+}
+
+.export-btn:hover {
+  background: var(--header-bg);
+}
+
+
 /* Right side: emblem + Discord button */
 .right-side {
   display: flex;
