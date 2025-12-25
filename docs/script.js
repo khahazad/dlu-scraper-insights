@@ -20,7 +20,6 @@ async function loadData() {
     ...fields
   }));
 
-
   buildTable();
   renderRows(rows);
 
@@ -30,6 +29,9 @@ async function loadData() {
   // Attach checkbox events for multi-select dropdown
   document.querySelectorAll(".dropdown-content input")
     .forEach(cb => cb.onchange = applyFilters);
+  
+  // Apply filter immediately on page load 
+  applyFilters();
 }
 
 
