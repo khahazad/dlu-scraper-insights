@@ -66,20 +66,29 @@ def aggregate_donations(treasury_ledger):
     return donations
 
 
-def update_pid_dict(pids, new_data):
+def update_pid_dict(pids, new_data, fields=None):
     """
     pids: master dictionary { pid: {...fields...} }
     new_data: dictionary { pid: {...new fields...} }
+    fields: list of field names to import (None = import all)
 
-    Returns the updated pids dictionary.
+    Only updates PIDs that already exist in pids.
     """
-    for pid, fields in new_data.items():
+    for pid, data_fields in new_data.items():
+
+        # Skip PIDs that are not already in the master dictionary
         if pid not in pids:
             continue
 
-        # Add or overwrite fields
-        for key, value in fields.items():
-            pids[pid][key] = value
+        # Import ALL fields
+        if fields is None:
+            for key, value in data_fields.items():
+                pids[pid][key] = value
+
+        # Import ONLY selected fields
+        else:
+            for key in fields:
+                if key in data_fields:
+                    pids[pid][key] = data_fields[key]
 
     return pids
-
