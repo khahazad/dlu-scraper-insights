@@ -68,9 +68,9 @@ def aggregate_donations(treasury_ledger):
         if ts > donations[pid]["last_donation"]:
             donations[pid]["last_donation"] = ts
 
-    # Convert datetime → ISO string for JSON export
+    # Convert datetime → "YYYY-MM-DD HH:MM:SS"
     for pid in donations:
-        donations[pid]["last_donation"] = donations[pid]["last_donation"].isoformat()
+        donations[pid]["last_donation"] = donations[pid]["last_donation"].strftime("%Y-%m-%d %H:%M:%S")
 
     return donations
 
