@@ -71,6 +71,9 @@ def main():
             # Aggregating donations
             print("Aggregating donations.")
             donations_summary = aggregate_donations(treasury_ledger)
+            print(f"### dico size {len(donations_summary)}")
+            for pid, data in list(donations_summary.items())[:5]:
+                print(pid, data)
             
             # Merging donations with pids
             print("Merging donations with pids_dictionary.")
