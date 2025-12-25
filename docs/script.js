@@ -38,6 +38,9 @@ async function loadData() {
   document.querySelectorAll("#columnSelector input")
     .forEach(cb => cb.onchange = updateVisibleColumns);
 
+  // ExportTable button
+  document.getElementById("exportBtn").onclick = exportTable;
+
   // Apply filter immediately
   applyFilters();
 }
@@ -226,6 +229,50 @@ function applyFilters() {
   });
 
   renderRows(filtered);
+}
+
+// -----------------------------
+// Export Table
+// -----------------------------
+function exportTable() {
+  // Get currently displayed rows
+  const search = document.getElementById("searchInput").value.toLowerCase();
+  const selectedRoles = Array.from(
+    document.querySelectorAll(".dropdown-content input:checked")
+  ).map(cb => cb.value);
+
+  const filtered = rows.filter(row => {
+    if (!selectedRoles.includes(row.Role)) return false;
+    const text = Object.values(row).join(" ").toLowerCase();
+    if (search && !text.includes(search)) return false;
+    return true;
+  });
+
+  // Build CSV header
+  const cols = Array.from(visibleColumns);
+  let csv = cols.join(",") + "\n";
+
+  // Build CSV rows
+  filtered.forEach(row => {
+    const line = cols.map(col => {
+      let value = row[col] ?? "";
+      // Escape quotes
+      value = String(value).replace(/"/g, '""');
+      return `"${value}"`;
+    }).join(",");
+    csv += line + "\n";
+  });
+
+  // Trigger download
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "delulu_export.csv";
+  a.click();
+
+  URL.revokeObjectURL(url);
 }
 
 // -----------------------------
