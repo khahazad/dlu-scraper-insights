@@ -4,8 +4,7 @@ from auth.login import login
 from scraping.scrape_page_table import scrape_first_table
 from scraping.scrape_players_info import scrape_players_info
 from aggregate_data import aggregate_donations
-from aggregate_data import merge_members_and_donations
-from aggregate_data import merge_with_player_info
+from aggregate_data import update_pid_dict
 
 def main():
     with sync_playwright() as pw:
@@ -32,7 +31,7 @@ def main():
             page_number = 1
             url = f"https://demonicscans.org/guild_treasury_log.php?p={page_number}&res=&kind=donation"       
             treasury_ledger = scrape_first_table(context, url, 1, "auto")
-            for tl in treasury_ledger[:10]: 
+            for tl in treasury_ledger[:5]: 
                 print(tl)
 
             # Scraping weekly leaderboard
@@ -42,34 +41,36 @@ def main():
             for wlb in weekly_leaderboard[:5]:
                 print(wlb)
                 
-            # Collect all PIDs
+            # Collect all PIDs in the main dictionary
             print("Collect all PIDs.")
-            pids_dictionary = {}
-            pids_dictionary = collect_all_pids(guild_members,treasury_ledger)
+            delulu_dictionary = collect_all_pids(guild_members,treasury_ledger)
             
             # Scrape players names and levels
             print("Scraping players info.")
-            pids = [d["pid"] for d in merged]
+            pids = [d["pid"] for d in delulu_dictionary]
             players_info = scrape_players_info(browser, pids)
+            
+            # Merging players info with pids_dictionary
+            delulu_dictionary = update_pid_dict(delulu_dictionary, players_info)
+            
+            # Merging guild members with pids_dictionary
+            print("Merging guild members with pids_dictionary.")
+            delulu_dictionary = update_pid_dict(delulu_dictionary, guild_members)
             
             # Aggregating donations
             print("Aggregating donations.")
             donations_summary = aggregate_donations(treasury_ledger)
-
-            # Merging guild members with pids_dictionary
-            print("Merging guild members with pids_dictionary.")
-            pids_dictionary = update_pids_dictionary(pids_dictionary, guild_members)
             
             # Merging donations with pids
             print("Merging donations with pids_dictionary.")
-            pids_dictionary = update_pids_dictionary(pids_dictionary, donations_summary)
+            delulu_dictionary = update_pid_dict(delulu_dictionary, donations_summary)
 
             # Merging weekly leaderboard with pids
             print("Merging weekly leaderboard with pids_dictionary.")
-            pids_dictionary = update_pids_dictionary(pids_dictionary, weekly_leaderboard)
+            delulu_dictionary = update_pid_dict(delulu_dictionary, weekly_leaderboard)
             
             # Display 10 first rows in log with dates formated
-            for pd in pids_dictionary[:10]:
+            for pd in delulu_dictionary[:10]:
                 #  print({ ??? })
 
         
