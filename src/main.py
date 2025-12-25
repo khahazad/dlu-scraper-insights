@@ -10,46 +10,40 @@ def main():
         context = None
 
         try:
-            # -----------------------------------------
-            # 1. Login
-            # -----------------------------------------
+            # Login            
+            print("Login.")
             browser, context = login(pw)
-
             if context is None or browser is None:
                 print("Login failed. Aborting run.")
                 return
-
-            # -----------------------------------------
-            # 2. Build your list of player IDs
-            # -----------------------------------------
-            player_ids = [
-                90594,
-                12345,
-                67890,
-                # ...
-            ]
+                
+            # Scraping guild members info
+            print("Scraping guild members info.")
             url = "https://demonicscans.org/guild_members.php"
             guild_members = scrape_first_table(context, url, 0)
-            for gm in guild_members:
+            for gm in guild_members[:10]:
                 print(gm)
 
+            # Scraping treasury ledger info
+            print("Scraping treasury ledger info.")
             page_number = 1
             url = f"https://demonicscans.org/guild_treasury_log.php?p={page_number}&res=&kind=donation"       
             treasury_ledger = scrape_first_table(context, url, 1)
-            for tl in treasury_ledger:
+            for tl in treasury_ledger[:10]: 
                 print(tl)
-                
-            # -----------------------------------------
-            # 3. Scrape player info (lightweight context)
-            # -----------------------------------------
-            print("Scraping player info.")
-            players = scrape_many_players_info(browser, player_ids)
 
-            # -----------------------------------------
-            # 4. Use or store results
-            # -----------------------------------------
-            for p in players:
-                print(p)
+            # Aggregating donations
+            print("Aggregating donations.")
+            donations_summary = aggregate_donations(treasury_ledger)
+            for ds in donations_summary[:10]: 
+                print(ds)
+
+            # Scrape player info (lightweight context)
+            print("Scraping player info.")
+            pids = [d["pid"] for d in donations_summary]
+            players_info = scrape_many_players_info(browser, pids)
+            for pi in players_info[:10]: 
+                print(pi)
 
         except RuntimeError as e:
             print(f"ERREUR SCRAPER : {e}")
@@ -57,7 +51,7 @@ def main():
 
         finally:
             # -----------------------------------------
-            # 5. Clean shutdown
+            # Clean shutdown
             # -----------------------------------------
             if context:
                 context.close()
