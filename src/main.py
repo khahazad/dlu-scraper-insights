@@ -1,7 +1,7 @@
 import sys
 from playwright.sync_api import sync_playwright
 from auth.login import login
-from scrapers.scrape_players_info import scrape_many_players_info
+from scraping.scrape_players_info import scrape_many_players_info
 
 def main():
     with sync_playwright() as pw:
