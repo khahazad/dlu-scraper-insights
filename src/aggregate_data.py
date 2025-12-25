@@ -14,29 +14,40 @@ def collect_all_pids(guild_members, treasury_ledger):
 
     return {pid: {} for pid in sorted(pids)}
 
-def aggregate_donations(rows):
-    """
-    rows = list of lists from scrape_first_table
-    Expected columns:
-    [Time, PID, Kind, Resource, Amount, Note]
-    """
+from datetime import datetime
 
-    # Skip header
-    header = rows[0]
-    data = rows[1:]
+def aggregate_donations(treasury_ledger):
+    """
+    Expected columns inside each row:
+    {
+        "Time": "...",
+        "PID": "12345",
+        "Kind": "...",
+        "Resource": "...",
+        "Amount": "...",
+        "Note": "..."
+    }
 
+    Returns:
+        { pid: { "gold": ..., "gems": ..., "last_donation": datetime(...) } }
+    """
     donations = {}
 
-    for time_str, pid, kind, resource, amount_str, note in data:
+    for entry in treasury_ledger.values():
+        time_str = entry["Time"]
+        pid = int(entry["PID"])
+        resource = entry["Resource"]
+        amount_str = entry["Amount"]
+
         # Convert amount "500,000" → 500000
         amount = int(amount_str.replace(",", ""))
 
         # Parse timestamp
         ts = datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")
 
+        # Initialize PID entry
         if pid not in donations:
             donations[pid] = {
-                "pid": pid,
                 "gold": 0,
                 "gems": 0,
                 "last_donation": ts,
@@ -52,7 +63,8 @@ def aggregate_donations(rows):
         if ts > donations[pid]["last_donation"]:
             donations[pid]["last_donation"] = ts
 
-    return list(donations.values())
+    return donations
+
 
 def update_pid_dict(pids, new_data):
     """
