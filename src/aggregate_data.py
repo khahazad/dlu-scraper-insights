@@ -101,3 +101,21 @@ def update_pid_dict(pids, new_data, fields=None):
                     pids[pid][key] = data_fields[key]
 
     return pids
+
+
+def serialize_for_json(data):
+    """
+    Convert all datetime values inside the dictionary to ISO strings.
+    Keeps everything else unchanged.
+    """
+    out = {}
+
+    for pid, fields in data.items():
+        out[pid] = {}
+        for key, value in fields.items():
+            if isinstance(value, datetime):
+                out[pid][key] = value.isoformat()
+            else:
+                out[pid][key] = value
+
+    return out
