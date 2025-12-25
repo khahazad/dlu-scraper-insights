@@ -35,6 +35,10 @@ def main():
             print("Scraping treasury ledger info.")
             url_template = "https://demonicscans.org/guild_treasury_log.php?p={page}&res=&kind=donation"
             treasury_ledger = scrape_paginated_tables(context, url_template, 1, "auto")
+            # Clean Rank values: remove leading '#'
+            for pid, fields in weekly_leaderboard.items():
+                if "Rank" in fields and isinstance(fields["Rank"], str):
+                    fields["Rank"] = fields["Rank"].lstrip("#")
             print(f"### dico size {len(treasury_ledger)}")
             for key, data in list(treasury_ledger.items())[:5]:
                 print(key, data)
