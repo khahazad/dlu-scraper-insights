@@ -3,6 +3,7 @@ from playwright.sync_api import sync_playwright
 from auth.login import login
 from scraping.scrape_page_table import scrape_first_table
 from scraping.scrape_players_info import scrape_many_players_info
+from aggregate_data import aggregate_donations
 
 def main():
     with sync_playwright() as pw:
