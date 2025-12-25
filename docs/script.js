@@ -114,40 +114,30 @@ function sortTable(col) {
       return (Number(x) - Number(y)) * sortState.direction;
     }
 
-    // Date sort (ISO)
+    // Date sort (custom format)
     if (col === "last_donation" || col === "Joined") {
-      return (new Date(x) - new Date(y)) * sortState.direction;
+      return (parseDate(x) - parseDate(y)) * sortState.direction;
     }
 
     // String sort
     return x.toString().localeCompare(y.toString()) * sortState.direction;
   });
-function sortTable(col) {
-  // Toggle direction
-  if (sortState.column === col) {
-    sortState.direction *= -1;
-  } else {
-    sortState.column = col;
-    sortState.direction = 1;
-  }
 
-  rows.sort((a, b) => {
-    const x = a[col] ?? "";
-    const y = b[col] ?? "";
-
-    // Numeric sort
-    if (!isNaN(x) && !isNaN(y)) {
-      return (Number(x) - Number(y)) * sortState.direction;
-    }
-
-    // Date sort (ISO)
-    if (col === "last_donation" || col === "Joined") {
-      return (new Date(x) - new Date(y)) * sortState.direction;
-    }
-
-    // String sort
-    return x.toString().localeCompare(y.toString()) * sortState.direction;
+  // Reset all icons
+  document.querySelectorAll("th .sort-icon").forEach(icon => {
+    icon.textContent = "";
   });
+
+  // Set icon for the sorted column
+  const index = columns.indexOf(col);
+  const th = document.querySelectorAll("th")[index];
+  const icon = th.querySelector(".sort-icon");
+
+  icon.textContent = sortState.direction === 1 ? " ▲" : " ▼";
+
+  applyFilters(); // reapply filters after sorting
+}
+
 
   // Reset all icons
   document.querySelectorAll("th .sort-icon").forEach(icon => {
