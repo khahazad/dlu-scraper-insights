@@ -23,23 +23,25 @@ def main():
             print("Scraping guild members info.")
             url = "https://demonicscans.org/guild_members.php"
             guild_members = scrape_first_table(context, url, 0, "pid")
-            for gm in guild_members[:5]:
-                print(gm)
+            for pid, data in list(guild_members.items())[:5]:
+                print(pid, data)
+
 
             # Scraping treasury ledger
             print("Scraping treasury ledger info.")
             page_number = 1
             url = f"https://demonicscans.org/guild_treasury_log.php?p={page_number}&res=&kind=donation"       
             treasury_ledger = scrape_first_table(context, url, 1, "auto")
-            for tl in treasury_ledger[:5]: 
-                print(tl)
+            for pid, data in list(treasury_ledger.items())[:5]:
+                print(pid, data)
+
 
             # Scraping weekly leaderboard
             print("Scraping weekly_leaderboard info.")
             url = "https://demonicscans.org/weekly.php"
             weekly_leaderboard = scrape_first_table(context, url, 0, "pid")
-            for wlb in weekly_leaderboard[:5]:
-                print(wlb)
+            for pid, data in list(weekly_leaderboard.items())[:5]:
+                print(pid, data)
                 
             # Collect all PIDs in the main dictionary
             print("Collect all PIDs.")
