@@ -104,14 +104,28 @@ function renderRows(data) {
 
   data.forEach(row => {
     const tr = document.createElement("tr");
+
     columns.forEach(col => {
       const td = document.createElement("td");
-      td.textContent = row[col] ?? "";
+
+      if (col === "pid") {
+        // Create clickable link
+        const a = document.createElement("a");
+        a.href = `https://demonicscans.org/player.php?pid=${row.pid}`;
+        a.textContent = row.pid;
+        a.target = "_blank"; // open in new tab
+        td.appendChild(a);
+      } else {
+        td.textContent = row[col] ?? "";
+      }
+
       tr.appendChild(td);
     });
+
     tbody.appendChild(tr);
   });
 }
+
 
 // -----------------------------
 // Date parsing (YYYY-MM-DD HH:MM:SS)
