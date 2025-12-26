@@ -183,6 +183,15 @@ function sortTable(col) {
     const x = a[col] ?? "";
     const y = b[col] ?? "";
 
+    // Detect empty values
+    const xEmpty = (x === null || x === undefined || x === "");
+    const yEmpty = (y === null || y === undefined || y === "");
+
+    // Empty values always last
+    if (xEmpty && !yEmpty) return 1;
+    if (!xEmpty && yEmpty) return -1;
+    if (xEmpty && yEmpty) return 0;
+
     // Numeric sort
     if (!isNaN(x) && !isNaN(y)) {
       return (Number(x) - Number(y)) * sortState.direction;
