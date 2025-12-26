@@ -31,7 +31,7 @@ async function loadData() {
   document.getElementById("searchInput").oninput = applyFilters;
 
   // Role filter
-  document.querySelectorAll(".role-content input")
+  document.querySelectorAll("#roleSelector input")
     .forEach(cb => cb.onchange = applyFilters);
   
   // Column selector
@@ -49,15 +49,6 @@ async function loadData() {
 // -----------------------------
 // Dropdown toggle
 // -----------------------------
-document.addEventListener("click", function (e) {
-  const dropdown = document.querySelector(".dropdown");
-  if (dropdown.contains(e.target)) {
-    dropdown.classList.toggle("show");
-  } else {
-    dropdown.classList.remove("show");
-  }
-});
-
 document.addEventListener("click", function (e) {
   document.querySelectorAll(".dropdown").forEach(drop => {
     if (drop.contains(e.target)) {
