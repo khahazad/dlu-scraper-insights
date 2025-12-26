@@ -43,6 +43,10 @@ body {
   color: var(--text);
 }
 
+h1 {
+  margin-bottom: 8px;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
@@ -145,7 +149,6 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 /* Left side: title + search + filter */
@@ -159,7 +162,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 10px;
-margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .export-btn {
