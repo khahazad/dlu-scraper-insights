@@ -251,9 +251,9 @@ function exportTable() {
     return true;
   });
 
-  // Build CSV header
+  // Build CSV header using displayed column titles
   const cols = Array.from(visibleColumns);
-  let csv = cols.join(",") + "\n";
+  let csv = cols.map(formatHeader).join(",") + "\n";
 
   // Build CSV rows
   filtered.forEach(row => {
