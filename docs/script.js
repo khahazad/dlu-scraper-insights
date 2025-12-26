@@ -202,8 +202,9 @@ function sortTable(col) {
     icon.textContent = "";
   });
 
-  // Set icon for sorted column
-  const index = columns.indexOf(col);
+  // Set icon for sorted visible column
+  const visible = Array.from(visibleColumns);
+  const index = visible.indexOf(col);
   const th = document.querySelectorAll("th")[index];
   const icon = th.querySelector(".sort-icon");
   icon.textContent = sortState.direction === 1 ? " ▲" : " ▼";
