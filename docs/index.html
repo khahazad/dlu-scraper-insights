@@ -15,7 +15,7 @@
     <div class="controls">
       <input id="searchInput" type="text" placeholder="Search..." />
 
-      <div class="dropdown role-dropdown">
+      <div class="control-element">
         <button class="dropdown-btn">Filter Roles ▾</button>
         <div class="dropdown-content role-content" id="roleSelector">
           <label><input type="checkbox" value="Member" checked> Member</label>
@@ -24,7 +24,7 @@
           <label><input type="checkbox" value="Former"> Former</label>
         </div>
       </div>
-      <div class="dropdown column-dropdown">
+      <div class="control-element">
         <button class="dropdown-btn">Columns ▾</button>
         <div class="dropdown-content column-content" id="columnSelector">
           <label><input type="checkbox" value="pid" checked> PID</label>
@@ -38,7 +38,9 @@
           <label><input type="checkbox" value="Rank" checked> Rank</label>
         </div>
       </div>
-      <button id="exportBtn" class="export-btn">Export CSV</button>
+      <div class="control-element">
+        <button id="exportBtn" class="export-btn">Export CSV</button>
+      </div>
     </div>
   </div>
   
