@@ -241,19 +241,38 @@ function sortTable(col) {
 // Filtering
 // -----------------------------
 function applyFilters() {
-  const search = document.getElementById("searchInput").value.toLowerCase();
+  const search = document.getElementById("searchInput").value.trim().toLowerCase();
 
   const selectedRoles = Array.from(
     document.querySelectorAll(".dropdown-content input:checked")
   ).map(cb => cb.value);
 
+  // Détermine si l'utilisateur utilise mode OR ("|")
+  const useOr = search.includes("|");
+
+  // Prépare termes selon le mode
+  let terms = [];
+  if (useOr) {
+    terms = search.split("|").map(t => t.trim()).filter(t => t.length > 0);
+  } else if (search.length > 0) {
+    terms = [search]; // un seul bloc de texte si pas de "|"
+  }
+
   const filtered = rows.filter(row => {
     if (!selectedRoles.includes(row.Role)) return false;
 
     const text = Object.values(row).join(" ").toLowerCase();
-    if (search && !text.includes(search)) return false;
 
-    return true;
+    // Si pas de recherche → passe
+    if (terms.length === 0) return true;
+
+    // Mode OR → au moins un terme présent
+    if (useOr) {
+      return terms.some(term => text.includes(term));
+    }
+
+    // Mode normal (pas de OR) → recherche "classique"
+    return text.includes(search);
   });
 
   renderRows(filtered);
