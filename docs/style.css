@@ -190,7 +190,7 @@ a:hover {
   color: #666;
   width: 4ch;                /* largeur pour 3–4 chiffres */
   text-align: right;
-  user-select: none;         /* évite sélection gênante lors du drag */
+  /*user-select: none;*/         /* évite sélection gênante lors du drag */
 }
 
 
