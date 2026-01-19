@@ -1,8 +1,10 @@
 let rows = [];
 let columns = [
-  "pid", "name", "level", "Role", "Joined",
-  "gold", "gems", "last_donation", "Rank"
+  "pid", "name", "level", 
+  "Class", "PvP", "Rank", "Role", "Joined",
+  "gold", "gems", "last_donation"
 ];
+
 let visibleColumns = new Set(columns); // all visible by default
 let sortState = {
   column: null,
