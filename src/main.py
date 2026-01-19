@@ -27,6 +27,11 @@ def main():
             print("Scraping guild members info.")
             url = "https://demonicscans.org/guild_members.php"
             guild_members = scrape_first_table(context, url, 0, "pid")
+             # Clean PvP values: remove ','
+            for pid, fields in guild_members.items():
+                if "PvP" in fields and isinstance(fields["PvP"], str):
+                    fields["PvP"] = fields["PvP"].replace(",", "")
+            
             print(f"### dico size {len(guild_members)}")
             for pid, data in list(guild_members.items())[:5]:
                 print(pid, data)
