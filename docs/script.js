@@ -11,6 +11,98 @@ let sortState = {
   direction: 1
 };
 
+
+// -----------------------------
+// Fetch Json Timestamp
+// -----------------------------
+
+/**
+ * Affiche la date/heure du dernier commit qui a modifié docs/delulu_data.json
+ * - Source primaire: GitHub API (commits?path=...)
+ * - Fallback: Last-Modified du fichier brut (raw.githubusercontent.com)
+ * - Affichage: anglais, 24h, sans secondes, adapté au fuseau du navigateur
+ */
+async function fetchJsonTimestamp() {
+  const USER = "khahazad";
+  const REPO = "dlu-scraper-insights";
+  const BRANCH = "main";
+  const FILE_PATH = "docs/delulu_data.json";
+
+  const tsEl = document.getElementById("dataTimestamp");
+  if (!tsEl) return;
+
+  // Petite fonction de formatage "universel"
+  const formatLocal = (date) =>
+    date.toLocaleString("en-US", {
+      year: "numeric",
+      month: "short", // Jan, Feb, ...
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false, // 24h to avoid AM/PM ambiguity
+    });
+
+  // 1) Tentative via GitHub API (dernier commit qui a touché le fichier)
+  try {
+    const apiUrl =
+      `https://api.github.com/repos/${USER}/${REPO}/commits` +
+      `?path=${encodeURIComponent(FILE_PATH)}` +
+      `&sha=${encodeURIComponent(BRANCH)}` +
+      `&per_page=1`;
+
+    const resp = await fetch(apiUrl, {
+      headers: {
+        // Optionnel: indiquer qu'on accepte du JSON; pas besoin de token public
+        "Accept": "application/vnd.github+json",
+      },
+    });
+
+    if (!resp.ok) {
+      throw new Error(`GitHub API HTTP ${resp.status}`);
+    }
+
+    const commits = await resp.json();
+    if (Array.isArray(commits) && commits.length > 0) {
+      // La date du commit (UTC, ex: "2026-01-19T13:05:00Z")
+      const isoDate = commits[0]?.commit?.committer?.date || commits[0]?.commit?.author?.date;
+      if (isoDate) {
+        const localDate = new Date(isoDate); // conversion auto vers l'heure locale du navigateur
+        tsEl.textContent = `Last data update: ${formatLocal(localDate)}`;
+        return; // Succès → on sort
+      }
+    }
+
+    // Si pas de commit trouvé / pas de date → on tente le fallback
+    throw new Error("No commit info for the file.");
+  } catch (e) {
+    console.warn("Primary (GitHub commits API) failed:", e);
+  }
+
+  // 2) Fallback: HEAD sur le fichier brut pour lire Last-Modified
+  try {
+    const rawUrl = `https://raw.githubusercontent.com/${USER}/${REPO}/${BRANCH}/${FILE_PATH}`;
+    const head = await fetch(rawUrl, { method: "HEAD" });
+
+    if (!head.ok) {
+      throw new Error(`Raw HEAD HTTP ${head.status}`);
+    }
+
+    const lastModified = head.headers.get("Last-Modified"); // ex: "Mon, 19 Jan 2026 13:05:00 GMT"
+    if (lastModified) {
+      const localDate = new Date(lastModified);
+      tsEl.textContent = `Last data update: ${formatLocal(localDate)}`;
+      return;
+    }
+
+    throw new Error("No Last-Modified header.");
+  } catch (e) {
+    console.warn("Fallback (HEAD Last-Modified) failed:", e);
+  }
+
+  // 3) Si tout échoue, on affiche un message discret
+  tsEl.textContent = "Last data update: unavailable";
+}
+
 // -----------------------------
 // Load JSON + initialize page
 // -----------------------------
@@ -326,3 +418,4 @@ function exportTable() {
 
 // -----------------------------
 loadData();
+fetchJsonTimestamp();
