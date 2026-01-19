@@ -184,3 +184,13 @@ a:hover {
   align-items: center;
   gap: 12px;
 }
+
+/* Colonne numéro (#) : compacte, peu intrusive */
+.num-col {
+  color: #666;
+  width: 4ch;                /* largeur pour 3–4 chiffres */
+  text-align: right;
+  user-select: none;         /* évite sélection gênante lors du drag */
+}
+
+
