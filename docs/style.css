@@ -193,4 +193,12 @@ a:hover {
   /*user-select: none;*/         /* évite sélection gênante lors du drag */
 }
 
+/* Timestamp of JSON update */
+#dataTimestamp {
+  font-size: 0.9em;
+  opacity: 0.7;
+  margin-top: 4px;
+  color: var(--text);
+}
+
 
