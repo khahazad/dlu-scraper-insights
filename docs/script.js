@@ -31,16 +31,21 @@ async function fetchJsonTimestamp() {
   const tsEl = document.getElementById("dataTimestamp");
   if (!tsEl) return;
 
-  // Petite fonction de formatage "universel"
-  const formatLocal = (date) =>
-    date.toLocaleString("en-US", {
-      year: "numeric",
-      month: "short", // Jan, Feb, ...
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false, // 24h to avoid AM/PM ambiguity
-    });
+  // Format: 2025-12-24 14:05 (heure locale du navigateur, sans secondes)
+  const formatLocal = (date) => {
+    const pad = (n) => String(n).padStart(2, "0");
+    return (
+      date.getFullYear() +
+      "-" +
+      pad(date.getMonth() + 1) +
+      "-" +
+      pad(date.getDate()) +
+      " " +
+      pad(date.getHours()) +
+      ":" +
+      pad(date.getMinutes())
+    );
+  };
 
   // 1) Tentative via GitHub API (dernier commit qui a touché le fichier)
   try {
