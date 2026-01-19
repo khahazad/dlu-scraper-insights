@@ -93,6 +93,15 @@ function buildTable() {
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
 
+  // --- Colonne # (non triable, fixe en 1ère position) ---
+  const thNum = document.createElement("th");
+  thNum.textContent = "#";
+  thNum.className = "num-col";
+  thNum.style.width = "4ch";
+  thNum.style.textAlign = "right";
+  headerRow.appendChild(thNum);
+
+  // --- Colonnes existantes (triables) ---
   Array.from(visibleColumns).forEach(col => {
     const th = document.createElement("th");
     th.style.cursor = "pointer";
@@ -123,22 +132,30 @@ function buildTable() {
 // -----------------------------
 // Render rows
 // -----------------------------
+
 function renderRows(data) {
   const tbody = document.getElementById("guildBody");
   tbody.innerHTML = "";
 
-  data.forEach(row => {
+  data.forEach((row, i) => {
     const tr = document.createElement("tr");
 
+    // --- Cellule numéro (1-based, reflète l'ordre affiché) ---
+    const tdNum = document.createElement("td");
+    tdNum.textContent = i + 1;
+    tdNum.className = "num-col";
+    tdNum.style.textAlign = "right";
+    tr.appendChild(tdNum);
+
+    // --- Autres colonnes visibles ---
     Array.from(visibleColumns).forEach(col => {
       const td = document.createElement("td");
 
       if (col === "pid") {
-        // Create clickable link
         const a = document.createElement("a");
         a.href = `https://demonicscans.org/player.php?pid=${row.pid}`;
         a.textContent = row.pid;
-        a.target = "_blank"; // open in new tab
+        a.target = "_blank";
         td.appendChild(a);
       } else {
         td.textContent = row[col] ?? "";
@@ -150,7 +167,6 @@ function renderRows(data) {
     tbody.appendChild(tr);
   });
 }
-
 
 // -----------------------------
 // Date parsing (YYYY-MM-DD HH:MM:SS)
@@ -206,15 +222,15 @@ function sortTable(col) {
     return x.toString().localeCompare(y.toString()) * sortState.direction;
   });
 
+  
   // Reset icons
   document.querySelectorAll("th .sort-icon").forEach(icon => {
     icon.textContent = "";
   });
 
-  // Set icon for sorted visible column
   const visible = Array.from(visibleColumns);
   const index = visible.indexOf(col);
-  const th = document.querySelectorAll("th")[index];
+  const th = document.querySelectorAll("th")[index + 1]; // index +1 = saute la colonne "#"
   const icon = th.querySelector(".sort-icon");
   icon.textContent = sortState.direction === 1 ? " ▲" : " ▼";
 
