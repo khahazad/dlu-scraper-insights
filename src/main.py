@@ -76,7 +76,7 @@ def main():
             
             # Merging guild members with pids_dictionary
             print("Merging guild members with pids_dictionary.")
-            delulu_dictionary = update_pid_dict(delulu_dictionary, guild_members, fields=["Role", "Joined", "Login", "Class", "PvP"])
+            delulu_dictionary = update_pid_dict(delulu_dictionary, guild_members, fields=["Player", "Level", "Role", "Joined", "Login", "Class", "PvP"])
             
             # Aggregating donations
             print("Aggregating donations.")
