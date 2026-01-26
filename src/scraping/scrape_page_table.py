@@ -4,13 +4,16 @@ from bs4 import BeautifulSoup
 def scrape_first_table(context, url, pid_column=None, key="auto"):
     """
     Scrape the first table on the page.
-    
-    If pid_column is provided, replace that column's text with the extracted PID
-    AND rename the header to 'PID'.
-    
+
+    If pid_column is provided:
+        - Extract PID from the column pid_column
+        - Insert PID as the FIRST column in header and rows
+        - Use PID as dictionary key if key="pid"
+        
     key="pid"  → dictionary keyed by PID (requires pid_column)
     key="auto" → dictionary keyed by auto-generated row IDs
     """
+
     page = context.new_page()
     page.goto(url, wait_until="domcontentloaded")
 
@@ -27,34 +30,51 @@ def scrape_first_table(context, url, pid_column=None, key="auto"):
         if not cols:
             continue
 
+        # -------------------------
         # HEADER
+        # -------------------------
         if cols[0].name == "th" and not header_processed:
             header = [c.get_text(strip=True) for c in cols]
 
+            # Insert PID as first column if requested
             if pid_column is not None:
-                header[pid_column] = "PID"
+                header.insert(0, "PID")
 
             rows.append(header)
             header_processed = True
             continue
 
+        # -------------------------
         # DATA ROW
+        # -------------------------
         row = []
-        for idx, col in enumerate(cols):
-            if pid_column is not None and idx == pid_column:
-                link = col.find("a")
-                if not link or "href" not in link.attrs:
-                    raise RuntimeError(f"No link found in PID column {pid_column} on page {url}")
 
-                href = link["href"]
-                match = re.search(r"id=(\d+)", href)
-                if not match:
-                    raise RuntimeError(f"No PID found in link: {href}")
+        # Extract PID if requested
+        if pid_column is not None:
+            col = cols[pid_column]
+            link = col.find("a")
+            if not link or "href" not in link.attrs:
+                raise RuntimeError(f"No link found in PID column {pid_column} on page {url}")
 
-                pid = int(match.group(1))
-                row.append(pid)
+            href = link["href"]
+            match = re.search(r"pid=(\d+)", href)
+            if not match:
+                raise RuntimeError(f"No PID found in link: {href}")
+
+            pid_value = int(match.group(1))
+
+            # Insert PID at index 0
+            row.append(pid_value)
+
+        # Extract all original columns (shifted by +1 if PID added)
+        for col in cols:
+            link = col.find("a")
+            if link:
+                text = link.get_text(strip=True)
             else:
-                row.append(col.get_text(strip=True))
+                text = col.get_text(strip=True)
+
+            row.append(text)
 
         rows.append(row)
 
@@ -74,20 +94,21 @@ def scrape_first_table(context, url, pid_column=None, key="auto"):
         if key == "pid":
             if pid_column is None:
                 raise RuntimeError("key='pid' requires pid_column")
-            dict_key = row[pid_column]
+            dict_key = row[0]  # PID ALWAYS at index 0
         else:
             dict_key = f"row_{i}"
 
         # Build row dictionary
         entry = {}
         for col_index, value in enumerate(row):
-            if key == "pid" and col_index == pid_column: 
-                continue # skip PID column entirely 
+            if key == "pid" and col_index == 0:
+                continue  # skip PID column entirely
             entry[header[col_index]] = value
 
         result[dict_key] = entry
 
     return result
+
 
 def scrape_paginated_tables(context, url_template, pid_column=1, key="auto", max_pages=200):
     """
