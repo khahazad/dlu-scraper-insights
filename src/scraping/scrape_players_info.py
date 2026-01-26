@@ -62,7 +62,7 @@ def scrape_players_info(browser, player_ids):
     try:
         for pid in player_ids:
             info = scrape_player_info(ctx, pid)
-            results[pid] = { "name": info["name"], "level": info["level"], }
+            results[pid] = { "Player": info["name"], "Level": info["level"], }
 
         return results
 
