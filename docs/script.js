@@ -1,6 +1,6 @@
 let rows = [];
 let columns = [
-  "pid", "name", "level", 
+  "pid", "Player", "Level", 
   "Class", "PvP", "Rank", "Role", "Joined", "Login",
   "gold", "gems", "last_donation"
 ];
