@@ -35,26 +35,25 @@
   },
   "12801": {
     "Player": "JUBISVALDO",
-    "Level": "1654",
+    "Level": "1669",
     "Role": "Member",
     "Joined": "2026-03-20 11:28:17",
     "Login": "2026-03-25",
     "Class": "Warrior",
     "PvP": "3035",
-    "Rank": "370"
+    "Rank": "360"
   },
   "14115": {
     "Player": "[DLU]Raqal",
-    "Level": "2946",
+    "Level": "2950",
     "Role": "Member",
     "Joined": "2025-12-14 01:26:52",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Mage",
     "PvP": "4725",
     "gold": 239731265,
     "gems": 0,
-    "last_donation": "2026-02-19 23:18:05",
-    "Rank": "485"
+    "last_donation": "2026-02-19 23:18:05"
   },
   "16162": {
     "Player": "[DLU]Keshi",
@@ -91,7 +90,7 @@
     "gold": 61988502,
     "gems": 0,
     "last_donation": "2026-03-06 09:13:51",
-    "Rank": "191"
+    "Rank": "222"
   },
   "22126": {
     "gold": 50000,
@@ -100,26 +99,26 @@
   },
   "22387": {
     "Player": "[DLU] TheHaser",
-    "Level": "3119",
+    "Level": "3123",
     "Role": "Member",
     "Joined": "2026-02-16 13:48:32",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Cleric",
     "PvP": "5650",
     "gold": 10000000,
     "gems": 0,
     "last_donation": "2026-02-23 01:19:20",
-    "Rank": "438"
+    "Rank": "417"
   },
   "25745": {
     "gold": 30000,
     "gems": 0,
     "last_donation": "2025-10-10 16:15:54",
-    "Rank": "60"
+    "Rank": "73"
   },
   "27180": {
     "Player": "Zeydra",
-    "Level": "1317",
+    "Level": "1318",
     "Role": "Member",
     "Joined": "2026-01-19 11:02:25",
     "Login": "2026-03-25",
@@ -187,7 +186,7 @@
   },
   "38591": {
     "Player": "[DLU] Whismerile",
-    "Level": "2717",
+    "Level": "2720",
     "Role": "Member",
     "Joined": "2026-01-22 00:10:52",
     "Login": "2026-03-25",
@@ -216,16 +215,16 @@
   },
   "41314": {
     "Player": "Gilgs",
-    "Level": "1716",
+    "Level": "1717",
     "Role": "Member",
     "Joined": "2026-01-11 03:31:29",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "3345",
     "gold": 18729321,
     "gems": 0,
     "last_donation": "2026-03-20 05:50:21",
-    "Rank": "291"
+    "Rank": "327"
   },
   "41879": {
     "Player": "[DLU]x[SEIZ]-Gdfox15",
@@ -253,11 +252,11 @@
     "gold": 64257,
     "gems": 48,
     "last_donation": "2025-10-09 21:25:00",
-    "Rank": "189"
+    "Rank": "172"
   },
   "43275": {
     "Player": "[DLU] Bhan_bhai",
-    "Level": "3800",
+    "Level": "3803",
     "Role": "Member",
     "Joined": "2025-10-22 00:14:44",
     "Login": "2026-03-25",
@@ -266,7 +265,7 @@
     "gold": 894926245,
     "gems": 1070,
     "last_donation": "2026-03-14 22:19:58",
-    "Rank": "239"
+    "Rank": "229"
   },
   "45557": {
     "gold": 1000,
@@ -280,25 +279,26 @@
   },
   "45752": {
     "Player": "[DLU]Stillslim",
-    "Level": "2822",
+    "Level": "2833",
     "Role": "Member",
     "Joined": "2025-10-10 12:58:44",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "4550",
     "gold": 470523000,
     "gems": 100,
     "last_donation": "2026-03-23 04:51:14",
-    "Rank": "196"
+    "Rank": "173"
   },
   "46958": {
     "gold": 10000,
     "gems": 0,
-    "last_donation": "2025-10-10 15:32:32"
+    "last_donation": "2025-10-10 15:32:32",
+    "Rank": "493"
   },
   "47205": {
     "Player": "[DLU] Demon king lloyd fontra",
-    "Level": "219",
+    "Level": "232",
     "Role": "Member",
     "Joined": "2026-03-10 20:35:40",
     "Login": "2026-03-25",
@@ -314,7 +314,7 @@
     "gold": 50000,
     "gems": 0,
     "last_donation": "2025-10-10 01:18:12",
-    "Rank": "31"
+    "Rank": "36"
   },
   "48715": {
     "gold": 20000,
@@ -323,10 +323,10 @@
   },
   "50155": {
     "Player": "ESCANOR AKA HIM",
-    "Level": "764",
+    "Level": "765",
     "Role": "Member",
     "Joined": "2026-01-15 01:17:46",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "1240",
     "gold": 3490005,
@@ -365,13 +365,13 @@
     "Level": "1972",
     "Role": "Member",
     "Joined": "2025-10-16 08:55:41",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Warrior",
     "PvP": "3510",
     "gold": 84025000,
     "gems": 0,
     "last_donation": "2026-03-21 22:23:08",
-    "Rank": "374"
+    "Rank": "409"
   },
   "52430": {
     "gold": 10000,
@@ -385,10 +385,10 @@
   },
   "52862": {
     "Player": "[DLU] Akshadow",
-    "Level": "1084",
+    "Level": "1090",
     "Role": "Member",
     "Joined": "2025-10-30 00:49:19",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "2615",
     "gold": 10279621,
@@ -422,10 +422,10 @@
   },
   "56877": {
     "Player": "[DLU]             Deablo",
-    "Level": "3027",
+    "Level": "3029",
     "Role": "Member",
     "Joined": "2025-12-13 23:46:14",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Mage",
     "PvP": "8625",
     "gold": 100725853,
@@ -474,7 +474,7 @@
   },
   "60830": {
     "Player": "[DLU]Eff1146",
-    "Level": "2365",
+    "Level": "2366",
     "Role": "Member",
     "Joined": "2026-01-08 13:02:05",
     "Login": "2026-03-25",
@@ -491,7 +491,7 @@
   },
   "62327": {
     "Player": "[DLU]PËRVY SÁGÉ",
-    "Level": "2963",
+    "Level": "2965",
     "Role": "Member",
     "Joined": "2025-12-13 18:28:52",
     "Login": "2026-03-25",
@@ -505,13 +505,13 @@
     "gold": 1000,
     "gems": 0,
     "last_donation": "2025-10-10 17:37:58",
-    "Rank": "16"
+    "Rank": "19"
   },
   "63970": {
     "gold": 10000,
     "gems": 0,
     "last_donation": "2025-10-12 01:04:01",
-    "Rank": "150"
+    "Rank": "168"
   },
   "64487": {
     "Player": "[DLU] zookeeper",
@@ -583,7 +583,7 @@
   },
   "67820": {
     "Player": "[DLU]StellyElly",
-    "Level": "3145",
+    "Level": "3148",
     "Role": "Member",
     "Joined": "2026-01-19 08:34:53",
     "Login": "2026-03-25",
@@ -592,7 +592,7 @@
     "gold": 1425000,
     "gems": 0,
     "last_donation": "2026-02-17 23:32:34",
-    "Rank": "207"
+    "Rank": "194"
   },
   "68996": {
     "Player": "AkeSora",
@@ -622,10 +622,10 @@
   },
   "71214": {
     "Player": "Solo king",
-    "Level": "1532",
+    "Level": "1533",
     "Role": "Member",
     "Joined": "2025-12-06 16:33:34",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "3100",
     "gold": 21043404,
@@ -634,7 +634,7 @@
   },
   "71342": {
     "Player": "[DLU] azaman",
-    "Level": "1382",
+    "Level": "1383",
     "Role": "Member",
     "Joined": "2025-10-16 17:01:41",
     "Login": "2026-03-25",
@@ -651,10 +651,10 @@
   },
   "72338": {
     "Player": "[DLU] Mr_Devil",
-    "Level": "783",
+    "Level": "784",
     "Role": "Member",
     "Joined": "2026-01-16 00:01:22",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "2000",
     "gold": 3745037,
@@ -685,7 +685,7 @@
     "gold": 30000,
     "gems": 0,
     "last_donation": "2025-10-09 14:04:29",
-    "Rank": "312"
+    "Rank": "307"
   },
   "74553": {
     "gold": 50000,
@@ -733,16 +733,16 @@
   },
   "76138": {
     "Player": "[DLU] Xubub",
-    "Level": "3913",
+    "Level": "3917",
     "Role": "Member",
     "Joined": "2026-01-18 23:27:07",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "5840",
     "gold": 77050000,
     "gems": 0,
     "last_donation": "2026-03-08 12:01:18",
-    "Rank": "204"
+    "Rank": "215"
   },
   "76231": {
     "Player": "[DLU]Immortal Death God",
@@ -773,16 +773,16 @@
   },
   "76638": {
     "Player": "[DLU] Othello",
-    "Level": "3245",
+    "Level": "3248",
     "Role": "Member",
     "Joined": "2025-10-11 10:39:11",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Warrior",
     "PvP": "5995",
     "gold": 238025579,
     "gems": 55,
     "last_donation": "2026-03-21 14:36:24",
-    "Rank": "422"
+    "Rank": "428"
   },
   "76645": {
     "gold": 219000,
@@ -808,7 +808,7 @@
   },
   "76910": {
     "Player": "[DLU]FATMAN",
-    "Level": "3252",
+    "Level": "3253",
     "Role": "Member",
     "Joined": "2026-01-19 00:58:03",
     "Login": "2026-03-25",
@@ -817,7 +817,7 @@
     "gold": 160500000,
     "gems": 0,
     "last_donation": "2026-03-21 14:00:47",
-    "Rank": "162"
+    "Rank": "183"
   },
   "77206": {
     "gold": 260000,
@@ -840,7 +840,7 @@
     "gold": 425613348,
     "gems": 10,
     "last_donation": "2026-03-06 09:34:34",
-    "Rank": "449"
+    "Rank": "491"
   },
   "77552": {
     "Player": "tsujiku",
@@ -873,10 +873,10 @@
   },
   "77837": {
     "Player": "[DLU] Hariseto",
-    "Level": "2229",
+    "Level": "2232",
     "Role": "Member",
     "Joined": "2025-11-02 09:44:54",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Mage",
     "PvP": "3770",
     "gold": 334000000,
@@ -938,7 +938,7 @@
   },
   "78628": {
     "Player": "[DLU]TUHAN",
-    "Level": "1126",
+    "Level": "1127",
     "Role": "Member",
     "Joined": "2026-01-19 19:45:52",
     "Login": "2026-03-25",
@@ -966,7 +966,7 @@
     "gold": 200000,
     "gems": 0,
     "last_donation": "2025-10-09 12:31:06",
-    "Rank": "387"
+    "Rank": "407"
   },
   "79059": {
     "gold": 9286000,
@@ -989,17 +989,17 @@
     "gold": 27372874,
     "gems": 0,
     "last_donation": "2026-02-10 17:11:30",
-    "Rank": "229"
+    "Rank": "272"
   },
   "79439": {
     "Player": "[DLU] Purple Griffin",
-    "Level": "3322",
+    "Level": "3331",
     "Role": "Member",
     "Joined": "2026-02-16 13:35:34",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Warrior",
     "PvP": "5415",
-    "Rank": "22"
+    "Rank": "23"
   },
   "79595": {
     "Player": "[DLU] RayAiden",
@@ -1034,7 +1034,7 @@
     "gold": 28820000,
     "gems": 0,
     "last_donation": "2026-03-19 22:40:35",
-    "Rank": "391"
+    "Rank": "431"
   },
   "80459": {
     "gold": 100000,
@@ -1043,16 +1043,16 @@
   },
   "80572": {
     "Player": "[DLU]atem",
-    "Level": "2436",
+    "Level": "2454",
     "Role": "Member",
     "Joined": "2025-10-11 01:10:21",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Warrior",
     "PvP": "3915",
     "gold": 160583000,
     "gems": 0,
     "last_donation": "2026-03-15 20:44:34",
-    "Rank": "483"
+    "Rank": "374"
   },
   "80828": {
     "gold": 1795978,
@@ -1071,7 +1071,7 @@
   },
   "81130": {
     "Player": "[DLU] Icaka42",
-    "Level": "4312",
+    "Level": "4313",
     "Role": "Member",
     "Joined": "2025-10-13 17:20:40",
     "Login": "2026-03-25",
@@ -1127,7 +1127,7 @@
     "gold": 500000,
     "gems": 0,
     "last_donation": "2025-10-15 22:17:21",
-    "Rank": "381"
+    "Rank": "378"
   },
   "81969": {
     "gold": 10000,
@@ -1143,11 +1143,11 @@
     "gold": 2000,
     "gems": 0,
     "last_donation": "2025-10-11 06:33:26",
-    "Rank": "180"
+    "Rank": "206"
   },
   "82134": {
     "Player": "[DLU] SWORD GOD",
-    "Level": "3600",
+    "Level": "3606",
     "Role": "Member",
     "Joined": "2025-10-28 22:22:28",
     "Login": "2026-03-25",
@@ -1156,7 +1156,7 @@
     "gold": 128328795,
     "gems": 0,
     "last_donation": "2026-03-13 17:36:24",
-    "Rank": "358"
+    "Rank": "313"
   },
   "82437": {
     "Player": "Linkut",
@@ -1183,7 +1183,8 @@
   "82964": {
     "gold": 110000,
     "gems": 0,
-    "last_donation": "2025-10-09 19:39:43"
+    "last_donation": "2025-10-09 19:39:43",
+    "Rank": "440"
   },
   "87734": {
     "gold": 30000,
@@ -1192,7 +1193,7 @@
   },
   "87769": {
     "Player": "SPEAR OF HEAVEN",
-    "Level": "707",
+    "Level": "717",
     "Role": "Member",
     "Joined": "2026-03-17 13:45:18",
     "Login": "2026-03-25",
@@ -1213,20 +1214,20 @@
     "gold": 192027342,
     "gems": 0,
     "last_donation": "2026-03-19 18:19:00",
-    "Rank": "404"
+    "Rank": "443"
   },
   "88460": {
     "Player": "[DLU] Kratos in isekai",
-    "Level": "3294",
+    "Level": "3295",
     "Role": "Leader",
     "Joined": "2025-10-28 22:05:14",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "7580",
     "gold": 574591841,
     "gems": 0,
     "last_donation": "2026-02-10 22:48:38",
-    "Rank": "435"
+    "Rank": "479"
   },
   "88604": {
     "gold": 10000,
@@ -1237,7 +1238,7 @@
     "gold": 100000,
     "gems": 0,
     "last_donation": "2025-10-13 01:37:33",
-    "Rank": "368"
+    "Rank": "355"
   },
   "88720": {
     "Player": "[Daddy DELULU The Delusional Senpai]Tahmid_The Conqueror of Grakthar",
@@ -1258,15 +1259,16 @@
   },
   "89180": {
     "Player": "[DLU]Drtotomaya",
-    "Level": "2059",
+    "Level": "2065",
     "Role": "Member",
     "Joined": "2025-12-10 15:13:21",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Cleric",
     "PvP": "3895",
     "gold": 1351792,
     "gems": 0,
-    "last_donation": "2026-02-20 23:07:58"
+    "last_donation": "2026-02-20 23:07:58",
+    "Rank": "461"
   },
   "89634": {
     "gold": 13000,
@@ -1294,7 +1296,7 @@
     "gold": 76227693,
     "gems": 0,
     "last_donation": "2026-03-24 05:20:43",
-    "Rank": "184"
+    "Rank": "209"
   },
   "90338": {
     "gold": 100000,
@@ -1308,10 +1310,10 @@
   },
   "90465": {
     "Player": "[DLU] K-Azad",
-    "Level": "4167",
+    "Level": "4170",
     "Role": "Member",
     "Joined": "2025-10-16 13:48:23",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Warrior",
     "PvP": "8825",
     "gold": 816100000,
@@ -1336,7 +1338,7 @@
   },
   "91205": {
     "Player": "[DLU] Asierigle",
-    "Level": "2523",
+    "Level": "2526",
     "Role": "Member",
     "Joined": "2026-01-19 08:35:09",
     "Login": "2026-03-25",
@@ -1348,10 +1350,10 @@
   },
   "91337": {
     "Player": "manhwa maniac",
-    "Level": "1797",
+    "Level": "1798",
     "Role": "Member",
     "Joined": "2025-11-27 07:38:30",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "4045",
     "gold": 33704659,
@@ -1369,7 +1371,7 @@
     "gold": 56351000,
     "gems": 0,
     "last_donation": "2026-03-18 18:38:53",
-    "Rank": "108"
+    "Rank": "123"
   },
   "91555": {
     "gold": 50000,
@@ -1452,7 +1454,7 @@
   },
   "94966": {
     "Player": "[DLU] WillxD",
-    "Level": "3426",
+    "Level": "3430",
     "Role": "Member",
     "Joined": "2026-01-14 17:05:28",
     "Login": "2026-03-25",
@@ -1461,7 +1463,7 @@
     "gold": 45000000,
     "gems": 0,
     "last_donation": "2026-02-19 17:34:10",
-    "Rank": "315"
+    "Rank": "286"
   },
   "95207": {
     "gold": 10000,
@@ -1501,7 +1503,7 @@
   },
   "96697": {
     "Player": "Luci4U",
-    "Level": "3294",
+    "Level": "3300",
     "Role": "Member",
     "Joined": "2025-12-12 19:07:02",
     "Login": "2026-03-25",
@@ -1510,7 +1512,7 @@
     "gold": 80930000,
     "gems": 0,
     "last_donation": "2026-03-10 13:30:19",
-    "Rank": "158"
+    "Rank": "159"
   },
   "96999": {
     "gold": 1000,
@@ -1538,10 +1540,10 @@
   },
   "98885": {
     "Player": "[DLU] BIPORE",
-    "Level": "920",
+    "Level": "921",
     "Role": "Member",
     "Joined": "2025-12-28 00:20:53",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Cleric",
     "PvP": "2640",
     "gold": 10214817,
@@ -1552,14 +1554,14 @@
     "gold": 18480,
     "gems": 0,
     "last_donation": "2025-10-10 09:39:00",
-    "Rank": "175"
+    "Rank": "176"
   },
   "99169": {
     "Player": "[DLU] ThatOneEnjoyer",
     "Level": "558",
     "Role": "Member",
     "Joined": "2026-01-18 23:27:12",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Cleric",
     "PvP": "1085"
   },
@@ -1568,13 +1570,13 @@
     "Level": "3975",
     "Role": "Vice",
     "Joined": "2025-10-15 21:50:04",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "8765",
     "gold": 1085793979,
     "gems": 2,
     "last_donation": "2026-02-10 17:59:26",
-    "Rank": "183"
+    "Rank": "208"
   },
   "100048": {
     "Player": "[DELULU]Weedons",
@@ -1619,7 +1621,7 @@
   },
   "100406": {
     "Player": "Void Monarch",
-    "Level": "2622",
+    "Level": "2623",
     "Role": "Member",
     "Joined": "2026-03-20 08:45:21",
     "Login": "2026-03-25",
@@ -1628,7 +1630,7 @@
     "gold": 164252413,
     "gems": 0,
     "last_donation": "2026-03-24 13:46:06",
-    "Rank": "127"
+    "Rank": "135"
   },
   "100443": {
     "gold": 20635346,
@@ -1637,10 +1639,10 @@
   },
   "100455": {
     "Player": "[DLU] SoloSingh",
-    "Level": "1825",
+    "Level": "1827",
     "Role": "Member",
     "Joined": "2026-01-19 20:16:33",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Warrior",
     "PvP": "3410",
     "gold": 5375210,
@@ -1661,29 +1663,29 @@
   },
   "100567": {
     "Player": "Blood Prince",
-    "Level": "3906",
+    "Level": "3910",
     "Role": "Vice",
     "Joined": "2025-12-13 17:39:33",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "6925",
     "gold": 211955962,
     "gems": 0,
     "last_donation": "2026-03-17 20:02:34",
-    "Rank": "412"
+    "Rank": "367"
   },
   "100769": {
     "Player": "Dead Man Walking",
-    "Level": "2523",
+    "Level": "2531",
     "Role": "Member",
     "Joined": "2025-12-11 22:40:29",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "3295",
     "gold": 128342121,
     "gems": 71,
     "last_donation": "2026-03-08 10:59:57",
-    "Rank": "493"
+    "Rank": "475"
   },
   "100864": {
     "gold": 10000,
@@ -1701,16 +1703,16 @@
   },
   "100955": {
     "Player": "[DLU] Marcellio",
-    "Level": "3054",
+    "Level": "3057",
     "Role": "Member",
     "Joined": "2025-10-30 20:17:53",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Mage",
     "PvP": "6310",
     "gold": 31055000,
     "gems": 0,
     "last_donation": "2026-02-12 23:06:49",
-    "Rank": "283"
+    "Rank": "265"
   },
   "101544": {
     "gold": 1000,
@@ -1731,10 +1733,10 @@
   },
   "101938": {
     "Player": "Tomzik[DLU] sometimes you gotta backstab M***r",
-    "Level": "1224",
+    "Level": "1229",
     "Role": "Member",
     "Joined": "2026-01-22 13:18:27",
-    "Login": "2026-03-22",
+    "Login": "2026-03-25",
     "Class": "Hunter",
     "PvP": "3555",
     "gold": 260000,
@@ -1755,16 +1757,16 @@
   },
   "102460": {
     "Player": "Greed[DLU]",
-    "Level": "3049",
+    "Level": "3055",
     "Role": "Member",
     "Joined": "2025-10-16 13:48:35",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Mage",
     "PvP": "4930",
     "gold": 1421468,
     "gems": 20,
     "last_donation": "2026-03-08 10:26:04",
-    "Rank": "120"
+    "Rank": "109"
   },
   "102608": {
     "gold": 1000,
@@ -1793,7 +1795,7 @@
   },
   "105245": {
     "Player": "[DLU] Zartien",
-    "Level": "3694",
+    "Level": "3696",
     "Role": "Member",
     "Joined": "2026-01-19 00:59:29",
     "Login": "2026-03-25",
@@ -1802,7 +1804,7 @@
     "gold": 48164316,
     "gems": 0,
     "last_donation": "2026-03-21 18:00:57",
-    "Rank": "172"
+    "Rank": "163"
   },
   "105377": {
     "Player": "[DLU] amo11",
@@ -1818,10 +1820,10 @@
   },
   "105563": {
     "Player": "DARK MAGE",
-    "Level": "642",
+    "Level": "643",
     "Role": "Member",
     "Joined": "2025-12-25 19:32:25",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Mage",
     "PvP": "740"
   },
@@ -1830,7 +1832,7 @@
     "Level": "1838",
     "Role": "Member",
     "Joined": "2025-12-12 02:28:10",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Mage",
     "PvP": "1610",
     "gold": 4380860,
@@ -1865,30 +1867,30 @@
     "gold": 102000000,
     "gems": 0,
     "last_donation": "2026-02-24 22:24:23",
-    "Rank": "371"
+    "Rank": "382"
   },
   "106351": {
     "Player": "[DLU] Dimorgos",
-    "Level": "3373",
+    "Level": "3375",
     "Role": "Member",
     "Joined": "2026-01-19 08:34:57",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "4290",
     "gold": 25875172,
     "gems": 0,
     "last_donation": "2026-02-19 10:13:44",
-    "Rank": "217"
+    "Rank": "232"
   },
   "106495": {
     "gold": 10407066,
     "gems": 0,
     "last_donation": "2026-01-11 17:40:59",
-    "Rank": "365"
+    "Rank": "267"
   },
   "106829": {
     "Player": "[DLU]Tailspin",
-    "Level": "2596",
+    "Level": "2606",
     "Role": "Member",
     "Joined": "2025-12-14 17:57:15",
     "Login": "2026-03-25",
@@ -1897,13 +1899,13 @@
     "gold": 158608322,
     "gems": 0,
     "last_donation": "2026-03-24 06:34:32",
-    "Rank": "314"
+    "Rank": "330"
   },
   "107570": {
     "gold": 51876180,
     "gems": 0,
     "last_donation": "2026-02-08 06:05:10",
-    "Rank": "35"
+    "Rank": "41"
   },
   "107735": {
     "Player": "[DLU] Stdimi",
@@ -1952,7 +1954,7 @@
     "gold": 9361803,
     "gems": 0,
     "last_donation": "2026-03-10 23:08:34",
-    "Rank": "129"
+    "Rank": "143"
   },
   "113559": {
     "Player": "[DLU] Tofu",
@@ -1968,16 +1970,16 @@
   },
   "114019": {
     "Player": "[DLU] Nao",
-    "Level": "5443",
+    "Level": "5444",
     "Role": "Member",
     "Joined": "2025-12-13 14:41:22",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Cleric",
     "PvP": "9435",
     "gold": 149059845,
     "gems": 0,
     "last_donation": "2026-03-07 02:59:09",
-    "Rank": "145"
+    "Rank": "149"
   },
   "114170": {
     "Player": "[DLU] Newbie420",
@@ -1993,7 +1995,7 @@
   },
   "115577": {
     "Player": "TitusRex",
-    "Level": "2253",
+    "Level": "2261",
     "Role": "Member",
     "Joined": "2026-03-09 21:52:12",
     "Login": "2026-03-25",
@@ -2002,23 +2004,23 @@
     "gold": 3120351,
     "gems": 0,
     "last_donation": "2026-03-25 05:49:36",
-    "Rank": "242"
+    "Rank": "245"
   },
   "117103": {
     "Player": "Shoko",
-    "Level": "2085",
+    "Level": "2090",
     "Role": "Member",
     "Joined": "2026-01-19 02:10:27",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "3775"
   },
   "117960": {
     "Player": "[DLU] Darkstar",
-    "Level": "1599",
+    "Level": "1604",
     "Role": "Member",
     "Joined": "2026-02-20 15:23:03",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "3280",
     "gold": 2231584,
@@ -2027,10 +2029,10 @@
   },
   "118015": {
     "Player": "[DLU] Niki123",
-    "Level": "2473",
+    "Level": "2479",
     "Role": "Member",
     "Joined": "2026-02-16 16:16:14",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "3560",
     "gold": 53649492,
@@ -2065,7 +2067,7 @@
     "Level": "455",
     "Role": "Member",
     "Joined": "2026-03-04 23:28:33",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Unknown",
     "PvP": "0"
   },
@@ -2082,11 +2084,11 @@
     "gold": 433616,
     "gems": 0,
     "last_donation": "2026-01-20 17:59:13",
-    "Rank": "33"
+    "Rank": "37"
   },
   "121491": {
     "Player": "Kalsetter",
-    "Level": "691",
+    "Level": "692",
     "Role": "Member",
     "Joined": "2026-01-08 12:59:13",
     "Login": "2026-03-25",
@@ -2098,10 +2100,10 @@
   },
   "122747": {
     "Player": "[DLU] swifty",
-    "Level": "1202",
+    "Level": "1204",
     "Role": "Member",
     "Joined": "2026-02-17 12:42:13",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "2275",
     "gold": 14789894,
@@ -2137,7 +2139,7 @@
     "Level": "1106",
     "Role": "Member",
     "Joined": "2026-02-16 13:48:28",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "2055",
     "gold": 131648,
@@ -2146,10 +2148,10 @@
   },
   "123608": {
     "Player": "[DLU] rap_pie",
-    "Level": "853",
+    "Level": "855",
     "Role": "Member",
     "Joined": "2025-12-25 19:32:18",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Warrior",
     "PvP": "1825",
     "gold": 10593690,
@@ -2158,16 +2160,16 @@
   },
   "123855": {
     "Player": "[DLU] BeruBD",
-    "Level": "2008",
+    "Level": "2021",
     "Role": "Member",
     "Joined": "2026-02-16 15:54:17",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Mage",
     "PvP": "2490",
-    "gold": 728822,
+    "gold": 1188053,
     "gems": 0,
-    "last_donation": "2026-03-20 21:04:47",
-    "Rank": "369"
+    "last_donation": "2026-03-25 22:01:18",
+    "Rank": "319"
   },
   "124061": {
     "Player": "Z0LAHA",
@@ -2183,7 +2185,7 @@
   },
   "127615": {
     "Player": "TooMuchCoffee",
-    "Level": "1793",
+    "Level": "1810",
     "Role": "Member",
     "Joined": "2026-03-18 07:33:21",
     "Login": "2026-03-25",
@@ -2192,7 +2194,7 @@
     "gold": 15000000,
     "gems": 0,
     "last_donation": "2026-03-20 17:10:37",
-    "Rank": "264"
+    "Rank": "224"
   },
   "128272": {
     "gold": 2187054,
@@ -2201,7 +2203,7 @@
   },
   "129521": {
     "Player": "[DLU] jiren",
-    "Level": "2751",
+    "Level": "2756",
     "Role": "Member",
     "Joined": "2026-02-16 13:35:36",
     "Login": "2026-03-25",
@@ -2210,11 +2212,11 @@
     "gold": 6058089,
     "gems": 0,
     "last_donation": "2026-03-21 13:22:20",
-    "Rank": "114"
+    "Rank": "100"
   },
   "130982": {
     "Player": "[DLU} sameerc ?&amp;gt;",
-    "Level": "506",
+    "Level": "514",
     "Role": "Member",
     "Joined": "2026-01-19 00:57:55",
     "Login": "2026-03-25",
@@ -2223,10 +2225,10 @@
   },
   "134045": {
     "Player": "[DLU] Judged",
-    "Level": "1657",
+    "Level": "1667",
     "Role": "Member",
     "Joined": "2026-01-13 15:06:08",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Hunter",
     "PvP": "2635",
     "gold": 9023248,
@@ -2249,7 +2251,7 @@
   },
   "139972": {
     "Player": "RagePanda",
-    "Level": "543",
+    "Level": "558",
     "Role": "Member",
     "Joined": "2026-02-07 23:34:45",
     "Login": "2026-03-25",
@@ -2261,7 +2263,7 @@
   },
   "141209": {
     "Player": "[DLU] Hakurene",
-    "Level": "487",
+    "Level": "489",
     "Role": "Member",
     "Joined": "2026-03-22 13:09:34",
     "Login": "2026-03-25",
@@ -2270,16 +2272,16 @@
   },
   "150996": {
     "Player": "Gravewalker",
-    "Level": "152",
+    "Level": "156",
     "Role": "Member",
     "Joined": "2026-03-14 23:03:03",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Unknown",
     "PvP": "0"
   },
   "151434": {
     "Player": "Rakshas",
-    "Level": "266",
+    "Level": "269",
     "Role": "Member",
     "Joined": "2026-03-17 12:58:15",
     "Login": "2026-03-24",
@@ -2288,10 +2290,10 @@
   },
   "151711": {
     "Player": "Talm11",
-    "Level": "194",
+    "Level": "208",
     "Role": "Member",
     "Joined": "2026-03-21 18:08:07",
-    "Login": "2026-03-25",
+    "Login": "2026-03-26",
     "Class": "Unknown",
     "PvP": "0"
   }
