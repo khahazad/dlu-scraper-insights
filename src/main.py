@@ -75,7 +75,7 @@ def main():
                 print(pid, data)
             
             ## Merging players info with pids_dictionary
-            #delulu_dictionary = update_pid_dict(delulu_dictionary, players_info)
+            delulu_dictionary = update_pid_dict(delulu_dictionary, players_info)
             
             # Merging guild members with pids_dictionary
             print("Merging guild members with pids_dictionary.")
