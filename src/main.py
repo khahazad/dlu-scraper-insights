@@ -67,15 +67,15 @@ def main():
             ## TODO => only if not in guild member. 
             ######
             ## Scrape players names and levels  
-            print("Scraping players info.")
-            pids = list(delulu_dictionary.keys())
-            players_info = scrape_players_info(browser, pids)
-            print(f"### dico size {len(players_info)}")
-            for pid, data in list(players_info.items())[:5]:
-                print(pid, data)
+            #print("Scraping players info.")
+            #pids = list(delulu_dictionary.keys())
+            #players_info = scrape_players_info(browser, pids)
+            #print(f"### dico size {len(players_info)}")
+            #for pid, data in list(players_info.items())[:5]:
+            #    print(pid, data)
             
             ## Merging players info with pids_dictionary
-            delulu_dictionary = update_pid_dict(delulu_dictionary, players_info)
+            #delulu_dictionary = update_pid_dict(delulu_dictionary, players_info)
             
             # Merging guild members with pids_dictionary
             print("Merging guild members with pids_dictionary.")
